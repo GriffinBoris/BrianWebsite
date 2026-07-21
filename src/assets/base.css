@@ -1,0 +1,293 @@
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+
+/*
+ * Design tokens — the single source of truth for the visual system.
+ *
+ * The palette is cinematic and cool: charcoal ink and clean off-white neutrals
+ * with a single confident sapphire accent. Boldness is spent in one place — the
+ * sapphire accent and the audio waveform it drives — everything else stays
+ * disciplined and quiet so the work and the face carry the page.
+ *
+ * Colors are space-separated RGB channels so any token can take an alpha via
+ * rgb(var(--token) / <alpha>). Light is the default; dark overrides on
+ * html[data-theme="dark"].
+ */
+
+/* Self-hosted latin subsets of Inter (Google Fonts, OFL): no external requests. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/inter-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./fonts/inter-500-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./fonts/inter-600-normal.woff2") format("woff2");
+}
+
+:root {
+  /* Surfaces & text — a three-step cool neutral ladder */
+  --color-background: 245 246 248;
+  --color-surface-muted: 233 236 241;
+  --color-surface: 255 255 255;
+  --color-body: 20 22 28;
+  --color-secondary: 86 94 112;
+  --color-line: 219 223 230;
+
+  /* Signature — a single confident sapphire */
+  --color-accent: 44 85 200;
+  --color-accent-strong: 32 66 168;
+  --color-accent-contrast: 255 255 255;
+
+  /* Neutral primary (used for solid ink surfaces) */
+  --color-primary: 20 22 28;
+  --color-primary-contrast: 245 246 248;
+
+  --color-focus-ring: 44 85 200;
+
+  --color-success: 22 128 84;
+  --color-warning: 176 106 20;
+  --color-error: 176 42 42;
+
+  /* Typography */
+  --font-size-eyebrow: 0.75rem;
+  --tracking-eyebrow: 0.24em;
+  --font-size-lead: 1.3rem;
+  --line-height-lead: 1.55;
+  --font-size-display: clamp(3rem, 8vw, 6rem);
+  --font-size-h1: clamp(2.4rem, 5vw, 3.6rem);
+  --font-size-h2: clamp(1.9rem, 3.6vw, 2.9rem);
+  --font-size-h3: clamp(1.2rem, 2vw, 1.5rem);
+
+  /* Spacing & rhythm */
+  --space-section: clamp(4rem, 8vw, 7rem);
+  --container-width: 74rem;
+  --container-narrow: 44rem;
+  --radius-sm: 0.4rem;
+  --radius-md: 0.7rem;
+  --radius-lg: 1.1rem;
+  --radius-pill: 999px;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgb(20 22 28 / 0.06);
+  --shadow-md: 0 16px 36px -18px rgb(20 22 28 / 0.24);
+  --shadow-lg: 0 36px 64px -26px rgb(20 22 28 / 0.34);
+
+  /* Player bar height, used to pad the page bottom when active */
+  --player-height: 4.75rem;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration: 240ms;
+
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  --color-background: 16 18 24;
+  --color-surface-muted: 23 26 34;
+  --color-surface: 30 34 44;
+  --color-body: 232 234 240;
+  --color-secondary: 154 161 178;
+  --color-line: 45 50 62;
+
+  /* Sapphire lifts to a luminous periwinkle-blue that glows on charcoal */
+  --color-accent: 110 155 255;
+  --color-accent-strong: 140 178 255;
+  --color-accent-contrast: 16 18 24;
+
+  --color-primary: 232 234 240;
+  --color-primary-contrast: 16 18 24;
+
+  --color-focus-ring: 110 155 255;
+
+  --color-success: 63 191 130;
+  --color-warning: 224 158 66;
+  --color-error: 236 110 110;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.45);
+  --shadow-md: 0 14px 34px -16px rgb(0 0 0 / 0.6);
+  --shadow-lg: 0 34px 60px -24px rgb(0 0 0 / 0.72);
+
+  color-scheme: dark;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    background-color: rgb(var(--color-background));
+  }
+
+  body {
+    min-height: 100dvh;
+    font-family: theme("fontFamily.sans");
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: rgb(var(--color-body));
+    background-color: rgb(var(--color-background));
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition:
+      background-color var(--duration) var(--ease),
+      color var(--duration) var(--ease);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img,
+  picture,
+  video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-focus-ring));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: rgb(var(--color-accent) / 0.28);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/*
+ * Cross-cutting primitives reused on every page. These stay semantic so the
+ * views read like page outlines; one-off layout still uses Tailwind utilities.
+ */
+@layer components {
+  .site-container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+  }
+
+  .site-container--narrow {
+    max-width: var(--container-narrow);
+  }
+
+  .section {
+    padding-block: var(--space-section);
+  }
+
+  .section--muted {
+    background-color: rgb(var(--color-surface-muted));
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: var(--font-size-eyebrow);
+    font-weight: 600;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: rgb(var(--color-accent));
+  }
+
+  .lead {
+    font-size: var(--font-size-lead);
+    line-height: var(--line-height-lead);
+    color: rgb(var(--color-secondary));
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1;
+    transition:
+      transform var(--duration) var(--ease),
+      background-color var(--duration) var(--ease),
+      border-color var(--duration) var(--ease),
+      color var(--duration) var(--ease);
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn--accent {
+    background-color: rgb(var(--color-accent));
+    color: rgb(var(--color-accent-contrast));
+  }
+
+  .btn--accent:hover {
+    background-color: rgb(var(--color-accent-strong));
+  }
+
+  .btn--ghost {
+    background-color: transparent;
+    border-color: rgb(var(--color-line));
+    color: rgb(var(--color-body));
+  }
+
+  .btn--ghost:hover {
+    border-color: rgb(var(--color-accent));
+    color: rgb(var(--color-accent));
+  }
+}
