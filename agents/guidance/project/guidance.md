@@ -47,6 +47,9 @@ every choice in the subject.
 - **Usable, not a maze.** No scroll-triggered reveals or content hidden until scrolled into view.
   Everything is visible and reachable; navigation is explicit. Prefer clarity and findability over
   scroll spectacle.
+- **Focused pages, not one long scroller.** The site is split into a few short pages, each doing one
+  job (Listen, About, Contact). Keep each page tight and purposeful rather than stacking every
+  section onto the home page.
 
 ## Source Of Truth
 
@@ -60,13 +63,22 @@ every choice in the subject.
 
 ## Repository Layout
 
-- `index.html` — single-page site, served at the site root by GitHub Pages.
+- `index.html` — the **Listen** home page (hero, quick-listen chips, waveform, the two demo players,
+  and a slim booking CTA), served at the site root by GitHub Pages.
+- `about.html` — bio, voice-profile spec card, and the headshots gallery.
+- `contact.html` — the booking call-to-action plus the "find Brian elsewhere" profile links
+  (Backstage, LinkedIn, Facebook).
+- The header/nav and footer are duplicated across the three pages by hand (no build step, no
+  templating). The nav is `Listen · About · Contact`; the current page carries `aria-current="page"`.
+  Only the home page includes the persistent audio bar and `player.js`.
 - `assets/css/` — `tokens.css` (design tokens, light/dark `data-theme`, single source of truth),
-  `base.css` (resets/typography), `layout.css` (shell, header, hero, sections), `components.css`
-  (buttons, waveform, demo players, persistent audio bar, voice profile, headshots, contact).
+  `base.css` (resets/typography), `layout.css` (shell, header, hero, page-hero, sections),
+  `components.css` (buttons/link rows, waveform, demo players, persistent audio bar, voice profile,
+  headshots, contact, booking CTA).
 - `assets/js/` — dependency-free. `theme.js` (light/dark toggle), `main.js` (mobile nav + footer
   year), `player.js` (the audio engine: one `<audio>` drives the demo cards, hero quick-listen
-  chips, persistent bottom bar, and the Web Audio waveform).
+  chips, persistent bottom bar, and the Web Audio waveform; it also stamps each demo's real length
+  onto its card and matching hero chip, and no-ops on pages with no player).
 - `assets/fonts/` — **self-hosted** Fraunces + Inter latin `woff2` subsets and `fonts.css`. No
   external font requests; keeps the site self-contained, fast, and CSP-friendly.
 - `assets/img/` — `headshot.jpg` (primary), `brian-look-01/02.jpg`, `favicon.svg`.
@@ -102,11 +114,11 @@ every choice in the subject.
 
 ## Content The Owner Supplies Or Confirms Later
 
-- **Booking email** is still a `mailto:` placeholder (`TODO(Brian)` in `index.html`) — the only
+- **Booking email** is still a `mailto:` placeholder (`TODO(Brian)` in `contact.html`) — the only
   remaining unknown. Replace it once Brian provides a real address.
 - Real training, representation, and specific credits/clients can be added to About when he has
   details he can back up. Do not invent them.
-- External profiles are linked in the **Connect** section (Backstage, LinkedIn, Facebook). These
+- External profiles are linked on the **Contact** page (Backstage, LinkedIn, Facebook). These
   are gated to automated fetching, so their content is linked, not scraped.
 
 ## Future Direction

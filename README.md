@@ -6,8 +6,9 @@ click** and reach Brian to book him.
 
 It is a **hand-authored static site** (semantic HTML, modern CSS, dependency-free
 JS) with **no build step**, so it hosts on GitHub Pages the moment it's pushed.
-It's structured to grow into a reactive static site later without throwing this
-work away.
+It's a few short, focused pages rather than one long scroller, and it's
+structured to grow into a reactive static site later without throwing this work
+away.
 
 ## Quick start
 
@@ -20,22 +21,27 @@ python3 -m http.server 8000
 
 ## What's here
 
-- **Listen-first hero** — name, positioning line, headshot, quick-listen chips,
-  and a **waveform** that animates to Brian's actual voice while a demo plays.
-- **Demos** — the two reels (`commercial-demo.mp3`, `narration-demo.mp3`) with a
-  custom audio player and a **persistent play bar** that follows you down the page.
-- **About** — a voice-focused bio and a voice-profile spec card.
-- **Headshots** — a clean 3-up gallery.
-- **Connect** — links to Brian's [Backstage](https://www.backstage.com/u/brian-bakaj/),
+Three short pages sharing one header, footer, and design system:
+
+- **Listen** (`index.html`) — the home page. A listen-first hero (name,
+  positioning line, headshot, quick-listen chips, and a **waveform** that
+  animates to Brian's actual voice while a demo plays), the two reels
+  (`commercial-demo.mp3`, `narration-demo.mp3`) with a custom player and a
+  **persistent play bar**, and a slim booking call-to-action.
+- **About** (`about.html`) — a voice-focused bio, a voice-profile spec card, and
+  a 3-up headshots gallery.
+- **Contact** (`contact.html`) — the booking call-to-action plus links to Brian's
+  [Backstage](https://www.backstage.com/u/brian-bakaj/),
   [LinkedIn](https://www.linkedin.com/in/brian-bakaj), and
   [Facebook](https://www.facebook.com/brian.bakaj/).
-- **Contact** — a booking call-to-action.
 - **Light/dark theme**, responsive down to mobile, self-hosted fonts.
 
 ## Project structure
 
 ```
-index.html
+index.html         Listen (home): hero + demos + booking CTA
+about.html         Bio, voice profile, headshots
+contact.html       Booking + profile links
 assets/
   css/     tokens.css · base.css · layout.css · components.css
   js/      theme.js (light/dark) · main.js (nav, year) · player.js (audio engine)
@@ -54,16 +60,15 @@ agents/            shared agent guidance source
   waveform; the palette's signature color is the **oxblood** of Brian's own
   headshot wardrobe. Everything else stays quiet and legible.
 - **Type:** Fraunces (display) + Inter (UI), self-hosted for speed and privacy.
-- **Usable, not a maze.** No scroll-triggered reveals — content is always visible
-  and reachable, with explicit navigation.
+- **Usable, not a maze.** No scroll-triggered reveals and no endless scroll —
+  content is split into short, focused pages with explicit navigation.
 
 ## Things for Brian to fill in
 
-Search `index.html` for `TODO(Brian)` and the `.needs-detail` markers:
+Search the HTML for `TODO(Brian)`:
 
-- Booking email (currently a `mailto:` placeholder)
-- City / location and voice-age range
-- Optionally: training, representation, notable clients
+- Booking email (currently a `mailto:` placeholder in `contact.html`)
+- Optionally: training, representation, notable clients (add to `about.html`)
 
 To personalize demos or images, drop replacements into `assets/media/` and
 `assets/img/` using the same filenames.

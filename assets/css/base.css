@@ -52,6 +52,10 @@ h3 {
   letter-spacing: -0.015em;
 }
 
+h1 {
+  font-size: var(--font-size-h1);
+}
+
 h2 {
   font-size: var(--font-size-h2);
 }

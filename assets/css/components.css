@@ -565,22 +565,63 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   }
 }
 
-/* ---------- Contact ---------- */
-.contact__card {
-  text-align: center;
-  padding: clamp(2rem, 5vw, 3.5rem);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgb(var(--color-line));
-  background: rgb(var(--color-surface));
-  box-shadow: var(--shadow-md);
-}
-
-.contact__links {
-  margin-top: 1.75rem;
+/* ---------- Button / link rows ---------- */
+.button-row {
   display: flex;
   flex-wrap: wrap;
   gap: 0.85rem;
+}
+
+.button-row--center {
   justify-content: center;
+}
+
+/* ---------- Contact ---------- */
+.contact {
+  text-align: center;
+}
+
+.contact__title {
+  margin-top: 0.25rem;
+}
+
+.contact .lead {
+  margin-top: 1.25rem;
+  margin-inline: auto;
+  max-width: 40ch;
+}
+
+.contact__actions {
+  margin-top: 2rem;
+}
+
+.contact__elsewhere {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+  border-top: 1px solid rgb(var(--color-line));
+}
+
+.contact__elsewhere .eyebrow {
+  margin-bottom: 1.25rem;
+}
+
+/* ---------- Slim booking CTA (home) ---------- */
+.book-cta {
+  text-align: center;
+}
+
+.book-cta__title {
+  margin-top: 0.25rem;
+}
+
+.book-cta .lead {
+  margin-top: 1rem;
+  margin-inline: auto;
+  max-width: 42ch;
+}
+
+.book-cta .button-row {
+  margin-top: 1.75rem;
 }
 
 /* ---------- Editorial helpers ---------- */

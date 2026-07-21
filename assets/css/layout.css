@@ -30,6 +30,10 @@ body.player-active {
   margin-bottom: clamp(2rem, 4vw, 3.25rem);
 }
 
+.section__head .lead {
+  margin-top: 1rem;
+}
+
 .eyebrow {
   display: inline-block;
   font-family: var(--font-sans);
@@ -98,6 +102,11 @@ body.player-active {
 .nav__links a:hover,
 .nav__links a:focus-visible {
   color: rgb(var(--color-body));
+}
+
+.nav__links a[aria-current="page"] {
+  color: rgb(var(--color-body));
+  font-weight: 600;
 }
 
 .nav__actions {
@@ -198,6 +207,26 @@ body.player-active {
     max-width: 20rem;
     order: -1;
   }
+}
+
+/* Page hero — the intro band on the About and Contact pages */
+.page-hero {
+  padding-block: clamp(3rem, 7vw, 5.5rem) 0;
+}
+
+.page-hero__title {
+  font-size: var(--font-size-h1);
+  margin-top: 0.25rem;
+}
+
+.page-hero .lead {
+  margin-top: 1.25rem;
+  max-width: 46ch;
+}
+
+/* The page hero already supplies top space; don't double it on the next band. */
+.page-hero + .section {
+  padding-top: clamp(2.25rem, 4vw, 3.25rem);
 }
 
 /* Footer */
