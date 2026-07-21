@@ -1,8 +1,9 @@
-# Brian Bakaj — Voice Actor
+# Brian Bakaj — Actor
 
-A portfolio site for **Brian Bakaj**, a voice actor working in commercial and
-narration. It's built to do one job well: let someone **hear the demos in one
-click** and reach Brian to book him.
+A portfolio site for **Brian Bakaj**, an actor working **on screen and in
+voiceover**. It positions him as an actor first, with his voice reels as one
+prominent part of his range, and makes it easy to size him up: see the face and
+the casting profile, **hear the reels in one click**, and reach him to book.
 
 It is a **hand-authored static site** (semantic HTML, modern CSS, dependency-free
 JS) with **no build step**, so it hosts on GitHub Pages the moment it's pushed.
@@ -23,13 +24,13 @@ python3 -m http.server 8000
 
 Three short pages sharing one header, footer, and design system:
 
-- **Listen** (`index.html`) — the home page. A listen-first hero (name,
-  positioning line, headshot, quick-listen chips, and a **waveform** that
-  animates to Brian's actual voice while a demo plays), the two reels
+- **Home** (`index.html`) — an actor-positioned hero (name, positioning line,
+  headshot, quick-listen chips, and a **waveform** that animates to Brian's
+  actual voice while a demo plays), the two voice reels
   (`commercial-demo.mp3`, `narration-demo.mp3`) with a custom player and a
   **persistent play bar**, and a slim booking call-to-action.
-- **About** (`about.html`) — a voice-focused bio, a voice-profile spec card, and
-  a 3-up headshots gallery.
+- **About** (`about.html`) — an actor bio, a casting-profile spec card, and a
+  3-up headshots gallery.
 - **Contact** (`contact.html`) — the booking call-to-action plus links to Brian's
   [Backstage](https://www.backstage.com/u/brian-bakaj/),
   [LinkedIn](https://www.linkedin.com/in/brian-bakaj), and
@@ -39,8 +40,8 @@ Three short pages sharing one header, footer, and design system:
 ## Project structure
 
 ```
-index.html         Listen (home): hero + demos + booking CTA
-about.html         Bio, voice profile, headshots
+index.html         Home: actor hero + voice reels + booking CTA
+about.html         Bio, casting profile, headshots
 contact.html       Booking + profile links
 assets/
   css/     tokens.css · base.css · layout.css · components.css
@@ -56,10 +57,11 @@ agents/            shared agent guidance source
 
 ## Design notes
 
-- **One bold idea, grounded in the subject.** The signature is the audio
-  waveform; the palette's signature color is the **oxblood** of Brian's own
-  headshot wardrobe. Everything else stays quiet and legible.
-- **Type:** Fraunces (display) + Inter (UI), self-hosted for speed and privacy.
+- **One bold idea.** The signature is the audio waveform; the palette is a
+  cinematic, cool charcoal-and-off-white system with a single confident
+  **sapphire** accent. Everything else stays quiet and legible.
+- **Type:** Fraunces (display serif, used upright) + Inter (UI), self-hosted for
+  speed and privacy.
 - **Usable, not a maze.** No scroll-triggered reveals and no endless scroll —
   content is split into short, focused pages with explicit navigation.
 
