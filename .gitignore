@@ -1,0 +1,35 @@
+# === OS / editor cruft ===
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# === Generated agent integrations ===
+# Authored source lives in agents/. These are local build outputs from
+# `task agents:generate` (see tasks/agents.yml). The Claude target (.claude/)
+# is intentionally committed so guidance is present on a fresh clone; the other
+# harness outputs are regenerated on demand and stay out of Git.
+AGENTS.md
+GEMINI.md
+opencode.json
+.agents/
+.codex/
+.gemini/
+.opencode/
+.github/copilot-instructions.md
+
+# Agent builder byproducts
+__pycache__/
+*.py[cod]
+
+# === Local dev ===
+# If a future reactive build is added, ignore its output:
+node_modules/
+dist/
+.cache/
+
+# Environment / secrets (none expected for a static site, but be safe)
+.env
+.env.*
+!.env.example

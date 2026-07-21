@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- TODO(owner): replace name/description throughout with Brian's real details -->
+    <title>Brian Lastname — Actor</title>
+    <meta
+      name="description"
+      content="Brian Lastname is an actor based in City, ST. Demo reel, credits, gallery, and résumé."
+    />
+
+    <!-- Open Graph / social preview (swap in assets/img/og-cover.jpg once available) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Brian Lastname — Actor" />
+    <meta
+      property="og:description"
+      content="Actor based in City, ST. Demo reel, credits, gallery, and résumé."
+    />
+    <meta property="og:image" content="assets/img/og-cover.jpg" />
+
+    <!-- Prevent a flash of the wrong theme before CSS/JS load -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("brian.theme");
+          if (t !== "light" && t !== "dark") {
+            t = matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+          }
+          document.documentElement.setAttribute("data-theme", t);
+          document.documentElement.style.colorScheme = t;
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ===================== Header / Nav ===================== -->
+    <header class="site-header">
+      <div class="container">
+        <nav class="nav" aria-label="Primary">
+          <a class="nav__brand" href="#top">Brian Lastname</a>
+
+          <ul class="nav__links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#reel">Reel</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#resume">Résumé</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+
+          <div class="nav__actions">
+            <button
+              class="theme-toggle"
+              type="button"
+              data-theme-toggle
+              aria-pressed="false"
+              aria-label="Switch to dark theme"
+            >
+              <svg
+                class="icon-moon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+              <svg
+                class="icon-sun"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="4" />
+                <path
+                  d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"
+                />
+              </svg>
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <span id="top"></span>
+
+      <!-- ===================== Hero ===================== -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container">
+          <div class="hero__grid">
+            <div>
+              <p class="eyebrow">Actor &middot; City, ST</p>
+              <h1 class="hero__title" id="hero-title">
+                Brian <em>Lastname</em>
+              </h1>
+              <p class="lead hero__lead">
+                <!-- TODO(owner): replace with a one-line positioning statement -->
+                Stage and screen actor with a gift for grounded, generous
+                storytelling — equally at home in intimate drama and sharp comedy.
+              </p>
+              <div class="hero__actions">
+                <a class="btn btn--accent" href="#reel">Watch the reel</a>
+                <a class="btn btn--ghost" href="#contact">Get in touch</a>
+              </div>
+            </div>
+
+            <div class="hero__portrait" aria-hidden="true">
+              <!--
+                Drop a headshot here later:
+                <img src="assets/img/headshot.jpg" alt="Brian Lastname" />
+              -->
+              <span class="placeholder-note">Headshot goes here</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== About ===================== -->
+      <section class="section section--muted" id="about" aria-labelledby="about-title">
+        <div class="container">
+          <div class="section__head reveal">
+            <p class="eyebrow">About</p>
+            <h2 id="about-title">A short introduction</h2>
+          </div>
+
+          <div class="about__grid">
+            <div class="reveal">
+              <!-- TODO(owner): replace this bio with Brian's own words -->
+              <p>
+                Brian is an actor whose work moves easily between the theatre and
+                the camera. Training in classical text and contemporary scene
+                study gave him a precise ear for language and an instinct for the
+                quiet, human moments a scene turns on.
+              </p>
+              <p style="margin-top: 1rem">
+                Recent work spans independent film, regional stage, and new-play
+                development. He is drawn to characters caught in change — people
+                trying to be better than the moment allows — and to collaborators
+                who care about the craft. Represented for film, television, and
+                commercial work.
+              </p>
+            </div>
+
+            <dl class="about__facts reveal" aria-label="Quick facts">
+              <div class="fact">
+                <dt class="fact__label">Based in</dt>
+                <dd class="fact__value">City, ST</dd>
+              </div>
+              <div class="fact">
+                <dt class="fact__label">Height</dt>
+                <dd class="fact__value">6'0"</dd>
+              </div>
+              <div class="fact">
+                <dt class="fact__label">Hair / Eyes</dt>
+                <dd class="fact__value">Brown / Blue</dd>
+              </div>
+              <div class="fact">
+                <dt class="fact__label">Vocal range</dt>
+                <dd class="fact__value">Baritone</dd>
+              </div>
+              <div class="fact">
+                <dt class="fact__label">Union</dt>
+                <dd class="fact__value">Non-union</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Reel / Demos ===================== -->
+      <section class="section" id="reel" aria-labelledby="reel-title">
+        <div class="container">
+          <div class="section__head reveal">
+            <p class="eyebrow">Demo reel</p>
+            <h2 id="reel-title">Selected clips</h2>
+            <p class="lead" style="margin-top: 1rem">
+              Reels and scene work. Replace each card with an embedded video or a
+              link to Vimeo / YouTube once footage is ready.
+            </p>
+          </div>
+
+          <div class="reel-grid">
+            <article class="reel-card reveal">
+              <div class="reel-card__media" aria-hidden="true">
+                <span class="reel-card__play">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+              </div>
+              <div class="reel-card__body">
+                <span class="reel-card__kicker">Drama</span>
+                <h3>Dramatic reel</h3>
+                <p>A short montage of dramatic scene work. 60–90 seconds.</p>
+              </div>
+            </article>
+
+            <article class="reel-card reveal">
+              <div class="reel-card__media" aria-hidden="true">
+                <span class="reel-card__play">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+              </div>
+              <div class="reel-card__body">
+                <span class="reel-card__kicker">Comedy</span>
+                <h3>Comedy reel</h3>
+                <p>Timing, lightness, and range across a few comedic beats.</p>
+              </div>
+            </article>
+
+            <article class="reel-card reveal">
+              <div class="reel-card__media" aria-hidden="true">
+                <span class="reel-card__play">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+              </div>
+              <div class="reel-card__body">
+                <span class="reel-card__kicker">Self-tape</span>
+                <h3>Featured scene</h3>
+                <p>A longer single-scene self-tape for casting reference.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Gallery ===================== -->
+      <section class="section section--muted" id="gallery" aria-labelledby="gallery-title">
+        <div class="container">
+          <div class="section__head reveal">
+            <p class="eyebrow">Gallery</p>
+            <h2 id="gallery-title">Headshots &amp; production stills</h2>
+            <p class="lead" style="margin-top: 1rem">
+              Drop images into <code>assets/img/</code> and swap each placeholder
+              for an <code>&lt;img&gt;</code>.
+            </p>
+          </div>
+
+          <div class="gallery reveal">
+            <figure><span>Headshot 1</span></figure>
+            <figure><span>Headshot 2</span></figure>
+            <figure><span>Still 1</span></figure>
+            <figure><span>Still 2</span></figure>
+            <figure><span>Still 3</span></figure>
+            <figure><span>Still 4</span></figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Résumé / Credits ===================== -->
+      <section class="section" id="resume" aria-labelledby="resume-title">
+        <div class="container">
+          <div class="section__head reveal">
+            <p class="eyebrow">Résumé</p>
+            <h2 id="resume-title">Credits &amp; training</h2>
+            <p class="lead" style="margin-top: 1rem">
+              A living selection of credits. The full résumé PDF can be downloaded
+              below once uploaded to <code>assets/resume/</code>.
+            </p>
+          </div>
+
+          <div class="reveal">
+            <h3 style="margin-bottom: 0.75rem">Film &amp; Television</h3>
+            <div class="credits" role="table" aria-label="Film and television credits">
+              <div class="credit-row credit-row--head" role="row">
+                <span role="columnheader">Production</span>
+                <span role="columnheader">Role</span>
+                <span role="columnheader">Director / Company</span>
+              </div>
+              <div class="credit-row" role="row">
+                <span class="credit-row__title" role="cell">Project Title</span>
+                <span class="credit-row__meta" role="cell">Supporting</span>
+                <span class="credit-row__meta" role="cell">Director, Studio</span>
+              </div>
+              <div class="credit-row" role="row">
+                <span class="credit-row__title" role="cell">Short Film</span>
+                <span class="credit-row__meta" role="cell">Lead</span>
+                <span class="credit-row__meta" role="cell">Director, Company</span>
+              </div>
+            </div>
+
+            <h3 style="margin: 2.5rem 0 0.75rem">Theatre</h3>
+            <div class="credits" role="table" aria-label="Theatre credits">
+              <div class="credit-row credit-row--head" role="row">
+                <span role="columnheader">Production</span>
+                <span role="columnheader">Role</span>
+                <span role="columnheader">Theatre</span>
+              </div>
+              <div class="credit-row" role="row">
+                <span class="credit-row__title" role="cell">Play Title</span>
+                <span class="credit-row__meta" role="cell">Character</span>
+                <span class="credit-row__meta" role="cell">Playhouse</span>
+              </div>
+              <div class="credit-row" role="row">
+                <span class="credit-row__title" role="cell">Play Title</span>
+                <span class="credit-row__meta" role="cell">Character</span>
+                <span class="credit-row__meta" role="cell">Theatre Company</span>
+              </div>
+            </div>
+
+            <h3 style="margin: 2.5rem 0 0.75rem">Training &amp; Skills</h3>
+            <p style="color: rgb(var(--color-secondary))">
+              BFA / conservatory or studio training goes here — Meisner, scene
+              study, voice, movement, on-camera technique.
+            </p>
+            <ul class="skills" aria-label="Special skills">
+              <li class="chip">Stage combat</li>
+              <li class="chip">Dialects / accents</li>
+              <li class="chip">Improv</li>
+              <li class="chip">Guitar</li>
+              <li class="chip">Driving (manual)</li>
+              <li class="chip">Singing (baritone)</li>
+            </ul>
+
+            <div style="margin-top: 2.25rem">
+              <!-- Once the PDF exists at assets/resume/brian-resume.pdf, this link works as-is. -->
+              <a class="btn btn--primary" href="assets/resume/brian-resume.pdf" download>
+                Download résumé (PDF)
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Contact ===================== -->
+      <section class="section section--muted" id="contact" aria-labelledby="contact-title">
+        <div class="container container--narrow">
+          <div class="contact__card reveal">
+            <p class="eyebrow">Contact</p>
+            <h2 id="contact-title">Let's work together</h2>
+            <p class="lead" style="margin-top: 1rem">
+              Available for film, television, theatre, and commercial work.
+              Inquiries and representation details below.
+            </p>
+            <div class="contact__links">
+              <!-- TODO(owner): replace with real email / representation / socials -->
+              <a class="btn btn--accent" href="mailto:hello@example.com">Email</a>
+              <a class="btn btn--ghost" href="#" rel="noopener">Instagram</a>
+              <a class="btn btn--ghost" href="#" rel="noopener">IMDb</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================== Footer ===================== -->
+    <footer class="site-footer">
+      <div class="container site-footer__row">
+        <p>&copy; <span data-current-year>2026</span> Brian Lastname. All rights reserved.</p>
+        <p>Built as a static site &middot; hosted on GitHub Pages.</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/main.js" defer></script>
+  </body>
+</html>

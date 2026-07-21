@@ -1,0 +1,13 @@
+version: "3"
+
+includes:
+  agents:
+    taskfile: ./tasks/agents.yml
+    dir: .
+
+tasks:
+  default:
+    desc: Show available tasks
+    cmds:
+      - task --list --sort alphanumeric
+    silent: true
