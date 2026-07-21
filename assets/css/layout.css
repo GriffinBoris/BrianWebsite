@@ -1,0 +1,217 @@
+/* Page shell, containers, header, hero, and section rhythm. */
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+.container--narrow {
+  max-width: var(--container-narrow);
+}
+
+/* Leave room for the audio bar when it is active */
+body.player-active {
+  padding-bottom: var(--player-height);
+}
+
+.section {
+  padding-block: var(--space-section);
+  scroll-margin-top: 5rem;
+}
+
+.section--muted {
+  background-color: rgb(var(--color-surface-muted));
+}
+
+.section__head {
+  max-width: var(--container-narrow);
+  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: rgb(var(--color-accent));
+  margin-bottom: 1rem;
+}
+
+.lead {
+  font-size: var(--font-size-lead);
+  line-height: var(--line-height-lead);
+  color: rgb(var(--color-secondary));
+}
+
+/* Header / nav */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: rgb(var(--color-background) / 0.85);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid rgb(var(--color-line));
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 4.25rem;
+}
+
+.nav__brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.nav__brand span {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgb(var(--color-accent));
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.4vw, 2rem);
+}
+
+.nav__links a {
+  font-size: 0.95rem;
+  color: rgb(var(--color-secondary));
+}
+
+.nav__links a:hover,
+.nav__links a:focus-visible {
+  color: rgb(var(--color-body));
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.nav__toggle {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .nav__links {
+    position: absolute;
+    top: 4.25rem;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: rgb(var(--color-surface));
+    border-bottom: 1px solid rgb(var(--color-line));
+    box-shadow: var(--shadow-md);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--duration) var(--ease);
+  }
+  .nav__links[data-open="true"] {
+    max-height: 20rem;
+  }
+  .nav__links a {
+    padding: 0.9rem 1.5rem;
+    border-top: 1px solid rgb(var(--color-line));
+  }
+  .nav__toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgb(var(--color-line));
+    background: rgb(var(--color-surface));
+    color: rgb(var(--color-body));
+  }
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  padding-block: clamp(3.5rem, 9vw, 7rem);
+  overflow: hidden;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.hero__title {
+  font-size: var(--font-size-display);
+  font-optical-sizing: auto;
+}
+
+.hero__title em {
+  font-style: italic;
+  color: rgb(var(--color-accent));
+}
+
+.hero__lead {
+  margin-top: 1.5rem;
+  max-width: 38ch;
+}
+
+.hero__portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: rgb(var(--color-surface-muted));
+}
+
+.hero__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+@media (max-width: 860px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
+  .hero__portrait {
+    max-width: 20rem;
+    order: -1;
+  }
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid rgb(var(--color-line));
+  padding-block: 2.75rem;
+  color: rgb(var(--color-secondary));
+  font-size: 0.9rem;
+}
+
+.site-footer__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
