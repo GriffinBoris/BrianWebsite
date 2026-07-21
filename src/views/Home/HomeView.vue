@@ -6,7 +6,7 @@
         <div>
           <p class="eyebrow mb-4">Actor · Austin, TX</p>
           <h1 id="hero-title" class="text-display">Brian Bakaj</h1>
-          <p class="lead mt-6 max-w-[40ch]">A natural read for screen and voice that sounds like a real person, not a performance. English and Albanian. Press play.</p>
+          <p class="lead mt-6 max-w-[40ch]">A natural read for screen and voice that sounds like a real person, not a performance. English and Albanian.</p>
 
           <div class="mt-8 flex flex-wrap items-center gap-3">
             <span class="mr-1 text-[0.8rem] uppercase tracking-[0.12em] text-secondary">Listen</span>
@@ -29,7 +29,7 @@
       <div class="mb-[clamp(2rem,4vw,3.25rem)] max-w-container-narrow">
         <p class="eyebrow mb-4">Voice</p>
         <h2 id="demos-title" class="text-h2">Hear the reels</h2>
-        <p class="lead mt-4">Two reels, commercial and narration. Press play.</p>
+        <p class="lead mt-4">Commercial and narration. The same natural read, bright or steady.</p>
       </div>
 
       <div class="grid gap-5">

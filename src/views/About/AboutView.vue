@@ -3,7 +3,7 @@
     eyebrow="About"
     title="About Brian"
     title-id="about-title"
-    lead="Austin actor for screen and voice, with real range across the two."
+    lead="A natural read for screen and voice, with real range across the two."
   />
 
   <!-- Bio + casting profile -->
