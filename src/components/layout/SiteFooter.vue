@@ -1,12 +1,14 @@
 <template>
-  <footer class="border-t border-line py-11 text-[0.9rem] text-secondary">
-    <div class="site-container flex flex-wrap items-center justify-between gap-x-6 gap-y-4">
-      <p>&copy; {{ year }} Brian Bakaj. Actor.</p>
-      <p>Austin, TX · Screen &amp; voice · Remote-ready</p>
+  <footer class="border-t border-line py-10 text-[0.9rem] text-secondary">
+    <div class="site-container flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+      <RouterLink class="font-semibold text-body transition-colors hover:text-accent" :to="{ name: 'home' }">
+        Brian Bakaj
+      </RouterLink>
+      <p>Austin, TX &middot; Screen &amp; voice &middot; Remote-ready</p>
     </div>
   </footer>
 </template>
 
 <script setup lang="ts">
-  const year = new Date().getFullYear();
+  import { RouterLink } from "vue-router";
 </script>

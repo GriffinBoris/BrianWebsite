@@ -8,8 +8,8 @@
           <h1 id="hero-title" class="text-display">Brian Bakaj</h1>
           <p class="lead mt-6 max-w-[40ch]">A natural read for screen and voice that sounds like a real person, not a performance. English and Albanian.</p>
 
-          <div class="mt-8 flex flex-wrap items-center gap-3">
-            <span class="mr-1 text-[0.8rem] uppercase tracking-[0.12em] text-secondary">Listen</span>
+          <div class="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
+            <span class="w-full text-[0.8rem] uppercase tracking-[0.12em] text-secondary sm:mr-1 sm:w-auto">Listen</span>
             <ListenChip v-for="track in demoTracks" :key="track.id" :track="track" />
           </div>
 
