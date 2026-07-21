@@ -1,8 +1,9 @@
-name: Deploy static site to GitHub Pages
+name: Deploy site to GitHub Pages
 
-# Publishes the hand-authored static site (index.html + assets/) to GitHub Pages.
-# One-time setup: in the repo, go to Settings → Pages → Build and deployment →
-# Source: "GitHub Actions". After that, every push to the default branch deploys.
+# Builds the Vue 3 + Vite + Tailwind app and publishes the static dist/ output to
+# GitHub Pages. One-time setup: in the repo, go to Settings → Pages → Build and
+# deployment → Source: "GitHub Actions". After that, every push to the default
+# branch deploys.
 
 on:
   push:
@@ -26,18 +27,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Stage site files
-        run: |
-          mkdir -p _site
-          cp index.html _site/
-          cp -r assets _site/
-          # Skip Jekyll processing so files/underscore paths serve as-is.
-          touch _site/.nojekyll
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: dist
 
   deploy:
     needs: build

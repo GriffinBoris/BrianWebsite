@@ -5,33 +5,33 @@ voiceover**. It positions him as an actor first, with his voice reels as one
 prominent part of his range, and makes it easy to size him up: see the face and
 the casting profile, **hear the reels in one click**, and reach him to book.
 
-It is a **hand-authored static site** (semantic HTML, modern CSS, dependency-free
-JS) with **no build step**, so it hosts on GitHub Pages the moment it's pushed.
-It's a few short, focused pages rather than one long scroller, and it's
-structured to grow into a reactive static site later without throwing this work
-away.
+It is a **reactive static site** built on the house stack — **Vue 3 + Vite +
+Tailwind v4** with TypeScript — that compiles to fully static assets and hosts on
+GitHub Pages. It's a few short, focused routes rather than one long scroller, and
+the design system (sapphire signature, Inter type, the voice waveform) is shared
+across them.
 
 ## Quick start
 
-No tooling required. To preview locally:
-
 ```bash
-python3 -m http.server 8000
-# then open http://localhost:8000
+npm install
+npm run dev       # local dev server
+npm run build     # type-check + production build to dist/
+npm run preview   # preview the production build (GitHub Pages base path)
 ```
 
 ## What's here
 
-Three short pages sharing one header, footer, and design system:
+Three short routes sharing one shell, design system, and audio engine:
 
-- **Home** (`index.html`) — an actor-positioned hero (name, positioning line,
-  headshot, quick-listen chips, and a **waveform** that animates to Brian's
-  actual voice while a demo plays), the two voice reels
-  (`commercial-demo.mp3`, `narration-demo.mp3`) with a custom player and a
-  **persistent play bar**, and a slim booking call-to-action.
-- **About** (`about.html`) — an actor bio, a casting-profile spec card, and a
-  3-up headshots gallery.
-- **Contact** (`contact.html`) — the booking call-to-action plus links to Brian's
+- **Home** (`/`) — an actor-positioned hero (name, positioning line, headshot,
+  quick-listen chips, and a **waveform** that animates to Brian's actual voice
+  while a demo plays), the two voice reels (`commercial-demo.mp3`,
+  `narration-demo.mp3`) with a custom player and a **persistent play bar**, and a
+  slim booking call-to-action.
+- **About** (`/about`) — an actor bio, a casting-profile spec card, and a 3-up
+  headshots gallery.
+- **Contact** (`/contact`) — the booking call-to-action plus links to Brian's
   [Backstage](https://www.backstage.com/u/brian-bakaj/),
   [LinkedIn](https://www.linkedin.com/in/brian-bakaj), and
   [Facebook](https://www.facebook.com/brian.bakaj/).
@@ -40,18 +40,21 @@ Three short pages sharing one header, footer, and design system:
 ## Project structure
 
 ```
-index.html         Home: actor hero + voice reels + booking CTA
-about.html         Bio, casting profile, headshots
-contact.html       Booking + profile links
-assets/
-  css/     tokens.css · base.css · layout.css · components.css
-  js/      theme.js (light/dark) · main.js (nav, year) · player.js (audio engine)
-  fonts/   self-hosted Inter woff2 (400/500/600) + fonts.css
-  img/     headshot.jpg · brian-look-01/02.jpg · favicon.svg
-  media/   commercial-demo.mp3 · narration-demo.mp3
-  resume/  (reserved for a résumé PDF)
-agents/            shared agent guidance source
-.claude/           generated Claude guidance (committed)
+index.html            Vite entry: meta, anti-FOUC theme snippet, #app mount
+vite.config.ts         Vue + Tailwind plugins, @ alias, Pages base path
+tailwind.config.js     token → semantic-utility mapping, data-theme dark mode
+src/
+  main.ts              app bootstrap (router + theme + mount)
+  App.vue              shell: header, router view, footer, persistent audio bar
+  router/              vue-router, hash history (Pages-friendly)
+  views/               HomeView · AboutView · ContactView (one folder each)
+  components/          layout/ · page/ · player/ · ui/(icons)
+  composables/         useTheme.ts · usePlayer.ts (the audio engine)
+  data/demos.ts        the demo-track list (single source of truth)
+  assets/              base.css (tokens + Tailwind entry) · fonts · img · media
+public/                favicon.svg · og-image.jpg · resume/ (reserved)
+agents/                shared agent guidance source
+.claude/               generated Claude guidance (committed)
 .github/workflows/pages.yml
 ```
 
@@ -67,20 +70,21 @@ agents/            shared agent guidance source
 
 ## Things for Brian to fill in
 
-Search the HTML for `TODO(Brian)`:
+Search the source for `TODO(Brian)`:
 
-- Booking email (currently a `mailto:` placeholder in `contact.html`)
-- Optionally: training, representation, notable clients (add to `about.html`)
+- Booking email (currently a `mailto:` placeholder in `src/views/Contact/ContactView.vue`)
+- Optionally: training, representation, notable clients (add to `AboutView.vue`)
 
-To personalize demos or images, drop replacements into `assets/media/` and
-`assets/img/` using the same filenames.
+To personalize demos or images, drop replacements into `src/assets/media/` and
+`src/assets/img/` using the same filenames.
 
 ## Hosting on GitHub Pages
 
 1. Push to the default branch (`main`).
 2. In the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. The `Deploy static site to GitHub Pages` workflow publishes on each push to
-   `main`; the live URL appears in the workflow's `deploy` step.
+3. The Pages workflow runs `npm run build` and publishes `dist/` on each push to
+   `main`; the live URL appears in the workflow's `deploy` step. The site is
+   served under the `/BrianWebsite/` project subpath (set in `vite.config.ts`).
 
 ## Agent guidance
 
@@ -97,9 +101,12 @@ task agents:check              # validate all guidance builds
 
 ## Future direction
 
-This will become a reactive static site. When that happens, the house stack is
-Vue 3 + Vite + Tailwind (see `GriffinBoris/WebTemplate`), and the design system
-here carries over intact.
+The site tracks the `GriffinBoris/WebTemplate` house stack (Vue 3 + Vite +
+Tailwind v4 + PrimeVue in unstyled mode, all bundled by Vite). Foundational
+controls go through app-owned wrappers under `src/components/ui/` (`AppButton`,
+`AppIconButton`, `AppSurface`, `AppIcon`) so route views stay semantic. It
+deliberately skips app-infrastructure it doesn't need (pinia, axios, a backend);
+add those only if real cross-route or async state appears.
 
 ## License
 

@@ -1,13 +1,15 @@
 ---
 id: project-guidance
 title: Brian Bakaj Website Project Guidance
-description: Repository-specific guidance for Brian Bakaj's voice-actor portfolio — a hand-authored static site hosted on GitHub Pages.
+description: Repository-specific guidance for Brian Bakaj's actor portfolio — a Vue 3 + Vite + Tailwind reactive static site hosted on GitHub Pages.
 kind: guidance
 scope: project
 name: project
 tags:
   - project
-  - static-site
+  - vue
+  - vite
+  - tailwind
   - portfolio
   - voice-actor
   - github-pages
@@ -25,20 +27,22 @@ order: 0
   in voiceover**, so the site positions him as an actor first, with the voice reels as one prominent
   facet of his range, not the whole identity. Its job is to let a casting director, producer, or
   agency size him up fast — see the face and the profile, hear the reels in one click, and reach him.
-- The site is a hand-authored **static site** (semantic HTML, modern CSS, dependency-free JS) with
-  **no build step**, so `git push` is the only deploy step and it hosts on GitHub Pages immediately.
-- It is intended to grow into a reactive static site (see "Future Direction"). Keep the current
-  structure clean and framework-agnostic so migration stays cheap.
+- The site is a **reactive static site** built on the house stack — **Vue 3 + Vite + Tailwind v4**,
+  TypeScript, `vue-router` (hash history) — that compiles to fully static assets. GitHub Actions runs
+  the Vite build and publishes `dist/` to GitHub Pages; there is no backend, database, or API.
+- It was migrated from an earlier hand-authored no-build site. The framework and Vue guidance in
+  `agents/` now applies; the design system (tokens, sapphire signature, Inter type, waveform,
+  actor-first IA) carried over intact.
 
 ## Design Intent
 
 The design follows the frontend-design principle of **spending boldness in one place** and grounding
 every choice in the subject.
 
-- **Signature element:** the hero **waveform** (`#waveform`, driven by `player.js`). At rest it
-  breathes slowly; while a demo plays it is animated by the Web Audio analyser, so the bars are
-  literally Brian's voice. This is the one orchestrated motion moment — do not scatter other
-  decorative animations across the page.
+- **Signature element:** the hero **waveform** (`WaveformDisplay.vue`, driven by the `usePlayer`
+  composable). At rest it breathes slowly; while a demo plays it is animated by the Web Audio
+  analyser, so the bars are literally Brian's voice. This is the one orchestrated motion moment — do
+  not scatter other decorative animations across the page.
 - **Palette is cinematic and cool:** a single confident **sapphire** accent (`--color-accent`) on a
   ladder of cool charcoal ink and clean off-white neutrals (light) / deep charcoal (dark). It reads
   professional, modern, and captivating without going warm or generic. The accent is reserved for
@@ -65,49 +69,73 @@ every choice in the subject.
 
 ## Repository Layout
 
-- `index.html` — the home page: an actor-positioned hero (headshot, quick-listen chips, waveform),
-  the two voice reels, and a slim booking CTA. Served at the site root by GitHub Pages.
-- `about.html` — bio, an actor/casting-profile spec card, and the headshots gallery.
-- `contact.html` — the booking call-to-action plus the "find Brian elsewhere" profile links
-  (Backstage, LinkedIn, Facebook).
-- The header/nav and footer are duplicated across the three pages by hand (no build step, no
-  templating). The brand links home; the nav is a minimal `About · Contact`, and the current page
-  carries `aria-current="page"` (with a sapphire underline on desktop). Only the home page includes
-  the persistent audio bar and `player.js`.
-- `assets/css/` — `tokens.css` (design tokens, light/dark `data-theme`, single source of truth),
-  `base.css` (resets/typography), `layout.css` (shell, header, hero, page-hero, sections),
-  `components.css` (buttons/link rows, waveform, demo players, persistent audio bar, casting-profile
-  spec card, headshots, contact, booking CTA).
-- `assets/js/` — dependency-free. `theme.js` (light/dark toggle), `main.js` (mobile nav + footer
-  year), `player.js` (the audio engine: one `<audio>` drives the demo cards, hero quick-listen
-  chips, persistent bottom bar, and the Web Audio waveform; it also stamps each demo's real length
-  onto its card and matching hero chip, and no-ops on pages with no player).
-- `assets/fonts/` — **self-hosted** Inter latin `woff2` subsets (400/500/600) and `fonts.css`. No
-  external font requests; keeps the site self-contained, fast, and CSP-friendly.
-- `assets/img/` — `headshot.jpg` (primary), `brian-look-01/02.jpg`, `favicon.svg`.
-- `assets/media/` — the demo audio (`commercial-demo.mp3`, `narration-demo.mp3`).
-- `assets/resume/` — reserved for a résumé PDF if one is added later.
-- `.github/workflows/pages.yml` — deploys the static site to GitHub Pages.
+- `index.html` (root) — the Vite entry: meta tags, the anti-FOUC theme snippet, the `#app` mount, and
+  the `/src/main.ts` module. It is a shell, not page content.
+- `src/main.ts` — creates the app, installs the router, runs `initTheme()`, mounts `#app`.
+- `src/App.vue` — the shared shell: `SiteHeader`, `<RouterView>`, `SiteFooter`, and the persistent
+  `AudioBar` (which survives route changes so playback keeps going as you navigate).
+- `src/router/index.ts` — `vue-router` on **hash history**, so GitHub Pages serves every route from
+  one file with no server-side SPA fallback. Routes: `home` (`/`), `about`, `contact`.
+- `src/views/<Name>/<Name>View.vue` — one folder per route. `HomeView` (hero, reels, booking CTA),
+  `AboutView` (bio, casting-profile spec card, headshots gallery), `ContactView` (booking CTA plus
+  "find Brian elsewhere" links). The current route drives the nav highlight (sapphire underline on
+  desktop, tinted pill on mobile); `RouterLink` sets `aria-current` automatically.
+- `src/components/` — `layout/` (`SiteHeader` with the polished mobile dropdown, `SiteFooter`),
+  `page/` (`PageHero` intro band), `player/` (`WaveformDisplay`, `DemoCard`, `ListenChip`,
+  `AudioBar`), `ui/` (the app-owned PrimeVue wrappers: `AppButton`, `AppIconButton`, `AppSurface`,
+  `AppIcon`, `ThemeToggle`, plus `appIcons.ts` and `AppTooltip.ts`).
+- `src/utils/className.ts` — `cn()` (clsx + tailwind-merge), the class combiner used by the wrappers.
+- `src/composables/` — `useTheme.ts` (light/dark singleton driving `html[data-theme]`) and
+  `usePlayer.ts` (the audio engine: one `Audio` element drives demo cards, hero chips, and the
+  persistent bar; a Web Audio analyser drives the waveform; it stamps each demo's real length and
+  keeps every control for the current track in sync).
+- `src/data/demos.ts` — the demo-track list (id, kicker, title, description, imported `src`,
+  download name, fallback duration): the single source for reels and hero chips.
+- `src/assets/` — `base.css` (Tailwind entry + `@config` + design tokens + resets + shared
+  `.site-container`/`.eyebrow`/`.lead`/`.btn` primitives), self-hosted Inter `woff2` subsets under
+  `fonts/`, `img/` (headshot + looks), and `media/` (the demo mp3s). Fonts/images/media are imported
+  so Vite hashes them and rewrites URLs for the Pages base path.
+- `tailwind.config.js` — maps the CSS-variable tokens onto semantic Tailwind names (`bg-surface`,
+  `text-body`, `text-accent`, `rounded-lg`, `shadow-md`, …). `darkMode` keys off `[data-theme="dark"]`.
+- `public/` — assets served verbatim at the site root: `favicon.svg`, `og-image.jpg` (social crawlers
+  need a static URL), and `resume/` (reserved for a résumé PDF).
+- `vite.config.ts` — Vue + Tailwind plugins, `@` → `src` alias, and `base: '/BrianWebsite/'` in
+  production for the GitHub Pages project subpath.
+- `.github/workflows/pages.yml` — installs deps, runs `npm run build`, and publishes `dist/` to Pages.
 
 ## Conventions
 
-- **Static, no build.** Do not add a bundler, package manager, or Node dependency unless the
-  reactive migration is explicitly requested.
-- **Design tokens first.** Never hard-code a raw color or font size; reference the custom properties
-  in `tokens.css`. Add a token before introducing a one-off value.
-- **One audio engine.** All playback goes through `player.js`. Any new play control is a
-  `[data-track]` element with `data-src`/`data-title`/`data-kicker`; any new demo card is a
-  `[data-demo][data-src]`. Only one demo plays at a time and every control for the current track
-  stays in sync. Do not add a second `<audio>` or bespoke player.
+- **Reactive static, house stack.** Vue 3 `<script setup lang="ts">` SFCs, `vue-router`, Tailwind v4,
+  and **PrimeVue in unstyled mode** — all bundled by Vite into `dist/`, so the site stays fully static
+  and self-hosted (no CDN, no runtime external requests). No pinia/axios/backend — this is a brochure
+  site, so keep dependencies minimal (YAGNI) and reach for a composable before a store.
+- **App-owned wrappers around PrimeVue.** Route views and route-local components never import
+  `primevue/*` directly. They use the app-owned wrappers under `src/components/ui/` — `AppButton`,
+  `AppIconButton`, `AppSurface`, `AppIcon`, `ThemeToggle` — which own the `unstyled` `pt` maps, tones,
+  sizes, focus rings, and icons (per `agents/.../vue-app-owned-wrapper-component.md`). Callers pass
+  semantic props (`tone`, `size`, `icon`, `label`, `to`/`href`). `cn()` (`src/utils/className.ts`)
+  merges classes; icons come from Lucide via `src/components/ui/appIcons.ts` + `AppIcon`, not inline
+  SVG. The bespoke waveform/audio UI and the responsive nav shell stay custom by design.
+- **Design tokens first.** Never hard-code a raw color, radius, or shadow. Use the semantic Tailwind
+  utilities (`text-accent`, `bg-surface`, `border-line`, `rounded-lg`, `shadow-md`) or the CSS
+  variables in `base.css`. Add a token before introducing a one-off value.
+- **Tailwind-first, small components layer.** Style with Tailwind utilities in templates; the only
+  shared CSS classes are the cross-cutting primitives in `base.css` (`.site-container`, `.eyebrow`,
+  `.lead`, `.btn`) and component-scoped `<style>` where a pure-utility expression would be unreadable
+  (the nav dropdown, the waveform, the scrub range).
+- **One audio engine.** All playback goes through `usePlayer`. Any new play control calls
+  `toggleTrack(track)`; any new demo lives in `src/data/demos.ts`. Only one demo plays at a time and
+  every control for the current track stays in sync through the shared reactive state. Do not add a
+  second `Audio` element or a bespoke player.
 - **Accessibility & semantics.** Landmarks, meaningful `alt`, visible focus, `aria-pressed` on
   toggles, `prefers-reduced-motion` respected (waveform falls back to a static rest state).
 - **Theming.** Light and dark via `html[data-theme]`; every color resolves from a token so both
-  themes stay correct. The toggle degrades gracefully without JS.
+  themes stay correct. The anti-FOUC snippet in `index.html` sets the theme before the app mounts.
 - **Honesty in copy.** Do not fabricate credits, clients, representation, or stats. Confident,
   voice-focused prose is fine; unverified specifics (location, exact voice age, booking email) are
-  marked with `TODO(Brian)` and/or the `.needs-detail` class for him to confirm.
-- **Performance.** Optimized images, `loading="lazy"` below the fold, self-hosted fonts, deferred
-  non-critical scripts.
+  marked with `TODO(Brian)` for him to confirm.
+- **Performance.** Optimized images, `loading="lazy"` below the fold, self-hosted fonts, route-level
+  code splitting via lazy `import()` in the router.
 
 ## Known Facts (from Brian's Backstage profile)
 
@@ -118,7 +146,7 @@ every choice in the subject.
 
 ## Content The Owner Supplies Or Confirms Later
 
-- **Booking email** is still a `mailto:` placeholder (`TODO(Brian)` in `contact.html`) — the only
+- **Booking email** is still a `mailto:` placeholder (`TODO(Brian)` in `ContactView.vue`) — the only
   remaining unknown. Replace it once Brian provides a real address.
 - Real training, representation, and specific credits/clients can be added to About when he has
   details he can back up. Do not invent them.
@@ -127,15 +155,16 @@ every choice in the subject.
 
 ## Future Direction
 
-- The site is expected to become a **reactive static site**. When that migration is requested, the
-  house stack is Vue 3 + Vite + Tailwind (see `GriffinBoris/WebTemplate`), and the framework/Vue
-  guidance in `agents/` applies. The design system (tokens, sapphire signature, Inter type,
-  waveform, actor-first IA) should carry over intact.
+- The reactive migration is done. Keep parity with the `GriffinBoris/WebTemplate` house stack as it
+  evolves (Tailwind v4, Vue 3, Vite). If real cross-route or async state ever appears, introduce a
+  route-local composable or a small pinia store then — not speculatively.
 
 ## Verification
 
-- No test suite. Before committing, serve the site (`python3 -m http.server`) and confirm in a
-  browser: both themes render, fonts load locally with no external/network errors, the nav works
-  (including the mobile menu), pressing a demo plays audio and drives the persistent bar + waveform,
-  only one demo plays at a time, and the layout is responsive with no console errors.
-- Validate that every referenced asset path exists.
+- `npm run build` must pass (it runs `vue-tsc` type-check, then the Vite production build).
+- No test suite. Before committing, run `npm run dev` (or `npm run preview` for the production base
+  path) and confirm in a browser: both themes render, fonts load locally with no external/network
+  errors, all three routes resolve, the nav works (including the mobile dropdown and the active-page
+  highlight), the hero portrait is centered on mobile, pressing a demo plays audio and drives the
+  persistent bar + waveform, only one demo plays at a time, and the layout is responsive with no
+  console errors.
