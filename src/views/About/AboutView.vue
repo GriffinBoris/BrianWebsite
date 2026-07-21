@@ -49,7 +49,7 @@
         <h2 id="headshots-title" class="text-h2">Recent looks</h2>
       </div>
 
-      <div class="grid grid-cols-3 gap-4 max-[620px]:grid-cols-2">
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <figure
           v-for="shot in shots"
           :key="shot.src"
