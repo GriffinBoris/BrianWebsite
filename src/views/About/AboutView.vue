@@ -3,7 +3,7 @@
     eyebrow="About"
     title="About Brian"
     title-id="about-title"
-    lead="An Austin actor working on screen and in voiceover — a natural presence, with real range across the two."
+    lead="Austin actor for screen and voice, with real range across the two."
   />
 
   <!-- Bio + casting profile -->
@@ -12,13 +12,12 @@
       <div class="grid items-start gap-[clamp(2rem,5vw,4rem)] min-[721px]:grid-cols-[1.1fr_0.9fr]">
         <div class="space-y-4">
           <p>
-            Brian is an actor based in Austin, Texas, working on camera and in voiceover. He’s drawn to the honest, lived-in performance — the
-            kind that feels less like acting and more like watching a real person, whether he’s in frame or reading a script.
+            I’m an actor in Austin, Texas, working on camera and in voiceover. I go for the honest, lived-in kind of performance, the kind that
+            feels less like acting and more like watching a real person, whether I’m in frame or reading a script.
           </p>
           <p>
-            His voice work runs from bright commercial spots to steady long-form narration, recorded broadcast-ready on a Shure SM7B in a
-            dedicated home studio, with live remote direction on request. He works in both English and Albanian, and he moves well — dance is
-            part of the toolkit.
+            My voice work runs from bright commercial spots to steady long-form narration, recorded broadcast-ready on a Shure SM7B in my home
+            studio, with live remote direction on request. I work in English and Albanian, and I move well; dance is part of the kit.
           </p>
         </div>
 

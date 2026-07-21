@@ -6,9 +6,7 @@
         <div>
           <p class="eyebrow mb-4">Actor · Austin, TX</p>
           <h1 id="hero-title" class="text-display">Brian Bakaj</h1>
-          <p class="lead mt-6 max-w-[38ch]">
-            He works on camera and in voiceover — playing age 18–27, in English and Albanian, with live remote sessions on request.
-          </p>
+          <p class="lead mt-6 max-w-[38ch]">Austin-based actor for screen and voice. Natural and grounded on camera and on the mic, in English and Albanian.</p>
 
           <div class="mt-8 flex flex-wrap items-center gap-3">
             <span class="mr-1 text-[0.8rem] uppercase tracking-[0.12em] text-secondary">Listen</span>
@@ -31,7 +29,7 @@
       <div class="mb-[clamp(2rem,4vw,3.25rem)] max-w-container-narrow">
         <p class="eyebrow mb-4">Voice</p>
         <h2 id="demos-title" class="text-h2">Hear the reels</h2>
-        <p class="lead mt-4">Two voice reels — commercial and narration. Press play, and the bar at the bottom stays with you as you go.</p>
+        <p class="lead mt-4">Two reels, commercial and narration. Press play; the bar at the bottom follows you as you go.</p>
       </div>
 
       <div class="grid gap-5">
@@ -46,8 +44,7 @@
       <p class="eyebrow mb-4">Booking</p>
       <h2 id="book-title" class="mt-1 text-h2">Casting something?</h2>
       <p class="lead mx-auto mt-4 max-w-[42ch]">
-        Brian is available for on-camera and voice work — commercial, narrative, explainer, and corporate — with live remote sessions on request.
-        Rates and availability on request.
+        Available for commercial, narrative, explainer, and corporate work, on camera or voice only. Remote sessions on request.
       </p>
       <div class="mt-7 flex flex-wrap justify-center gap-3.5">
         <AppButton tone="accent" label="Get in touch" :to="{ name: 'contact' }" />

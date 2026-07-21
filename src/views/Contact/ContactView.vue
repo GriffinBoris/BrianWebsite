@@ -3,9 +3,9 @@
     <div class="site-container site-container--narrow text-center">
       <p class="eyebrow mb-4">Contact</p>
       <h1 id="contact-title" class="mt-1 text-h1">Book Brian</h1>
-      <p class="lead mx-auto mt-5 max-w-[40ch]">
-        Available for on-camera and voice work — commercial, narrative, explainer, and corporate — with live remote sessions on request. Send a
-        script, sides, or a few details, and Brian will follow up with reels, rates, and availability.
+      <p class="lead mx-auto mt-5 max-w-[42ch]">
+        Available for on-camera and voice work: commercial, narrative, explainer, and corporate, with remote sessions on request. Send a script,
+        some sides, or a few details, and I’ll follow up with reels, rates, and availability.
       </p>
 
       <div class="mt-8 flex flex-wrap justify-center gap-3.5">
@@ -14,6 +14,7 @@
         <AppButton tone="ghost" href="https://www.backstage.com/u/brian-bakaj/" target="_blank">
           <span>View casting profile</span>
           <AppIcon icon="externalLink" class="h-[15px] w-[15px]" />
+          <span class="sr-only"> (opens in a new tab)</span>
         </AppButton>
       </div>
 
@@ -23,6 +24,7 @@
           <AppButton v-for="link in elsewhere" :key="link.label" tone="ghost" :href="link.href" target="_blank">
             <span>{{ link.label }}</span>
             <AppIcon icon="externalLink" class="h-[15px] w-[15px]" />
+            <span class="sr-only"> (opens in a new tab)</span>
           </AppButton>
         </div>
       </div>

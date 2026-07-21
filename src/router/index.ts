@@ -12,19 +12,19 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: () => import("@/views/Home/HomeView.vue"),
-      meta: { title: "Brian Bakaj — Actor" },
+      meta: { title: "Brian Bakaj, Actor" },
     },
     {
       path: "/about",
       name: "about",
       component: () => import("@/views/About/AboutView.vue"),
-      meta: { title: "About — Brian Bakaj, Actor" },
+      meta: { title: "About · Brian Bakaj" },
     },
     {
       path: "/contact",
       name: "contact",
       component: () => import("@/views/Contact/ContactView.vue"),
-      meta: { title: "Contact — Brian Bakaj, Actor" },
+      meta: { title: "Contact · Brian Bakaj" },
     },
     {
       path: "/:pathMatch(.*)*",

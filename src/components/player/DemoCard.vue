@@ -5,7 +5,7 @@
         size="lg"
         tone="accent"
         :icon="active && isPlaying ? 'pause' : 'play'"
-        :label="`Play ${track.title.toLowerCase()}`"
+        :label="`${active && isPlaying ? 'Pause' : 'Play'} ${track.title.toLowerCase()}`"
         :show-tooltip="false"
         root-class="flex-none"
         @click="toggleTrack(track)"

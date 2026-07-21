@@ -46,9 +46,15 @@
     { name: "contact", label: "Contact" },
   ] as const;
 
-  // Close the mobile menu on outside clicks and route changes.
+  // Close the mobile menu on outside clicks, the Escape key, and route changes.
   function handleClickOutside(event: MouseEvent) {
     if (menuOpen.value && navRef.value && !navRef.value.contains(event.target as Node)) {
+      menuOpen.value = false;
+    }
+  }
+
+  function handleEscape(event: KeyboardEvent) {
+    if (event.key === "Escape") {
       menuOpen.value = false;
     }
   }
@@ -56,14 +62,19 @@
   watch(menuOpen, (open) => {
     if (open) {
       document.addEventListener("click", handleClickOutside);
+      document.addEventListener("keydown", handleEscape);
     } else {
       document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
     }
   });
 
   watch(() => route.fullPath, () => (menuOpen.value = false));
 
-  onBeforeUnmount(() => document.removeEventListener("click", handleClickOutside));
+  onBeforeUnmount(() => {
+    document.removeEventListener("click", handleClickOutside);
+    document.removeEventListener("keydown", handleEscape);
+  });
 </script>
 
 <style scoped>

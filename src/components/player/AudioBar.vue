@@ -11,7 +11,7 @@
           size="md"
           tone="accent"
           :icon="isPlaying ? 'pause' : 'play'"
-          label="Play or pause"
+          :label="`${isPlaying ? 'Pause' : 'Play'} ${currentTrack.title.toLowerCase()}`"
           :show-tooltip="false"
           root-class="h-11 w-11 flex-none"
           @click="togglePlayback"

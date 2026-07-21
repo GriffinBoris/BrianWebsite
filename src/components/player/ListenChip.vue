@@ -2,7 +2,7 @@
   <AppButton
     tone="secondary"
     :root-class="cn('min-h-0 gap-2.5 rounded-pill py-2 pl-2.5 pr-4 text-[0.92rem]', active && 'border-accent')"
-    :aria-label="`Play ${track.title.toLowerCase()}`"
+    :aria-label="`${active && isPlaying ? 'Pause' : 'Play'} ${track.title.toLowerCase()}`"
     @click="toggleTrack(track)"
   >
     <span class="grid h-8 w-8 place-items-center rounded-pill bg-accent text-accent-contrast">

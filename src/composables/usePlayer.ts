@@ -7,7 +7,7 @@ import type { DemoTrack } from "@/data/demos";
 // control that points at the current track stays in sync through shared state.
 //
 // The hero waveform is the site's one bold moment. While a demo plays it is
-// driven by the Web Audio analyser — the bars are literally Brian's voice. If
+// driven by the Web Audio analyser, so the bars are literally Brian's voice. If
 // the browser can't provide that, the bars keep their calm idle animation.
 
 export const WAVE_BAR_COUNT = 48;
@@ -29,7 +29,7 @@ const progress = computed(() => {
   return (currentTime.value / duration.value) * 100;
 });
 
-// Engine singletons — created lazily so nothing touches the Web Audio API until
+// Engine singletons, created lazily so nothing touches the Web Audio API until
 // the visitor presses play.
 let audio: HTMLAudioElement | null = null;
 let audioContext: AudioContext | null = null;

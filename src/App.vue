@@ -9,7 +9,7 @@
 
     <SiteHeader />
 
-    <main id="main">
+    <main id="main" tabindex="-1" class="outline-none">
       <RouterView />
     </main>
 
@@ -17,6 +17,9 @@
   </div>
 
   <AudioBar />
+
+  <!-- Announces route changes to assistive tech, since an SPA does not reload the page. -->
+  <span class="sr-only" role="status" aria-live="polite">{{ routeAnnouncement }}</span>
 </template>
 
 <script setup lang="ts">
@@ -24,6 +27,21 @@
   import SiteHeader from "@/components/layout/SiteHeader.vue";
   import AudioBar from "@/components/player/AudioBar.vue";
   import { usePlayer } from "@/composables/usePlayer";
+  import { ref, watch } from "vue";
+  import { useRoute } from "vue-router";
 
   const { currentTrack } = usePlayer();
+
+  const route = useRoute();
+  const routeAnnouncement = ref("");
+
+  const pageNames: Record<string, string> = { home: "Home", about: "About", contact: "Contact" };
+
+  watch(
+    () => route.name,
+    (name) => {
+      const page = pageNames[String(name)];
+      routeAnnouncement.value = page ? `${page} page` : "";
+    },
+  );
 </script>
