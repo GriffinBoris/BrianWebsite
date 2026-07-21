@@ -19,6 +19,9 @@
             My voice runs from bright commercial spots to steady long-form narration, recorded broadcast-ready on a Shure SM7B with remote
             direction on request. English and Albanian; dance is part of the kit.
           </p>
+          <p>
+            On set or on mic, I come prepared, take direction easily, and turn around clean, usable takes without a lot of fuss.
+          </p>
         </div>
 
         <AppSurface>

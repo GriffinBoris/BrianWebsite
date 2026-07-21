@@ -1,5 +1,5 @@
 <template>
-  <section class="section" aria-labelledby="contact-title">
+  <section class="section flex flex-col justify-center sm:min-h-[calc(100dvh-4.25rem)]" aria-labelledby="contact-title">
     <div class="site-container site-container--narrow text-center">
       <p class="eyebrow mb-4">Contact</p>
       <h1 id="contact-title" class="mt-1 text-h1">Book Brian</h1>
