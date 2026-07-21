@@ -14,9 +14,7 @@
           </div>
         </div>
 
-        <figure class="relative aspect-[4/5] overflow-hidden rounded-lg bg-surface-muted shadow-lg max-[860px]:order-first max-[860px]:mx-auto max-[860px]:max-w-[20rem]">
-          <img :src="headshot" alt="Brian Bakaj, headshot" width="565" height="476" class="h-full w-full object-cover object-[center_30%]" />
-        </figure>
+        <HeroCarousel />
       </div>
     </div>
   </section>
@@ -53,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-  import headshot from "@/assets/img/headshot.jpg";
+  import HeroCarousel from "@/views/Home/HeroCarousel.vue";
   import AppButton from "@/components/ui/AppButton.vue";
   import DemoCard from "@/components/player/DemoCard.vue";
   import WaveformDisplay from "@/components/player/WaveformDisplay.vue";
