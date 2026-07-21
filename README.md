@@ -1,100 +1,98 @@
-# Brian Website
+# Brian Bakaj — Voice Actor
 
-An actor's résumé and portfolio site — a place for Brian to showcase demo reels,
-headshots, a gallery, biography, résumé, and contact information.
+A portfolio site for **Brian Bakaj**, a voice actor working in commercial and
+narration. It's built to do one job well: let someone **hear the demos in one
+click** and reach Brian to book him.
 
-It is currently a **hand-authored static site** (semantic HTML, modern CSS, a
-little vanilla JS) with **no build step**, so it can be hosted on GitHub Pages as
-soon as it's pushed. It's structured to grow into a reactive static site later
-without throwing this work away.
+It is a **hand-authored static site** (semantic HTML, modern CSS, dependency-free
+JS) with **no build step**, so it hosts on GitHub Pages the moment it's pushed.
+It's structured to grow into a reactive static site later without throwing this
+work away.
 
 ## Quick start
 
-No tooling required. To preview locally, serve the folder with anything:
+No tooling required. To preview locally:
 
 ```bash
 python3 -m http.server 8000
 # then open http://localhost:8000
 ```
 
-Or just open `index.html` in a browser.
+## What's here
+
+- **Listen-first hero** — name, positioning line, headshot, quick-listen chips,
+  and a **waveform** that animates to Brian's actual voice while a demo plays.
+- **Demos** — the two reels (`commercial-demo.mp3`, `narration-demo.mp3`) with a
+  custom audio player and a **persistent play bar** that follows you down the page.
+- **About** — a voice-focused bio and a voice-profile spec card.
+- **Headshots** — a clean 3-up gallery.
+- **Connect** — links to Brian's [Backstage](https://www.backstage.com/u/brian-bakaj/),
+  [LinkedIn](https://www.linkedin.com/in/brian-bakaj), and
+  [Facebook](https://www.facebook.com/brian.bakaj/).
+- **Contact** — a booking call-to-action.
+- **Light/dark theme**, responsive down to mobile, self-hosted fonts.
 
 ## Project structure
 
 ```
-index.html                 # single-page site entrypoint
+index.html
 assets/
-  css/
-    tokens.css             # design tokens: color, type, spacing (light + dark)
-    base.css               # resets and base typography
-    layout.css             # page shell, header, hero, sections
-    components.css         # buttons, cards, gallery, résumé, contact
-  js/
-    theme.js               # light/dark toggle (localStorage + prefers-color-scheme)
-    main.js                # reveal-on-scroll and small enhancements
-  img/                     # headshots, gallery images, og-cover.jpg  (upload here)
-  media/                   # demo reel video, or link out to Vimeo/YouTube (upload here)
-  resume/                  # brian-resume.pdf                          (upload here)
-agents/                    # shared agent guidance source (see below)
-.claude/                   # generated Claude guidance (committed)
-.github/workflows/pages.yml  # GitHub Pages deploy
+  css/     tokens.css · base.css · layout.css · components.css
+  js/      theme.js (light/dark) · main.js (nav, year) · player.js (audio engine)
+  fonts/   self-hosted Fraunces + Inter woff2 + fonts.css
+  img/     headshot.jpg · brian-look-01/02.jpg · favicon.svg
+  media/   commercial-demo.mp3 · narration-demo.mp3
+  resume/  (reserved for a résumé PDF)
+agents/            shared agent guidance source
+.claude/           generated Claude guidance (committed)
+.github/workflows/pages.yml
 ```
 
-## Adding content
+## Design notes
 
-Everything the owner uploads later has a home already wired into `index.html`:
+- **One bold idea, grounded in the subject.** The signature is the audio
+  waveform; the palette's signature color is the **oxblood** of Brian's own
+  headshot wardrobe. Everything else stays quiet and legible.
+- **Type:** Fraunces (display) + Inter (UI), self-hosted for speed and privacy.
+- **Usable, not a maze.** No scroll-triggered reveals — content is always visible
+  and reachable, with explicit navigation.
 
-- **Headshot** — add `assets/img/headshot.jpg`, then replace the hero placeholder
-  with an `<img>`.
-- **Gallery** — drop images in `assets/img/` and swap each gallery `<figure>`
-  placeholder for an `<img>`.
-- **Demo reel** — embed a video or link to Vimeo/YouTube in the Reel section
-  (or add files under `assets/media/`).
-- **Résumé PDF** — add `assets/resume/brian-resume.pdf`; the download button
-  already points there.
-- **Text** — search `index.html` for `TODO(owner)` to find name, bio, facts,
-  contact, and social links to personalize.
+## Things for Brian to fill in
 
-## Theming
+Search `index.html` for `TODO(Brian)` and the `.needs-detail` markers:
 
-Light and dark are driven by `html[data-theme="…"]` and CSS custom properties in
-`tokens.css`. The toggle remembers the choice (localStorage) and otherwise
-follows the operating system preference. This system is adapted from the
-`GriffinBoris/WebTemplate` frontend theme.
+- Booking email (currently a `mailto:` placeholder)
+- City / location and voice-age range
+- Optionally: training, representation, notable clients
+
+To personalize demos or images, drop replacements into `assets/media/` and
+`assets/img/` using the same filenames.
 
 ## Hosting on GitHub Pages
 
 1. Push to the default branch (`main`).
-2. In the repo, go to **Settings → Pages → Build and deployment** and set
-   **Source: GitHub Actions**.
-3. The `Deploy static site to GitHub Pages` workflow publishes the site on each
-   push to `main`. The live URL appears in the workflow's `deploy` step.
+2. In the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+3. The `Deploy static site to GitHub Pages` workflow publishes on each push to
+   `main`; the live URL appears in the workflow's `deploy` step.
 
 ## Agent guidance
 
 Shared coding guidance is installed from
 [`GriffinBoris/Agents`](https://github.com/GriffinBoris/Agents) under `agents/`,
-and the Claude integration is generated into `.claude/` (committed so it's
-present on a fresh clone). Project-specific guidance lives in
+generated into `.claude/` (committed). Project-specific guidance lives in
 `agents/guidance/project/guidance.md`.
 
-Regenerate integrations after editing guidance:
-
 ```bash
+task agents:generate:claude    # rebuild the Claude target after editing guidance
 task agents:generate           # rebuild every harness
-task agents:generate:claude    # just the Claude target
 task agents:check              # validate all guidance builds
 ```
 
-(Requires [go-task](https://taskfile.dev) and Python 3. Only the `.claude/`
-output is committed; other harness outputs are gitignored and regenerated on
-demand.)
-
 ## Future direction
 
-This will become a reactive static site. When that migration happens, the house
-stack is Vue 3 + Vite + Tailwind (see `GriffinBoris/WebTemplate`), and the
-framework/Vue guidance under `agents/` applies.
+This will become a reactive static site. When that happens, the house stack is
+Vue 3 + Vite + Tailwind (see `GriffinBoris/WebTemplate`), and the design system
+here carries over intact.
 
 ## License
 
