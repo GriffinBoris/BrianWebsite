@@ -1,5 +1,5 @@
 <template>
-  <AppIconButton :icon="isDark ? 'sun' : 'moon'" :label="isDark ? 'Switch to light theme' : 'Switch to dark theme'" @click="toggle" />
+  <AppIconButton size="sm" tone="ghost" :icon="isDark ? 'sun' : 'moon'" :label="isDark ? 'Switch to light theme' : 'Switch to dark theme'" @click="toggle" />
 </template>
 
 <script setup lang="ts">

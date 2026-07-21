@@ -27,7 +27,6 @@
 
 <style scoped>
   .waveform {
-    margin-top: 2.5rem;
     display: flex;
     align-items: flex-end;
     gap: clamp(2px, 0.5vw, 4px);
