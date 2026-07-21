@@ -4,8 +4,7 @@
       <p class="eyebrow mb-4">Contact</p>
       <h1 id="contact-title" class="mt-1 text-h1">Book Brian</h1>
       <p class="lead mx-auto mt-5 max-w-[42ch]">
-        Available for on-camera and voice work: commercial, narrative, explainer, and corporate, with remote sessions on request. Send a script,
-        some sides, or a few details, and I’ll follow up with reels, rates, and availability.
+        Available for commercial, narrative, explainer, and corporate work. Send a script or a few details, and I’ll reply with reels, rates, and availability.
       </p>
 
       <div class="mt-8 flex flex-wrap justify-center gap-3.5">

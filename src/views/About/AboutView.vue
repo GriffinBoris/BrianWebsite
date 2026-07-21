@@ -12,12 +12,12 @@
       <div class="grid items-start gap-[clamp(2rem,5vw,4rem)] min-[721px]:grid-cols-[1.1fr_0.9fr]">
         <div class="space-y-4">
           <p>
-            I’m an actor in Austin, Texas, working on camera and in voiceover. I go for the honest, lived-in kind of performance, the kind that
-            feels less like acting and more like watching a real person, whether I’m in frame or reading a script.
+            I’m an actor in Austin working on camera and in voiceover. I go for honest, lived-in performances that feel less like acting and more
+            like watching a real person.
           </p>
           <p>
-            My voice work runs from bright commercial spots to steady long-form narration, recorded broadcast-ready on a Shure SM7B in my home
-            studio, with live remote direction on request. I work in English and Albanian, and I move well; dance is part of the kit.
+            My voice runs from bright commercial spots to steady long-form narration, recorded broadcast-ready on a Shure SM7B with remote
+            direction on request. English and Albanian; dance is part of the kit.
           </p>
         </div>
 
