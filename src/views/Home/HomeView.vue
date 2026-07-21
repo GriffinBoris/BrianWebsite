@@ -6,7 +6,7 @@
         <div>
           <p class="eyebrow mb-4">Actor · Austin, TX</p>
           <h1 id="hero-title" class="text-display">Brian Bakaj</h1>
-          <p class="lead mt-6 max-w-[38ch]">Screen and voice actor in Austin. On camera and on the mic, in English and Albanian.</p>
+          <p class="lead mt-6 max-w-[40ch]">A natural read for screen and voice that sounds like a real person, not a performance. English and Albanian. Press play.</p>
 
           <div class="mt-8 flex flex-wrap items-center gap-3">
             <span class="mr-1 text-[0.8rem] uppercase tracking-[0.12em] text-secondary">Listen</span>
@@ -43,7 +43,7 @@
     <div class="site-container site-container--narrow text-center">
       <p class="eyebrow mb-4">Booking</p>
       <h2 id="book-title" class="mt-1 text-h2">Casting something?</h2>
-      <p class="lead mx-auto mt-4 max-w-[42ch]">Commercial, narrative, explainer, and corporate. On camera or voice only, remote on request.</p>
+      <p class="lead mx-auto mt-4 max-w-[42ch]">Booking now for commercial, narrative, explainer, and corporate. On camera or voice only, remote on request.</p>
       <div class="mt-7 flex flex-wrap justify-center gap-3.5">
         <AppButton tone="accent" label="Get in touch" :to="{ name: 'contact' }" />
         <AppButton tone="ghost" label="More about Brian" :to="{ name: 'about' }" />
