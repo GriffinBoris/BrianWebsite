@@ -7,16 +7,15 @@
       aria-label="Audio player"
     >
       <div class="mx-auto flex h-[var(--player-height)] max-w-container items-center gap-4 px-4 sm:px-10">
-        <button
-          type="button"
-          class="grid h-11 w-11 flex-none place-items-center rounded-pill bg-accent text-accent-contrast"
-          :aria-pressed="isPlaying"
-          aria-label="Play or pause"
+        <AppIconButton
+          size="md"
+          tone="accent"
+          :icon="isPlaying ? 'pause' : 'play'"
+          label="Play or pause"
+          :show-tooltip="false"
+          root-class="h-11 w-11 flex-none"
           @click="togglePlayback"
-        >
-          <PauseIcon v-if="isPlaying" class="h-[18px] w-[18px]" />
-          <PlayIcon v-else class="h-5 w-5" />
-        </button>
+        />
 
         <div class="w-[clamp(7rem,22vw,13rem)] min-w-0 flex-none max-[620px]:w-auto max-[620px]:flex-1">
           <div class="text-[0.72rem] uppercase tracking-[0.12em] text-accent">{{ currentTrack.kicker }}</div>
@@ -39,25 +38,15 @@
           <span class="min-w-[2.6rem] text-center text-[0.8rem] tabular-nums text-secondary">{{ formatTime(duration) }}</span>
         </div>
 
-        <button
-          type="button"
-          class="grid h-9 w-9 flex-none place-items-center rounded-pill border border-transparent text-secondary transition duration-[240ms] ease-smooth hover:border-line hover:text-body"
-          aria-label="Close player"
-          @click="close"
-        >
-          <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-            <path d="M6 6l12 12M18 6 6 18" />
-          </svg>
-        </button>
+        <AppIconButton size="sm" tone="ghost" icon="close" label="Close player" root-class="flex-none" @click="close" />
       </div>
     </div>
   </Transition>
 </template>
 
 <script setup lang="ts">
+  import AppIconButton from "@/components/ui/AppIconButton.vue";
   import { usePlayer } from "@/composables/usePlayer";
-  import PauseIcon from "@/components/ui/icons/PauseIcon.vue";
-  import PlayIcon from "@/components/ui/icons/PlayIcon.vue";
 
   const { currentTrack, isPlaying, currentTime, duration, progress, togglePlayback, seekToPercent, close, formatTime } = usePlayer();
 

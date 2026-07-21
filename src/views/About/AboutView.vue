@@ -22,17 +22,19 @@
           </p>
         </div>
 
-        <dl class="grid rounded-lg border border-line bg-surface p-7 shadow-sm" aria-label="Casting profile">
-          <div
-            v-for="(row, index) in specRows"
-            :key="row.label"
-            class="flex justify-between gap-4 border-b border-line py-[0.85rem]"
-            :class="{ 'pt-0': index === 0, 'border-b-0 pb-0': index === specRows.length - 1 }"
-          >
-            <dt class="text-[0.9rem] text-secondary">{{ row.label }}</dt>
-            <dd class="text-right font-medium">{{ row.value }}</dd>
-          </div>
-        </dl>
+        <AppSurface>
+          <dl class="grid" aria-label="Casting profile">
+            <div
+              v-for="(row, index) in specRows"
+              :key="row.label"
+              class="flex justify-between gap-4 border-b border-line py-[0.85rem]"
+              :class="{ 'pt-0': index === 0, 'border-b-0 pb-0': index === specRows.length - 1 }"
+            >
+              <dt class="text-[0.9rem] text-secondary">{{ row.label }}</dt>
+              <dd class="text-right font-medium">{{ row.value }}</dd>
+            </div>
+          </dl>
+        </AppSurface>
       </div>
     </div>
   </section>
@@ -68,6 +70,7 @@
   import look02 from "@/assets/img/brian-look-02.jpg";
   import headshot from "@/assets/img/headshot.jpg";
   import PageHero from "@/components/page/PageHero.vue";
+  import AppSurface from "@/components/ui/AppSurface.vue";
 
   const specRows = [
     { label: "Works in", value: "Screen · Voice" },

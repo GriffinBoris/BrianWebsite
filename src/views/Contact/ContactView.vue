@@ -10,20 +10,20 @@
 
       <div class="mt-8 flex flex-wrap justify-center gap-3.5">
         <!-- TODO(Brian): replace with your booking email -->
-        <a class="btn btn--accent" href="mailto:hello@example.com">Email Brian</a>
-        <a class="btn btn--ghost" href="https://www.backstage.com/u/brian-bakaj/" target="_blank" rel="noopener">
-          View casting profile
-          <ExternalArrow />
-        </a>
+        <AppButton tone="accent" label="Email Brian" href="mailto:hello@example.com" />
+        <AppButton tone="ghost" href="https://www.backstage.com/u/brian-bakaj/" target="_blank">
+          <span>View casting profile</span>
+          <AppIcon icon="externalLink" class="h-[15px] w-[15px]" />
+        </AppButton>
       </div>
 
       <div class="mt-[clamp(2.5rem,6vw,4rem)] border-t border-line pt-[clamp(2.5rem,6vw,4rem)]">
         <p class="eyebrow mb-5">Find Brian elsewhere</p>
         <div class="flex flex-wrap justify-center gap-3.5">
-          <a v-for="link in elsewhere" :key="link.label" class="btn btn--ghost" :href="link.href" target="_blank" rel="noopener">
-            {{ link.label }}
-            <ExternalArrow />
-          </a>
+          <AppButton v-for="link in elsewhere" :key="link.label" tone="ghost" :href="link.href" target="_blank">
+            <span>{{ link.label }}</span>
+            <AppIcon icon="externalLink" class="h-[15px] w-[15px]" />
+          </AppButton>
         </div>
       </div>
     </div>
@@ -31,7 +31,8 @@
 </template>
 
 <script setup lang="ts">
-  import ExternalArrow from "@/components/ui/icons/ExternalArrow.vue";
+  import AppButton from "@/components/ui/AppButton.vue";
+  import AppIcon from "@/components/ui/AppIcon.vue";
 
   const elsewhere = [
     { label: "Backstage", href: "https://www.backstage.com/u/brian-bakaj/" },

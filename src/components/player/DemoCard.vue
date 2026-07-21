@@ -1,19 +1,15 @@
 <template>
-  <article
-    class="rounded-lg border border-line bg-surface p-5 shadow-sm transition duration-[240ms] ease-smooth sm:p-7"
-    :class="{ 'border-accent shadow-md': active }"
-  >
+  <AppSurface :root-class="active ? 'border-accent shadow-md' : ''">
     <div class="flex items-center gap-[1.1rem] max-[560px]:flex-wrap">
-      <button
-        type="button"
-        class="grid h-[3.4rem] w-[3.4rem] flex-none place-items-center rounded-pill bg-accent text-accent-contrast transition duration-[240ms] ease-smooth hover:scale-[1.04] hover:bg-accent-strong"
-        :aria-pressed="active && isPlaying"
-        :aria-label="`Play ${track.title.toLowerCase()}`"
+      <AppIconButton
+        size="lg"
+        tone="accent"
+        :icon="active && isPlaying ? 'pause' : 'play'"
+        :label="`Play ${track.title.toLowerCase()}`"
+        :show-tooltip="false"
+        root-class="flex-none"
         @click="toggleTrack(track)"
-      >
-        <PauseIcon v-if="active && isPlaying" class="h-5 w-5" />
-        <PlayIcon v-else class="h-[22px] w-[22px]" />
-      </button>
+      />
 
       <div class="min-w-0 flex-1">
         <span class="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-accent">{{ track.kicker }}</span>
@@ -21,16 +17,14 @@
         <p class="mt-1.5 text-[0.98rem] leading-[1.5] text-secondary">{{ track.description }}</p>
       </div>
 
-      <a
-        class="inline-flex flex-none items-center gap-1.5 self-start rounded-sm border border-transparent px-2.5 py-1.5 text-[0.85rem] text-secondary transition duration-[240ms] ease-smooth hover:border-line hover:text-accent max-[560px]:order-3 max-[560px]:ml-[calc(3.4rem+1.1rem)]"
+      <AppButton
+        tone="link"
         :href="track.src"
         :download="track.downloadName"
-      >
-        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16" />
-        </svg>
-        Download
-      </a>
+        icon="download"
+        label="Download"
+        root-class="self-start text-[0.85rem] max-[560px]:order-3 max-[560px]:ml-[calc(3.4rem+1.1rem)]"
+      />
     </div>
 
     <div class="mt-[1.1rem] flex items-center gap-3">
@@ -40,13 +34,14 @@
       </div>
       <span class="min-w-[2.6rem] text-center text-[0.82rem] tabular-nums text-secondary">{{ durationLabel(track) }}</span>
     </div>
-  </article>
+  </AppSurface>
 </template>
 
 <script setup lang="ts">
+  import AppButton from "@/components/ui/AppButton.vue";
+  import AppIconButton from "@/components/ui/AppIconButton.vue";
+  import AppSurface from "@/components/ui/AppSurface.vue";
   import { usePlayer } from "@/composables/usePlayer";
-  import PauseIcon from "@/components/ui/icons/PauseIcon.vue";
-  import PlayIcon from "@/components/ui/icons/PlayIcon.vue";
   import type { DemoTrack } from "@/data/demos";
   import { computed } from "vue";
 

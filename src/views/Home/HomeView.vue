@@ -50,8 +50,8 @@
         Rates and availability on request.
       </p>
       <div class="mt-7 flex flex-wrap justify-center gap-3.5">
-        <RouterLink class="btn btn--accent" :to="{ name: 'contact' }">Get in touch</RouterLink>
-        <RouterLink class="btn btn--ghost" :to="{ name: 'about' }">More about Brian</RouterLink>
+        <AppButton tone="accent" label="Get in touch" :to="{ name: 'contact' }" />
+        <AppButton tone="ghost" label="More about Brian" :to="{ name: 'about' }" />
       </div>
     </div>
   </section>
@@ -59,6 +59,7 @@
 
 <script setup lang="ts">
   import headshot from "@/assets/img/headshot.jpg";
+  import AppButton from "@/components/ui/AppButton.vue";
   import DemoCard from "@/components/player/DemoCard.vue";
   import ListenChip from "@/components/player/ListenChip.vue";
   import WaveformDisplay from "@/components/player/WaveformDisplay.vue";

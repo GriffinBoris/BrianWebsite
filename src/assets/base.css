@@ -249,45 +249,4 @@ html[data-theme="dark"] {
     line-height: var(--line-height-lead);
     color: rgb(var(--color-secondary));
   }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    padding: 0.85rem 1.5rem;
-    border-radius: var(--radius-md);
-    border: 1px solid transparent;
-    font-size: 0.95rem;
-    font-weight: 500;
-    line-height: 1;
-    transition:
-      transform var(--duration) var(--ease),
-      background-color var(--duration) var(--ease),
-      border-color var(--duration) var(--ease),
-      color var(--duration) var(--ease);
-  }
-
-  .btn:hover {
-    transform: translateY(-1px);
-  }
-
-  .btn--accent {
-    background-color: rgb(var(--color-accent));
-    color: rgb(var(--color-accent-contrast));
-  }
-
-  .btn--accent:hover {
-    background-color: rgb(var(--color-accent-strong));
-  }
-
-  .btn--ghost {
-    background-color: transparent;
-    border-color: rgb(var(--color-line));
-    color: rgb(var(--color-body));
-  }
-
-  .btn--ghost:hover {
-    border-color: rgb(var(--color-accent));
-    color: rgb(var(--color-accent));
-  }
 }

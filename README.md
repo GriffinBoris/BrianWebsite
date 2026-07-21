@@ -102,9 +102,11 @@ task agents:check              # validate all guidance builds
 ## Future direction
 
 The site tracks the `GriffinBoris/WebTemplate` house stack (Vue 3 + Vite +
-Tailwind v4). It deliberately skips app-infrastructure (pinia, PrimeVue, axios,
-a backend) it doesn't need; add those only if real cross-route or async state
-appears.
+Tailwind v4 + PrimeVue in unstyled mode, all bundled by Vite). Foundational
+controls go through app-owned wrappers under `src/components/ui/` (`AppButton`,
+`AppIconButton`, `AppSurface`, `AppIcon`) so route views stay semantic. It
+deliberately skips app-infrastructure it doesn't need (pinia, axios, a backend);
+add those only if real cross-route or async state appears.
 
 ## License
 

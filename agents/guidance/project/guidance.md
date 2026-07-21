@@ -82,7 +82,9 @@ every choice in the subject.
   desktop, tinted pill on mobile); `RouterLink` sets `aria-current` automatically.
 - `src/components/` — `layout/` (`SiteHeader` with the polished mobile dropdown, `SiteFooter`),
   `page/` (`PageHero` intro band), `player/` (`WaveformDisplay`, `DemoCard`, `ListenChip`,
-  `AudioBar`), `ui/` (`ThemeToggle`, `icons/` for shared inline SVGs).
+  `AudioBar`), `ui/` (the app-owned PrimeVue wrappers: `AppButton`, `AppIconButton`, `AppSurface`,
+  `AppIcon`, `ThemeToggle`, plus `appIcons.ts` and `AppTooltip.ts`).
+- `src/utils/className.ts` — `cn()` (clsx + tailwind-merge), the class combiner used by the wrappers.
 - `src/composables/` — `useTheme.ts` (light/dark singleton driving `html[data-theme]`) and
   `usePlayer.ts` (the audio engine: one `Audio` element drives demo cards, hero chips, and the
   persistent bar; a Web Audio analyser drives the waveform; it stamps each demo's real length and
@@ -103,9 +105,17 @@ every choice in the subject.
 
 ## Conventions
 
-- **Reactive static, house stack.** Vue 3 `<script setup lang="ts">` SFCs, `vue-router`, Tailwind v4.
-  No pinia/PrimeVue/axios/backend — this is a brochure site, so keep dependencies minimal (YAGNI) and
-  reach for a composable before a store. Follow the Vue guidance in `agents/` for structure.
+- **Reactive static, house stack.** Vue 3 `<script setup lang="ts">` SFCs, `vue-router`, Tailwind v4,
+  and **PrimeVue in unstyled mode** — all bundled by Vite into `dist/`, so the site stays fully static
+  and self-hosted (no CDN, no runtime external requests). No pinia/axios/backend — this is a brochure
+  site, so keep dependencies minimal (YAGNI) and reach for a composable before a store.
+- **App-owned wrappers around PrimeVue.** Route views and route-local components never import
+  `primevue/*` directly. They use the app-owned wrappers under `src/components/ui/` — `AppButton`,
+  `AppIconButton`, `AppSurface`, `AppIcon`, `ThemeToggle` — which own the `unstyled` `pt` maps, tones,
+  sizes, focus rings, and icons (per `agents/.../vue-app-owned-wrapper-component.md`). Callers pass
+  semantic props (`tone`, `size`, `icon`, `label`, `to`/`href`). `cn()` (`src/utils/className.ts`)
+  merges classes; icons come from Lucide via `src/components/ui/appIcons.ts` + `AppIcon`, not inline
+  SVG. The bespoke waveform/audio UI and the responsive nav shell stay custom by design.
 - **Design tokens first.** Never hard-code a raw color, radius, or shadow. Use the semantic Tailwind
   utilities (`text-accent`, `bg-surface`, `border-line`, `rounded-lg`, `shadow-md`) or the CSS
   variables in `base.css`. Add a token before introducing a one-off value.

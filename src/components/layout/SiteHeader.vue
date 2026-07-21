@@ -21,9 +21,7 @@
             aria-label="Toggle menu"
             @click="menuOpen = !menuOpen"
           >
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-              <path d="M3 6h18M3 12h18M3 18h18" />
-            </svg>
+            <AppIcon icon="menu" class="h-5 w-5" />
           </button>
 
           <ThemeToggle />
@@ -34,6 +32,7 @@
 </template>
 
 <script setup lang="ts">
+  import AppIcon from "@/components/ui/AppIcon.vue";
   import ThemeToggle from "@/components/ui/ThemeToggle.vue";
   import { onBeforeUnmount, ref, watch } from "vue";
   import { useRoute } from "vue-router";
