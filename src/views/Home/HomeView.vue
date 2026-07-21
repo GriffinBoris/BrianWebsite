@@ -8,12 +8,10 @@
           <h1 id="hero-title" class="text-display">Brian Bakaj</h1>
           <p class="lead mt-6 max-w-[40ch]">A natural read for screen and voice that sounds like a real person, not a performance. English and Albanian.</p>
 
-          <div class="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
-            <span class="w-full text-[0.8rem] uppercase tracking-[0.12em] text-secondary sm:mr-1 sm:w-auto">Listen</span>
-            <ListenChip v-for="track in demoTracks" :key="track.id" :track="track" />
+          <div class="mt-8 flex flex-wrap gap-3.5">
+            <AppButton tone="accent" label="Hear the reels" icon="play" @click="scrollToReels" />
+            <AppButton tone="ghost" label="Get in touch" :to="{ name: 'contact' }" />
           </div>
-
-          <WaveformDisplay />
         </div>
 
         <figure class="relative aspect-[4/5] overflow-hidden rounded-lg bg-surface-muted shadow-lg max-[860px]:order-first max-[860px]:mx-auto max-[860px]:max-w-[20rem]">
@@ -23,7 +21,7 @@
     </div>
   </section>
 
-  <!-- Voice reels -->
+  <!-- Voice reels: the single audio home, with the waveform reacting where you press play -->
   <section class="section section--muted" aria-labelledby="demos-title">
     <div class="site-container">
       <div class="mb-[clamp(2rem,4vw,3.25rem)] max-w-container-narrow">
@@ -31,6 +29,8 @@
         <h2 id="demos-title" class="text-h2">Hear the reels</h2>
         <p class="lead mt-4">Commercial and narration. The same natural read, bright or steady.</p>
       </div>
+
+      <WaveformDisplay class="mb-[clamp(1.75rem,4vw,2.75rem)]" />
 
       <div class="grid gap-5">
         <DemoCard v-for="track in demoTracks" :key="track.id" :track="track" />
@@ -56,13 +56,16 @@
   import headshot from "@/assets/img/headshot.jpg";
   import AppButton from "@/components/ui/AppButton.vue";
   import DemoCard from "@/components/player/DemoCard.vue";
-  import ListenChip from "@/components/player/ListenChip.vue";
   import WaveformDisplay from "@/components/player/WaveformDisplay.vue";
   import { usePlayer } from "@/composables/usePlayer";
   import { demoTracks } from "@/data/demos";
   import { onMounted } from "vue";
 
   const { loadDurations } = usePlayer();
+
+  function scrollToReels() {
+    document.getElementById("demos-title")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 
   onMounted(() => loadDurations(demoTracks));
 </script>

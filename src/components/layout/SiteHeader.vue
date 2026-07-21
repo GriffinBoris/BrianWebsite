@@ -4,24 +4,19 @@
       <nav class="flex h-[4.25rem] items-center justify-between gap-3" aria-label="Primary">
         <RouterLink class="brand" :to="{ name: 'home' }">Brian Bakaj <span>Actor</span></RouterLink>
 
-        <div class="flex items-center gap-1 sm:gap-2">
-          <ul class="flex items-center gap-0.5 sm:gap-1">
-            <li v-for="item in items" :key="item.name">
-              <RouterLink :to="{ name: item.name }" class="nav-link" :class="{ 'is-active': route.name === item.name }">
-                {{ item.label }}
-              </RouterLink>
-            </li>
-          </ul>
-
-          <ThemeToggle />
-        </div>
+        <ul class="flex items-center gap-0.5 sm:gap-1">
+          <li v-for="item in items" :key="item.name">
+            <RouterLink :to="{ name: item.name }" class="nav-link" :class="{ 'is-active': route.name === item.name }">
+              {{ item.label }}
+            </RouterLink>
+          </li>
+        </ul>
       </nav>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
-  import ThemeToggle from "@/components/ui/ThemeToggle.vue";
   import { useRoute } from "vue-router";
 
   const route = useRoute();
