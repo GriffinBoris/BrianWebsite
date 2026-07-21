@@ -1,6 +1,6 @@
 <template>
   <AppSurface :root-class="active ? 'border-accent shadow-md' : ''">
-    <div class="flex items-center gap-[1.1rem] max-[560px]:flex-wrap">
+    <div class="flex items-start gap-4 sm:gap-[1.1rem]">
       <AppIconButton
         size="lg"
         tone="accent"
@@ -12,19 +12,20 @@
       />
 
       <div class="min-w-0 flex-1">
-        <span class="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-accent">{{ track.kicker }}</span>
+        <div class="flex items-start justify-between gap-3">
+          <span class="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-accent">{{ track.kicker }}</span>
+          <AppButton
+            tone="link"
+            :href="track.src"
+            :download="track.downloadName"
+            icon="download"
+            label="Download"
+            root-class="flex-none text-[0.85rem]"
+          />
+        </div>
         <h3 class="mt-0.5 text-[1.35rem]">{{ track.title }}</h3>
         <p class="mt-1.5 text-[0.98rem] leading-[1.5] text-secondary">{{ track.description }}</p>
       </div>
-
-      <AppButton
-        tone="link"
-        :href="track.src"
-        :download="track.downloadName"
-        icon="download"
-        label="Download"
-        root-class="self-start text-[0.85rem] max-[560px]:order-3 max-[560px]:ml-[calc(3.4rem+1.1rem)]"
-      />
     </div>
 
     <div class="mt-[1.1rem] flex items-center gap-3">

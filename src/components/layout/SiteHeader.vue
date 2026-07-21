@@ -130,7 +130,7 @@
   }
 
   /* Desktop: an accent underline marks the current page. */
-  @media (min-width: 721px) {
+  @media (min-width: 640px) {
     .nav__links a {
       position: relative;
     }
@@ -147,7 +147,7 @@
   }
 
   /* Mobile: a contained floating card anchored under the toggle. */
-  @media (max-width: 720px) {
+  @media (max-width: 639px) {
     .nav__links {
       position: absolute;
       top: calc(100% + 0.6rem);
