@@ -21,6 +21,8 @@
   var triggers = Array.prototype.slice.call(document.querySelectorAll("[data-track]"));
   var demos = Array.prototype.slice.call(document.querySelectorAll("[data-demo]"));
   var bar = document.getElementById("player");
+  if (!bar) return; // no audio on this page
+
   var barToggle = bar.querySelector("[data-player-toggle]");
   var barTitle = bar.querySelector("[data-player-title]");
   var barKicker = bar.querySelector("[data-player-kicker]");
@@ -120,14 +122,22 @@
     updateProgress();
   });
 
-  // ---- Duration labels on the demo cards ----
+  // ---- Duration labels ----
+  // Read each demo's real length once and stamp it on every label pointing at
+  // that file: the card total and any hero chip marked [data-dur]. The audio
+  // file is the single source of truth, so the static markup is only a fallback.
   demos.forEach(function (demo) {
+    var src = demo.getAttribute("data-src");
     var probe = new Audio();
     probe.preload = "metadata";
-    probe.src = demo.getAttribute("data-src");
+    probe.src = src;
     probe.addEventListener("loadedmetadata", function () {
+      var label = formatTime(probe.duration);
       var total = demo.querySelector("[data-total]");
-      if (total) total.textContent = formatTime(probe.duration);
+      if (total) total.textContent = label;
+      document.querySelectorAll('[data-dur="' + src + '"]').forEach(function (el) {
+        el.textContent = label;
+      });
     });
   });
 

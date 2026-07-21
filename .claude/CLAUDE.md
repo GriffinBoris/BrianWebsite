@@ -1242,9 +1242,10 @@ These guidelines are constraints in service of clarity, not bureaucracy. If foll
 
 ## Purpose
 
-- Maintain a professional portfolio site for **Brian Bakaj, voice actor** (commercial and
-  narration). The site's primary job is to let a casting director, producer, or agency **hear the
-  demos in one click** and reach him quickly — it is a listen-first booking tool, not a scrapbook.
+- Maintain a professional portfolio site for **Brian Bakaj, actor** — he works both **on screen and
+  in voiceover**, so the site positions him as an actor first, with the voice reels as one prominent
+  facet of his range, not the whole identity. Its job is to let a casting director, producer, or
+  agency size him up fast — see the face and the profile, hear the reels in one click, and reach him.
 - The site is a hand-authored **static site** (semantic HTML, modern CSS, dependency-free JS) with
   **no build step**, so `git push` is the only deploy step and it hosts on GitHub Pages immediately.
 - It is intended to grow into a reactive static site (see "Future Direction"). Keep the current
@@ -1259,15 +1260,19 @@ every choice in the subject.
   breathes slowly; while a demo plays it is animated by the Web Audio analyser, so the bars are
   literally Brian's voice. This is the one orchestrated motion moment — do not scatter other
   decorative animations across the page.
-- **Palette is grounded in the subject:** the signature color is the **oxblood** of Brian's own
-  headshot wardrobe (`--color-accent`), carried by warm bone paper and near-black ink. Avoid generic
-  defaults (cream + terracotta, etc.). The accent is reserved for actions, focus, active state, and
-  the waveform — reading text stays on neutral tokens.
-- **Type is a deliberate pairing:** **Fraunces** (theatrical display serif, personality) with
-  **Inter** (quiet UI/reading). Both are self-hosted (see below).
+- **Palette is cinematic and cool:** a single confident **sapphire** accent (`--color-accent`) on a
+  ladder of cool charcoal ink and clean off-white neutrals (light) / deep charcoal (dark). It reads
+  professional, modern, and captivating without going warm or generic. The accent is reserved for
+  actions, focus, active state, and the waveform — reading text stays on neutral tokens.
+- **Type is one clean sans:** **Inter** across the whole site — headings and body alike — self-hosted
+  (see below). Hierarchy comes from size, weight, and spacing, not a decorative display face. Keep it
+  clean and professional; do not reintroduce an ornamental serif.
 - **Usable, not a maze.** No scroll-triggered reveals or content hidden until scrolled into view.
   Everything is visible and reachable; navigation is explicit. Prefer clarity and findability over
   scroll spectacle.
+- **Focused pages, not one long scroller.** The site is split into a few short pages, each doing one
+  job (home, About, Contact). Keep each page tight and purposeful rather than stacking every
+  section onto the home page.
 
 ## Source Of Truth
 
@@ -1281,14 +1286,24 @@ every choice in the subject.
 
 ## Repository Layout
 
-- `index.html` — single-page site, served at the site root by GitHub Pages.
+- `index.html` — the home page: an actor-positioned hero (headshot, quick-listen chips, waveform),
+  the two voice reels, and a slim booking CTA. Served at the site root by GitHub Pages.
+- `about.html` — bio, an actor/casting-profile spec card, and the headshots gallery.
+- `contact.html` — the booking call-to-action plus the "find Brian elsewhere" profile links
+  (Backstage, LinkedIn, Facebook).
+- The header/nav and footer are duplicated across the three pages by hand (no build step, no
+  templating). The brand links home; the nav is a minimal `About · Contact`, and the current page
+  carries `aria-current="page"` (with a sapphire underline on desktop). Only the home page includes
+  the persistent audio bar and `player.js`.
 - `assets/css/` — `tokens.css` (design tokens, light/dark `data-theme`, single source of truth),
-  `base.css` (resets/typography), `layout.css` (shell, header, hero, sections), `components.css`
-  (buttons, waveform, demo players, persistent audio bar, voice profile, headshots, contact).
+  `base.css` (resets/typography), `layout.css` (shell, header, hero, page-hero, sections),
+  `components.css` (buttons/link rows, waveform, demo players, persistent audio bar, casting-profile
+  spec card, headshots, contact, booking CTA).
 - `assets/js/` — dependency-free. `theme.js` (light/dark toggle), `main.js` (mobile nav + footer
   year), `player.js` (the audio engine: one `<audio>` drives the demo cards, hero quick-listen
-  chips, persistent bottom bar, and the Web Audio waveform).
-- `assets/fonts/` — **self-hosted** Fraunces + Inter latin `woff2` subsets and `fonts.css`. No
+  chips, persistent bottom bar, and the Web Audio waveform; it also stamps each demo's real length
+  onto its card and matching hero chip, and no-ops on pages with no player).
+- `assets/fonts/` — **self-hosted** Inter latin `woff2` subsets (400/500/600) and `fonts.css`. No
   external font requests; keeps the site self-contained, fast, and CSP-friendly.
 - `assets/img/` — `headshot.jpg` (primary), `brian-look-01/02.jpg`, `favicon.svg`.
 - `assets/media/` — the demo audio (`commercial-demo.mp3`, `narration-demo.mp3`).
@@ -1317,25 +1332,26 @@ every choice in the subject.
 
 ## Known Facts (from Brian's Backstage profile)
 
-- Austin, TX. Playing age 18–27. Nonunion. Voices in **English and Albanian**. Records on a
-  **Shure SM7B** in a dedicated home studio. Additional skill: dance; has a driver's license and
-  passport. These are reflected in the About copy and voice-profile spec card — keep them accurate.
+- Actor working on screen and in voiceover. Austin, TX. Playing age 18–27. Nonunion. English and
+  **Albanian**. Records on a **Shure SM7B** in a dedicated home studio. Movement: dance. Holds a
+  driver's license and passport (travel-ready). These are reflected in the About copy and the
+  casting-profile card — keep them accurate, and do not invent screen/stage credits he can't back up.
 
 ## Content The Owner Supplies Or Confirms Later
 
-- **Booking email** is still a `mailto:` placeholder (`TODO(Brian)` in `index.html`) — the only
+- **Booking email** is still a `mailto:` placeholder (`TODO(Brian)` in `contact.html`) — the only
   remaining unknown. Replace it once Brian provides a real address.
 - Real training, representation, and specific credits/clients can be added to About when he has
   details he can back up. Do not invent them.
-- External profiles are linked in the **Connect** section (Backstage, LinkedIn, Facebook). These
+- External profiles are linked on the **Contact** page (Backstage, LinkedIn, Facebook). These
   are gated to automated fetching, so their content is linked, not scraped.
 
 ## Future Direction
 
 - The site is expected to become a **reactive static site**. When that migration is requested, the
   house stack is Vue 3 + Vite + Tailwind (see `GriffinBoris/WebTemplate`), and the framework/Vue
-  guidance in `agents/` applies. The design system (tokens, oxblood signature, Fraunces/Inter,
-  waveform, listen-first IA) should carry over intact.
+  guidance in `agents/` applies. The design system (tokens, sapphire signature, Inter type,
+  waveform, actor-first IA) should carry over intact.
 
 ## Verification
 

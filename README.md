@@ -1,13 +1,15 @@
-# Brian Bakaj — Voice Actor
+# Brian Bakaj — Actor
 
-A portfolio site for **Brian Bakaj**, a voice actor working in commercial and
-narration. It's built to do one job well: let someone **hear the demos in one
-click** and reach Brian to book him.
+A portfolio site for **Brian Bakaj**, an actor working **on screen and in
+voiceover**. It positions him as an actor first, with his voice reels as one
+prominent part of his range, and makes it easy to size him up: see the face and
+the casting profile, **hear the reels in one click**, and reach him to book.
 
 It is a **hand-authored static site** (semantic HTML, modern CSS, dependency-free
 JS) with **no build step**, so it hosts on GitHub Pages the moment it's pushed.
-It's structured to grow into a reactive static site later without throwing this
-work away.
+It's a few short, focused pages rather than one long scroller, and it's
+structured to grow into a reactive static site later without throwing this work
+away.
 
 ## Quick start
 
@@ -20,26 +22,31 @@ python3 -m http.server 8000
 
 ## What's here
 
-- **Listen-first hero** — name, positioning line, headshot, quick-listen chips,
-  and a **waveform** that animates to Brian's actual voice while a demo plays.
-- **Demos** — the two reels (`commercial-demo.mp3`, `narration-demo.mp3`) with a
-  custom audio player and a **persistent play bar** that follows you down the page.
-- **About** — a voice-focused bio and a voice-profile spec card.
-- **Headshots** — a clean 3-up gallery.
-- **Connect** — links to Brian's [Backstage](https://www.backstage.com/u/brian-bakaj/),
+Three short pages sharing one header, footer, and design system:
+
+- **Home** (`index.html`) — an actor-positioned hero (name, positioning line,
+  headshot, quick-listen chips, and a **waveform** that animates to Brian's
+  actual voice while a demo plays), the two voice reels
+  (`commercial-demo.mp3`, `narration-demo.mp3`) with a custom player and a
+  **persistent play bar**, and a slim booking call-to-action.
+- **About** (`about.html`) — an actor bio, a casting-profile spec card, and a
+  3-up headshots gallery.
+- **Contact** (`contact.html`) — the booking call-to-action plus links to Brian's
+  [Backstage](https://www.backstage.com/u/brian-bakaj/),
   [LinkedIn](https://www.linkedin.com/in/brian-bakaj), and
   [Facebook](https://www.facebook.com/brian.bakaj/).
-- **Contact** — a booking call-to-action.
 - **Light/dark theme**, responsive down to mobile, self-hosted fonts.
 
 ## Project structure
 
 ```
-index.html
+index.html         Home: actor hero + voice reels + booking CTA
+about.html         Bio, casting profile, headshots
+contact.html       Booking + profile links
 assets/
   css/     tokens.css · base.css · layout.css · components.css
   js/      theme.js (light/dark) · main.js (nav, year) · player.js (audio engine)
-  fonts/   self-hosted Fraunces + Inter woff2 + fonts.css
+  fonts/   self-hosted Inter woff2 (400/500/600) + fonts.css
   img/     headshot.jpg · brian-look-01/02.jpg · favicon.svg
   media/   commercial-demo.mp3 · narration-demo.mp3
   resume/  (reserved for a résumé PDF)
@@ -50,20 +57,20 @@ agents/            shared agent guidance source
 
 ## Design notes
 
-- **One bold idea, grounded in the subject.** The signature is the audio
-  waveform; the palette's signature color is the **oxblood** of Brian's own
-  headshot wardrobe. Everything else stays quiet and legible.
-- **Type:** Fraunces (display) + Inter (UI), self-hosted for speed and privacy.
-- **Usable, not a maze.** No scroll-triggered reveals — content is always visible
-  and reachable, with explicit navigation.
+- **One bold idea.** The signature is the audio waveform; the palette is a
+  cinematic, cool charcoal-and-off-white system with a single confident
+  **sapphire** accent. Everything else stays quiet and legible.
+- **Type:** Inter throughout (headings and body), self-hosted for speed and
+  privacy. Hierarchy from size and weight, not a decorative face.
+- **Usable, not a maze.** No scroll-triggered reveals and no endless scroll —
+  content is split into short, focused pages with explicit navigation.
 
 ## Things for Brian to fill in
 
-Search `index.html` for `TODO(Brian)` and the `.needs-detail` markers:
+Search the HTML for `TODO(Brian)`:
 
-- Booking email (currently a `mailto:` placeholder)
-- City / location and voice-age range
-- Optionally: training, representation, notable clients
+- Booking email (currently a `mailto:` placeholder in `contact.html`)
+- Optionally: training, representation, notable clients (add to `about.html`)
 
 To personalize demos or images, drop replacements into `assets/media/` and
 `assets/img/` using the same filenames.

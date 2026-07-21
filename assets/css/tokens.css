@@ -1,48 +1,51 @@
 /*
  * Design tokens — the single source of truth for the visual system.
  *
- * Palette is grounded in the subject: the deep oxblood of Brian's own wardrobe
- * becomes the signature color, carried by a warm bone-paper neutral and a near-
- * black ink. Boldness is spent in one place — the oxblood accent and the audio
- * waveform it drives — everything else stays disciplined and quiet.
+ * The palette is cinematic and cool: charcoal ink and clean off-white neutrals
+ * with a single confident sapphire accent. Boldness is spent in one place — the
+ * sapphire accent and the audio waveform it drives — everything else stays
+ * disciplined and quiet so the work and the face carry the page.
  *
  * Colors are stored as space-separated RGB channels so any token can take an
  * alpha via rgb(var(--token) / <alpha>). Light is the default; dark overrides
  * on html[data-theme="dark"].
  *
+ * The neutrals run as a deliberate three-step ladder — page, muted (alternating
+ * section bands), and surface (cards) — so structure reads without relying on
+ * heavy borders or shadow.
+ *
  * Named source hexes (light):
- *   ink      #1B1714   paper   #F5F1EA   surface #FBF9F5
- *   oxblood  #8A2733   rose    #C6485A   secondary #6E6459
+ *   ink      #14161C   page    #F5F6F8   muted   #E9ECF1   surface #FFFFFF
+ *   sapphire #2C55C8   secondary #565E70
  */
 
 :root {
-  /* Surfaces & text */
-  --color-background: 245 241 234;   /* bone paper */
-  --color-surface: 251 249 245;
-  --color-surface-muted: 236 230 221;
-  --color-body: 27 23 20;            /* warm ink */
-  --color-secondary: 110 100 89;
-  --color-line: 224 216 205;
+  /* Surfaces & text — a three-step cool neutral ladder */
+  --color-background: 245 246 248;   /* page */
+  --color-surface-muted: 233 236 241; /* alternating section bands */
+  --color-surface: 255 255 255;      /* cards */
+  --color-body: 20 22 28;            /* cool charcoal ink */
+  --color-secondary: 86 94 112;
+  --color-line: 219 223 230;
 
-  /* Signature — oxblood, drawn from Brian's headshot wardrobe */
-  --color-accent: 138 39 51;
-  --color-accent-strong: 112 30 41;
-  --color-accent-contrast: 251 249 245;
+  /* Signature — a single confident sapphire */
+  --color-accent: 44 85 200;
+  --color-accent-strong: 32 66 168;
+  --color-accent-contrast: 255 255 255;
 
   /* Neutral primary (used for solid ink buttons) */
-  --color-primary: 27 23 20;
-  --color-primary-contrast: 245 241 234;
+  --color-primary: 20 22 28;
+  --color-primary-contrast: 245 246 248;
 
-  --color-focus-ring: 138 39 51;
+  --color-focus-ring: 44 85 200;
 
   /* Status */
   --color-success: 22 128 84;
   --color-warning: 176 106 20;
   --color-error: 176 42 42;
 
-  /* Typography — a deliberate pairing: a theatrical display serif for
-     personality, a quiet grotesque for interface and reading. */
-  --font-display: "Fraunces", "Cormorant Garamond", Georgia, serif;
+  /* Typography — one clean, professional sans (Inter) across the whole site.
+     Hierarchy comes from size, weight, and spacing, not decorative type. */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   --font-size-eyebrow: 0.75rem;
@@ -53,6 +56,7 @@
   --line-height-lead: 1.55;
 
   --font-size-display: clamp(3rem, 8vw, 6rem);
+  --font-size-h1: clamp(2.4rem, 5vw, 3.6rem);
   --font-size-h2: clamp(1.9rem, 3.6vw, 2.9rem);
   --font-size-h3: clamp(1.2rem, 2vw, 1.5rem);
 
@@ -66,9 +70,9 @@
   --radius-pill: 999px;
 
   /* Elevation */
-  --shadow-sm: 0 1px 2px rgb(27 23 20 / 0.06);
-  --shadow-md: 0 14px 34px -16px rgb(27 23 20 / 0.22);
-  --shadow-lg: 0 34px 60px -24px rgb(27 23 20 / 0.32);
+  --shadow-sm: 0 1px 2px rgb(20 22 28 / 0.06);
+  --shadow-md: 0 16px 36px -18px rgb(20 22 28 / 0.24);
+  --shadow-lg: 0 36px 64px -26px rgb(20 22 28 / 0.34);
 
   /* Player bar height, used to pad the page bottom when active */
   --player-height: 4.75rem;
@@ -81,22 +85,22 @@
 }
 
 html[data-theme="dark"] {
-  --color-background: 22 19 17;      /* espresso */
-  --color-surface: 30 26 23;
-  --color-surface-muted: 40 35 31;
-  --color-body: 237 230 221;         /* warm bone text */
-  --color-secondary: 165 155 143;
-  --color-line: 58 51 45;
+  --color-background: 16 18 24;      /* deep charcoal */
+  --color-surface-muted: 23 26 34;   /* alternating section bands */
+  --color-surface: 30 34 44;         /* cards lift off the page */
+  --color-body: 232 234 240;         /* cool off-white text */
+  --color-secondary: 154 161 178;
+  --color-line: 45 50 62;
 
-  /* Oxblood lifts to a warmer rose so it reads on dark surfaces */
-  --color-accent: 198 72 90;
-  --color-accent-strong: 214 96 112;
-  --color-accent-contrast: 22 19 17;
+  /* Sapphire lifts to a luminous periwinkle-blue that glows on charcoal */
+  --color-accent: 110 155 255;
+  --color-accent-strong: 140 178 255;
+  --color-accent-contrast: 16 18 24;
 
-  --color-primary: 237 230 221;
-  --color-primary-contrast: 22 19 17;
+  --color-primary: 232 234 240;
+  --color-primary-contrast: 16 18 24;
 
-  --color-focus-ring: 214 96 112;
+  --color-focus-ring: 110 155 255;
 
   --color-success: 63 191 130;
   --color-warning: 224 158 66;
