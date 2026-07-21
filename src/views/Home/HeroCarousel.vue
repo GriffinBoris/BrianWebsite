@@ -1,6 +1,6 @@
 <template>
   <figure
-    class="relative aspect-[4/5] overflow-hidden rounded-lg bg-surface-muted shadow-lg max-[860px]:order-first max-[860px]:mx-auto max-[860px]:max-w-[20rem]"
+    class="relative aspect-[4/5] w-full overflow-hidden rounded-lg bg-surface-muted shadow-lg max-[860px]:order-first max-[860px]:mx-auto max-[860px]:max-w-[20rem]"
     aria-roledescription="carousel"
     aria-label="Headshots of Brian Bakaj"
     @pointerenter="pause"
