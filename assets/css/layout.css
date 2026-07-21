@@ -189,10 +189,6 @@ body.player-active {
   font-optical-sizing: auto;
 }
 
-.hero__accent {
-  color: rgb(var(--color-accent));
-}
-
 .hero__lead {
   margin-top: 1.5rem;
   max-width: 38ch;
