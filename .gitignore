@@ -23,8 +23,7 @@ opencode.json
 __pycache__/
 *.py[cod]
 
-# === Local dev ===
-# If a future reactive build is added, ignore its output:
+# === Local dev / build output ===
 node_modules/
 dist/
 .cache/

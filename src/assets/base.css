@@ -57,10 +57,6 @@
 
   --color-focus-ring: 44 85 200;
 
-  --color-success: 22 128 84;
-  --color-warning: 176 106 20;
-  --color-error: 176 42 42;
-
   /* Typography */
   --font-size-eyebrow: 0.75rem;
   --tracking-eyebrow: 0.24em;
@@ -112,10 +108,6 @@ html[data-theme="dark"] {
   --color-primary-contrast: 16 18 24;
 
   --color-focus-ring: 110 155 255;
-
-  --color-success: 63 191 130;
-  --color-warning: 224 158 66;
-  --color-error: 236 110 110;
 
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.45);
   --shadow-md: 0 14px 34px -16px rgb(0 0 0 / 0.6);

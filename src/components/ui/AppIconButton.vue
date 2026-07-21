@@ -1,15 +1,10 @@
 <template>
   <AppButton
     v-tooltip="tooltipBinding"
-    :aria-controls="ariaControls"
-    :aria-haspopup="ariaHaspopup"
     :aria-label="label"
-    :button-type="buttonType"
-    :disabled="disabled"
     :icon="icon"
     :icon-size="iconSize"
     :root-class="iconButtonClass"
-    :test-id="testId"
     @click="emit('click', $event)"
   />
 </template>
@@ -26,33 +21,19 @@
   type IconButtonSize = "sm" | "md" | "lg";
 
   interface Props {
-    ariaControls?: string;
-    ariaHaspopup?: boolean | "menu" | "dialog" | "grid" | "listbox" | "tree";
-    buttonType?: "button" | "reset" | "submit";
-    disabled?: boolean;
     icon: AppIconName | LucideIcon;
     label: string;
     rootClass?: string;
-    rounded?: boolean;
     showTooltip?: boolean;
     size?: IconButtonSize;
-    testId?: string;
     tone?: IconButtonTone;
-    tooltipDelay?: number;
   }
 
   const props = withDefaults(defineProps<Props>(), {
-    ariaControls: undefined,
-    ariaHaspopup: undefined,
-    buttonType: "button",
-    disabled: false,
     rootClass: undefined,
-    rounded: true,
     showTooltip: true,
     size: "md",
-    testId: undefined,
     tone: "default",
-    tooltipDelay: 250,
   });
 
   const emit = defineEmits<{ click: [event: MouseEvent] }>();
@@ -79,7 +60,7 @@
     return "border border-line bg-surface text-body hover:border-accent hover:text-accent hover:translate-y-0";
   });
 
-  const iconButtonClass = computed(() => cn("justify-center", sizeClass.value, toneClass.value, props.rounded ? "rounded-pill" : "rounded-md", props.rootClass));
+  const iconButtonClass = computed(() => cn("justify-center rounded-pill", sizeClass.value, toneClass.value, props.rootClass));
 
-  const tooltipBinding = computed(() => buildAppTooltipBinding({ delay: props.tooltipDelay, disabled: !props.showTooltip || props.disabled, text: props.label }));
+  const tooltipBinding = computed(() => buildAppTooltipBinding({ disabled: !props.showTooltip, text: props.label }));
 </script>

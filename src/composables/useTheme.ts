@@ -1,9 +1,8 @@
 import { computed, ref } from "vue";
 
-// Mirrors the WebTemplate theme store, kept as a lightweight singleton
-// composable: resolve from localStorage, fall back to the OS preference, and
-// drive html[data-theme] so the CSS tokens switch. An inline pre-paint snippet
-// in index.html prevents the flash of the wrong theme before the app mounts.
+// Resolve from localStorage, fall back to the OS preference, and drive
+// html[data-theme] so the CSS tokens switch. An inline snippet in index.html
+// sets the theme before mount to avoid a flash of the wrong theme.
 
 type ThemePreference = "light" | "dark";
 

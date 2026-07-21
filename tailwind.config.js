@@ -19,16 +19,11 @@ export default {
         "accent-strong": semanticColor("--color-accent-strong"),
         "accent-contrast": semanticColor("--color-accent-contrast"),
         "focus-ring": semanticColor("--color-focus-ring"),
-        success: semanticColor("--color-success"),
-        warning: semanticColor("--color-warning"),
-        error: semanticColor("--color-error"),
       },
       fontFamily: {
         sans: ['"Inter"', "system-ui", "-apple-system", '"Segoe UI"', "Roboto", "sans-serif"],
       },
       fontSize: {
-        eyebrow: ["var(--font-size-eyebrow)", { lineHeight: "1rem", letterSpacing: "var(--tracking-eyebrow)" }],
-        lead: ["var(--font-size-lead)", { lineHeight: "var(--line-height-lead)" }],
         display: ["var(--font-size-display)", { lineHeight: "1.02", letterSpacing: "-0.02em" }],
         h1: ["var(--font-size-h1)", { lineHeight: "1.08", letterSpacing: "-0.02em" }],
         h2: ["var(--font-size-h2)", { lineHeight: "1.08", letterSpacing: "-0.02em" }],
