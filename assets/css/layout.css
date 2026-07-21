@@ -173,8 +173,7 @@ body.player-active {
   font-optical-sizing: auto;
 }
 
-.hero__title em {
-  font-style: italic;
+.hero__accent {
   color: rgb(var(--color-accent));
 }
 
