@@ -44,9 +44,8 @@
   --color-warning: 176 106 20;
   --color-error: 176 42 42;
 
-  /* Typography — a deliberate pairing: a theatrical display serif for
-     personality, a quiet grotesque for interface and reading. */
-  --font-display: "Fraunces", "Cormorant Garamond", Georgia, serif;
+  /* Typography — one clean, professional sans (Inter) across the whole site.
+     Hierarchy comes from size, weight, and spacing, not decorative type. */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   --font-size-eyebrow: 0.75rem;

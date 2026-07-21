@@ -46,7 +46,7 @@ contact.html       Booking + profile links
 assets/
   css/     tokens.css · base.css · layout.css · components.css
   js/      theme.js (light/dark) · main.js (nav, year) · player.js (audio engine)
-  fonts/   self-hosted Fraunces + Inter woff2 + fonts.css
+  fonts/   self-hosted Inter woff2 (400/500/600) + fonts.css
   img/     headshot.jpg · brian-look-01/02.jpg · favicon.svg
   media/   commercial-demo.mp3 · narration-demo.mp3
   resume/  (reserved for a résumé PDF)
@@ -60,8 +60,8 @@ agents/            shared agent guidance source
 - **One bold idea.** The signature is the audio waveform; the palette is a
   cinematic, cool charcoal-and-off-white system with a single confident
   **sapphire** accent. Everything else stays quiet and legible.
-- **Type:** Fraunces (display serif, used upright) + Inter (UI), self-hosted for
-  speed and privacy.
+- **Type:** Inter throughout (headings and body), self-hosted for speed and
+  privacy. Hierarchy from size and weight, not a decorative face.
 - **Usable, not a maze.** No scroll-triggered reveals and no endless scroll —
   content is split into short, focused pages with explicit navigation.
 

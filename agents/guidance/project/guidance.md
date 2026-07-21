@@ -43,8 +43,9 @@ every choice in the subject.
   ladder of cool charcoal ink and clean off-white neutrals (light) / deep charcoal (dark). It reads
   professional, modern, and captivating without going warm or generic. The accent is reserved for
   actions, focus, active state, and the waveform — reading text stays on neutral tokens.
-- **Type is a deliberate pairing:** **Fraunces** (display serif, personality — used upright, not the
-  swashy italic) with **Inter** (quiet UI/reading). Both are self-hosted (see below).
+- **Type is one clean sans:** **Inter** across the whole site — headings and body alike — self-hosted
+  (see below). Hierarchy comes from size, weight, and spacing, not a decorative display face. Keep it
+  clean and professional; do not reintroduce an ornamental serif.
 - **Usable, not a maze.** No scroll-triggered reveals or content hidden until scrolled into view.
   Everything is visible and reachable; navigation is explicit. Prefer clarity and findability over
   scroll spectacle.
@@ -81,7 +82,7 @@ every choice in the subject.
   year), `player.js` (the audio engine: one `<audio>` drives the demo cards, hero quick-listen
   chips, persistent bottom bar, and the Web Audio waveform; it also stamps each demo's real length
   onto its card and matching hero chip, and no-ops on pages with no player).
-- `assets/fonts/` — **self-hosted** Fraunces + Inter latin `woff2` subsets and `fonts.css`. No
+- `assets/fonts/` — **self-hosted** Inter latin `woff2` subsets (400/500/600) and `fonts.css`. No
   external font requests; keeps the site self-contained, fast, and CSP-friendly.
 - `assets/img/` — `headshot.jpg` (primary), `brian-look-01/02.jpg`, `favicon.svg`.
 - `assets/media/` — the demo audio (`commercial-demo.mp3`, `narration-demo.mp3`).
@@ -128,7 +129,7 @@ every choice in the subject.
 
 - The site is expected to become a **reactive static site**. When that migration is requested, the
   house stack is Vue 3 + Vite + Tailwind (see `GriffinBoris/WebTemplate`), and the framework/Vue
-  guidance in `agents/` applies. The design system (tokens, sapphire signature, Fraunces/Inter,
+  guidance in `agents/` applies. The design system (tokens, sapphire signature, Inter type,
   waveform, actor-first IA) should carry over intact.
 
 ## Verification
