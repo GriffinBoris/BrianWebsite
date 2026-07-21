@@ -4,19 +4,74 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- GitHub Pages SPA: restore the deep-link path stashed by 404.html before the router boots. -->
+    <script>
+      (function () {
+        var l = window.location;
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (part) {
+              return part.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })();
+    </script>
+
     <title>Brian Bakaj, Actor</title>
     <meta
       name="description"
       content="Brian Bakaj, screen and voice actor in Austin, Texas. On camera and on mic, in English and Albanian. Hear the reels and get in touch."
     />
+    <meta name="author" content="Brian Bakaj" />
+    <link rel="canonical" href="https://griffinboris.github.io/BrianWebsite/" />
 
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Brian Bakaj, Actor" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://griffinboris.github.io/BrianWebsite/" />
     <meta property="og:title" content="Brian Bakaj, Actor" />
     <meta
       property="og:description"
       content="Austin actor for screen and voice. A natural, grounded read on camera and on the mic, in English and Albanian."
     />
     <meta property="og:image" content="https://griffinboris.github.io/BrianWebsite/og-image.jpg" />
+    <meta property="og:image:alt" content="Brian Bakaj, headshot" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Brian Bakaj, Actor" />
+    <meta
+      name="twitter:description"
+      content="Austin actor for screen and voice. A natural, grounded read on camera and on the mic, in English and Albanian."
+    />
+    <meta name="twitter:image" content="https://griffinboris.github.io/BrianWebsite/og-image.jpg" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Brian Bakaj",
+        "jobTitle": "Actor",
+        "description": "Screen and voice actor based in Austin, Texas, working on camera and on mic in English and Albanian.",
+        "url": "https://griffinboris.github.io/BrianWebsite/",
+        "image": "https://griffinboris.github.io/BrianWebsite/og-image.jpg",
+        "knowsLanguage": ["English", "Albanian"],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Austin",
+          "addressRegion": "TX",
+          "addressCountry": "US"
+        },
+        "sameAs": [
+          "https://www.backstage.com/u/brian-bakaj/",
+          "https://www.linkedin.com/in/brian-bakaj",
+          "https://www.facebook.com/brian.bakaj/"
+        ]
+      }
+    </script>
 
     <!-- Prevent a flash of the wrong theme before the app mounts. -->
     <script>
