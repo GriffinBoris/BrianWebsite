@@ -94,12 +94,18 @@ every choice in the subject.
 - **Performance.** Optimized images, `loading="lazy"` below the fold, self-hosted fonts, deferred
   non-critical scripts.
 
+## Known Facts (from Brian's Backstage profile)
+
+- Austin, TX. Playing age 18–27. Nonunion. Voices in **English and Albanian**. Records on a
+  **Shure SM7B** in a dedicated home studio. Additional skill: dance; has a driver's license and
+  passport. These are reflected in the About copy and voice-profile spec card — keep them accurate.
+
 ## Content The Owner Supplies Or Confirms Later
 
-- Booking email (currently a `mailto:` placeholder), city/location, and voice-age range are marked
-  for Brian to confirm.
-- Real training, representation, and notable clients can be added to the About section when he has
-  details he can back up.
+- **Booking email** is still a `mailto:` placeholder (`TODO(Brian)` in `index.html`) — the only
+  remaining unknown. Replace it once Brian provides a real address.
+- Real training, representation, and specific credits/clients can be added to About when he has
+  details he can back up. Do not invent them.
 - External profiles are linked in the **Connect** section (Backstage, LinkedIn, Facebook). These
   are gated to automated fetching, so their content is linked, not scraped.
 
