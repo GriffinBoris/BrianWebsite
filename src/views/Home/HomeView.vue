@@ -22,7 +22,7 @@
     <div class="site-container">
       <div class="mb-[clamp(2rem,4vw,3.25rem)] max-w-container-narrow">
         <h2 id="demos-title" class="text-h2">Voice demos</h2>
-        <p class="lead mt-4">Listen here or download an MP3.</p>
+        <p class="lead mt-4">Listen to the demos below.</p>
       </div>
 
       <WaveformDisplay class="mb-[clamp(1.75rem,4vw,2.75rem)]" />

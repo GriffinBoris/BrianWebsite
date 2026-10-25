@@ -74,7 +74,7 @@ function ensureAudio(): HTMLAudioElement {
 }
 
 function reportPlaybackError() {
-  playbackError.value = "Couldn’t play this reel. Try again or download the MP3.";
+  playbackError.value = "Couldn’t play this reel. Please try again.";
   isPlaying.value = false;
   stopWave();
 }

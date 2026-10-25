@@ -45,7 +45,6 @@
 
       <div v-if="playbackError" class="absolute inset-x-0 bottom-full border-y border-line bg-surface px-4 py-3 text-center text-sm" role="alert">
         {{ playbackError }}
-        <a class="ml-2 underline underline-offset-4" :href="currentTrack.src" :download="currentTrack.downloadName">Download {{ currentTrack.title }}</a>
       </div>
     </div>
   </Transition>
