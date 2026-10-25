@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'pb-[var(--player-height)]': currentTrack }">
+  <div class="min-h-dvh flex flex-col" :class="{ 'pb-[var(--player-height)]': currentTrack }">
     <a
       class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-sm focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-contrast"
       href="#main"
@@ -9,7 +9,7 @@
 
     <SiteHeader />
 
-    <main id="main" tabindex="-1" class="outline-none">
+    <main id="main" tabindex="-1" class="flex-1 outline-none">
       <RouterView />
     </main>
 

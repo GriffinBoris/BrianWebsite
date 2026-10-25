@@ -44,24 +44,24 @@
     tone: "secondary",
   });
 
-  const sizeClasses = computed(() => (props.tone === "link" ? "gap-1.5 text-[0.95rem]" : "gap-2 px-6 min-h-[2.9rem] text-[0.95rem]"));
+  const sizeClasses = computed(() => (props.tone === "link" ? "gap-1.5 text-sm" : "gap-2 px-4 min-h-11 text-sm"));
 
   const toneClasses = computed(() => {
     if (props.tone === "accent") {
-      return "bg-accent text-accent-contrast hover:-translate-y-px hover:bg-accent-strong";
+      return "bg-accent text-accent-contrast hover:bg-accent-strong";
     }
     if (props.tone === "ghost") {
-      return "border border-line text-body hover:-translate-y-px hover:border-accent hover:text-accent";
+      return "border border-line text-body hover:border-accent hover:text-accent";
     }
     if (props.tone === "link") {
       return "text-secondary hover:text-accent";
     }
-    return "border border-line bg-surface text-body hover:-translate-y-px hover:border-accent";
+    return "border border-line bg-surface text-body hover:border-accent";
   });
 
   const rootClasses = computed(() =>
     cn(
-      "inline-flex items-center justify-center rounded-md font-medium transition duration-[240ms] ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring",
+      "inline-flex items-center justify-center rounded-md font-medium transition-colors duration-[160ms] ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring",
       sizeClasses.value,
       toneClasses.value,
       props.rootClass,

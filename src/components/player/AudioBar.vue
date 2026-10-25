@@ -2,7 +2,7 @@
   <Transition name="player">
     <div
       v-if="currentTrack"
-      class="fixed inset-x-0 bottom-0 z-[60] border-t border-line bg-surface/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-md backdrop-saturate-150"
+      class="fixed inset-x-0 bottom-0 z-[60] border-t border-line bg-surface pb-[env(safe-area-inset-bottom)]"
       role="region"
       aria-label="Audio player"
     >
@@ -19,7 +19,7 @@
         />
 
         <div class="w-[clamp(7rem,22vw,13rem)] min-w-0 flex-none max-[620px]:w-auto max-[620px]:flex-1">
-          <div class="truncate text-[0.95rem] font-semibold">{{ currentTrack.title }}</div>
+          <div class="truncate text-sm font-semibold">{{ currentTrack.title }}</div>
         </div>
 
         <div class="flex min-w-0 flex-1 items-center gap-[0.7rem] max-[620px]:order-last max-[620px]:basis-full">
@@ -40,7 +40,7 @@
           <span class="min-w-[2.6rem] text-center text-[0.8rem] tabular-nums text-secondary">{{ formatTime(duration) }}</span>
         </div>
 
-        <AppIconButton size="sm" tone="ghost" icon="close" label="Close player" root-class="flex-none" @click="close" />
+        <AppIconButton size="sm" tone="ghost" icon="close" label="Close player" root-class="h-11 w-11 flex-none" @click="close" />
       </div>
 
       <div v-if="playbackError" class="absolute inset-x-0 bottom-full border-y border-line bg-surface px-4 py-3 text-center text-sm" role="alert">
