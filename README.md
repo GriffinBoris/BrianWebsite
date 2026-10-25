@@ -26,7 +26,8 @@ npm run preview   # production preview at /BrianWebsite/
 - **Contact** (`/contact`): booking email (`brianbakaj@icloud.com`) and external profiles.
 
 Light and dark themes use shared CSS tokens. Fonts are self-hosted. The waveform
-reacts to the playing demo through Web Audio. Headshots rotate every five seconds;
+uses 64 centered bars that react to voice frequencies through Web Audio, with a
+flowing ripple while idle. It respects reduced motion and stops analysis offscreen. Headshots rotate every five seconds;
 visitors can pause rotation, select a photo, swipe, or use previous/next controls.
 Arrow keys work while a carousel control has focus. Keyboard focus pauses rotation,
 and reduced-motion preferences disable autoplay by default.

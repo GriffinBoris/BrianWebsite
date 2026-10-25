@@ -1259,8 +1259,9 @@ The design follows the frontend-design principle of **spending boldness in one p
 every choice in the subject.
 
 - **Signature element:** the reels **waveform** (`WaveformDisplay.vue`, driven by the `usePlayer`
-  composable). At rest it breathes slowly; while a demo plays it is animated by the Web Audio
-  analyser, so the bars are literally Brian's voice. This is the one orchestrated motion moment — do
+  composable). At rest a tapered, centered ripple travels across 64 bars; while a demo plays,
+  mirrored logarithmic frequency bands respond to Brian's voice with quick attack and smooth release.
+  Use transform animation, respect reduced motion, and suspend analysis offscreen or in hidden tabs. This is the one orchestrated motion moment — do
   not scatter other decorative animations across the page. The headshot carousel uses a slow crossfade,
   has an explicit pause/start control and 44px photo selectors, supports swiping and previous/next
   buttons, pauses on hover and keyboard focus, and disables autoplay for reduced motion. Selecting
