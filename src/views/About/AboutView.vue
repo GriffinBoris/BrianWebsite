@@ -66,7 +66,6 @@
 <script setup lang="ts">
   import look01 from "@/assets/img/brian-look-01.jpg";
   import look02 from "@/assets/img/brian-look-02.jpg";
-  import headshot from "@/assets/img/headshot.jpg";
   import PageHero from "@/components/page/PageHero.vue";
   import AppSurface from "@/components/ui/AppSurface.vue";
 
@@ -79,6 +78,8 @@
     { label: "Movement", value: "Dance" },
     { label: "Travel", value: "Passport and driver’s license" },
   ];
+
+  const headshot = `${import.meta.env.BASE_URL}headshot-v2.png`;
 
   const shots = [
     { src: look01, alt: "Brian Bakaj, portrait" },
