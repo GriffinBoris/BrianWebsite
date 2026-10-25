@@ -18,7 +18,6 @@
         />
 
         <div class="w-[clamp(7rem,22vw,13rem)] min-w-0 flex-none max-[620px]:w-auto max-[620px]:flex-1">
-          <div class="text-[0.72rem] uppercase tracking-[0.12em] text-accent">{{ currentTrack.kicker }}</div>
           <div class="truncate text-[0.95rem] font-semibold">{{ currentTrack.title }}</div>
         </div>
 
