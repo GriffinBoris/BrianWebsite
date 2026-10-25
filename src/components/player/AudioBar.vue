@@ -24,18 +24,12 @@
 
         <div class="flex min-w-0 flex-1 items-center gap-[0.7rem] max-[620px]:order-last max-[620px]:basis-full">
           <span class="min-w-[2.6rem] text-center text-[0.8rem] tabular-nums text-secondary">{{ formatTime(currentTime) }}</span>
-          <input
-            class="player__range flex-1"
-            type="range"
-            min="0"
-            max="100"
-            step="0.1"
+          <AudioSeek
             :value="progress"
-            :style="{ '--p': `${progress}%` }"
             :disabled="!duration"
-            :aria-label="`Seek in ${currentTrack.title.toLowerCase()}`"
-            :aria-valuetext="`${formatTime(currentTime)} of ${formatTime(duration)}`"
-            @input="onSeek"
+            :label="`Seek in ${currentTrack.title.toLowerCase()}`"
+            :value-text="`${formatTime(currentTime)} of ${formatTime(duration)}`"
+            @seek="seekToPercent"
           />
           <span class="min-w-[2.6rem] text-center text-[0.8rem] tabular-nums text-secondary">{{ formatTime(duration) }}</span>
         </div>
@@ -51,14 +45,11 @@
 </template>
 
 <script setup lang="ts">
+  import AudioSeek from "@/components/player/AudioSeek.vue";
   import AppIconButton from "@/components/ui/AppIconButton.vue";
   import { usePlayer } from "@/composables/usePlayer";
 
   const { currentTrack, isPlaying, playbackError, currentTime, duration, progress, togglePlayback, seekToPercent, close, formatTime } = usePlayer();
-
-  function onSeek(event: Event) {
-    seekToPercent(Number((event.target as HTMLInputElement).value));
-  }
 </script>
 
 <style scoped>
@@ -75,42 +66,4 @@
     opacity: 0;
   }
 
-  .player__range {
-    appearance: none;
-    min-width: 0;
-    height: 44px;
-    background: transparent;
-    cursor: pointer;
-  }
-
-  .player__range::-webkit-slider-runnable-track {
-    height: 6px;
-    border-radius: var(--radius-pill);
-    background: linear-gradient(to right, rgb(var(--color-accent)) var(--p, 0%), rgb(var(--color-line)) var(--p, 0%));
-  }
-
-  .player__range::-webkit-slider-thumb {
-    appearance: none;
-    margin-top: -4.5px;
-    width: 15px;
-    height: 15px;
-    border-radius: var(--radius-pill);
-    background: rgb(var(--color-accent));
-    border: 2px solid rgb(var(--color-surface));
-    box-shadow: var(--shadow-sm);
-  }
-
-  .player__range::-moz-range-track {
-    height: 6px;
-    border-radius: var(--radius-pill);
-    background: linear-gradient(to right, rgb(var(--color-accent)) var(--p, 0%), rgb(var(--color-line)) var(--p, 0%));
-  }
-
-  .player__range::-moz-range-thumb {
-    width: 15px;
-    height: 15px;
-    border: 2px solid rgb(var(--color-surface));
-    border-radius: var(--radius-pill);
-    background: rgb(var(--color-accent));
-  }
 </style>

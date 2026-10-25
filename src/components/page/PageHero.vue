@@ -19,17 +19,20 @@
 
 <style scoped>
   .page-heading {
-    padding-block: clamp(2rem, 4vw, 3rem) 1.5rem;
+    padding-block: var(--space-10);
+    background: rgb(var(--color-intro));
+    color: rgb(var(--color-intro-ink));
   }
 
   .page-heading__eyebrow {
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-3);
+    color: rgb(var(--color-intro-muted));
   }
 
   .page-heading__lead {
     max-width: 60ch;
     margin-top: 1rem;
-    color: rgb(var(--color-secondary));
+    color: rgb(var(--color-intro-muted));
     line-height: 1.65;
   }
 </style>
