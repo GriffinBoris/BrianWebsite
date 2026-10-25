@@ -1,17 +1,22 @@
 <template>
+  <PageHero
+    eyebrow="Contact"
+    title="Bookings and auditions"
+    title-id="contact-title"
+    lead="Email your project details, dates, and a script or brief. Include how the recording will be used."
+  />
+
   <section class="section contact-page" aria-labelledby="contact-title">
     <div class="site-container contact-layout">
       <div class="contact-introduction">
-        <p class="eyebrow contact-eyebrow">Contact</p>
-        <h1 id="contact-title" class="text-h1">Bookings and auditions</h1>
-        <p class="contact-copy">
-          Email your project details, dates, and a script or brief. Include how the recording will be used.
-        </p>
         <p class="contact-email">
           <a href="mailto:brianbakaj@icloud.com">brianbakaj@icloud.com</a>
         </p>
         <div class="contact-actions">
-          <AppButton tone="accent" label="Email Brian" href="mailto:brianbakaj@icloud.com" />
+          <AppButton tone="accent" href="mailto:brianbakaj@icloud.com">
+            <span>Email Brian</span>
+            <AppIcon icon="arrowRight" class="h-5 w-5" />
+          </AppButton>
           <AppButton tone="ghost" href="https://www.backstage.com/u/brian-bakaj/" target="_blank">
             <span>Backstage profile</span>
             <AppIcon icon="externalLink" class="h-4 w-4" />
@@ -36,6 +41,7 @@
 </template>
 
 <script setup lang="ts">
+  import PageHero from "@/components/page/PageHero.vue";
   import AppButton from "@/components/ui/AppButton.vue";
   import AppIcon from "@/components/ui/AppIcon.vue";
 
@@ -51,30 +57,13 @@
     display: grid;
     grid-template-columns: minmax(0, 1.6fr) minmax(15rem, 0.8fr);
     align-items: start;
-    gap: clamp(2rem, 5vw, 4rem);
-  }
-
-  .contact-eyebrow {
-    margin-bottom: 0.5rem;
-  }
-
-  .contact-introduction h1 {
-    max-width: 17ch;
-  }
-
-  .contact-copy {
-    max-width: 55ch;
-    margin-top: 1rem;
-    color: rgb(var(--color-secondary));
-    line-height: 1.65;
+    gap: var(--space-12);
   }
 
   .contact-email {
-    margin-top: 1.5rem;
-    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    font-size: clamp(1.25rem, 3vw, 2rem);
     font-weight: 500;
-    letter-spacing: -0.025em;
-    color: rgb(var(--color-body));
+    letter-spacing: -0.035em;
     overflow-wrap: anywhere;
   }
 
@@ -92,16 +81,12 @@
   .contact-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 1.25rem;
-  }
-
-  .contact-profiles {
-    padding-top: 1.875rem;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
   }
 
   .profile-links {
-    margin-top: 1rem;
+    margin-top: var(--space-6);
     border-top: 1px solid rgb(var(--color-line));
   }
 
@@ -109,9 +94,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    min-height: 48px;
-    padding-block: 0.75rem;
+    gap: var(--space-4);
+    min-height: 52px;
+    padding-block: var(--space-3);
     border-bottom: 1px solid rgb(var(--color-line));
     color: rgb(var(--color-secondary));
     transition: color var(--duration) var(--ease);
@@ -125,11 +110,7 @@
   @media (max-width: 760px) {
     .contact-layout {
       grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .contact-profiles {
-      padding-top: 0;
+      gap: var(--space-10);
     }
   }
 </style>

@@ -61,7 +61,7 @@
 
 <style scoped>
   .about-overview {
-    padding-top: 0;
+    padding-block: var(--space-10);
   }
 
   .about-layout {
@@ -119,7 +119,7 @@
   .headshot {
     aspect-ratio: 3 / 4;
     overflow: hidden;
-    border-radius: var(--radius-md);
+    border-radius: 0;
     background: rgb(var(--color-surface-muted));
   }
 

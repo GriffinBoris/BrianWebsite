@@ -1250,7 +1250,7 @@ These guidelines are constraints in service of clarity, not bureaucracy. If foll
   TypeScript, `vue-router` (HTML5 history) — that compiles to fully static assets. GitHub Actions runs
   the Vite build and publishes `dist/` to GitHub Pages; there is no backend, database, or API.
 - It was migrated from an earlier hand-authored no-build site. The framework and Vue guidance in
-  `agents/` now applies; the design system (tokens, sapphire accent, Inter type,
+  `agents/` now applies; the design system (tokens, zinc-neutral palette, Inter type,
   voice-focused positioning) carried over intact.
 
 ## Design Intent
@@ -1263,14 +1263,18 @@ every choice in the subject.
   The homepage has no “Listen to demos” button; the demo section itself provides playback and downloads.
   Home uses a single static original portrait (`headshot.jpg`), with no carousel. About keeps its
   static three-photo gallery. Keep the version-two AI portrait in the repository without active site references.
-- **Professional, compact presentation:** neutral white and near-black surfaces with one restrained
-  blue accent. Use a conventional aligned grid, modest type sizes, thin dividers, and familiar controls.
-  Keep the original portrait straight and unframed. Do not reintroduce yellow/paper tones, slanted
-  objects, oversized split names, large empty hero bands, decorative numbering, or floating cards.
-  On desktop, identity and the three demos should fit together in the initial viewport.
-- **Type is one clean sans:** **Inter** across the whole site — headings and body alike — self-hosted
-  (see below). Hierarchy comes from size, weight, and spacing, not a decorative display face. Keep it
-  clean and professional; do not reintroduce an ornamental serif.
+- **Monochrome, demo-focused presentation:** white, black, and zinc-gray tones inspired by Tailwind.
+  Keep the header and introduction quiet; the high-contrast black listening area gives the demos
+  visual priority. A shared 8/16/24/32/48 spacing scale, fine dividers, and horizontal audio rows
+  create the hierarchy. Keep the original color portrait at its natural landscape ratio, straight
+  and unframed. On desktop, it aligns with the bottom of the compact introduction. Home has one
+  booking CTA below the demos, with no duplicate hero CTA. All three demos fit near the top.
+  On mobile, place the small portrait beside the name and the introduction above full-width demos.
+  Do not reintroduce colored brand palettes, yellow/paper tones, slanted objects, split names,
+  giant empty hero bands, decorative numbering, or floating cards.
+- **Type is one clean sans:** **Inter** across the whole site, self-hosted. Use weight 600 for the
+  name, 500 for headings, and 400 for body text; preserve readable sizes. Keep the original
+  photograph as the human element rather than adding decorative type or invented copy.
 - **Usable, not a maze.** No scroll-triggered reveals or content hidden until scrolled into view.
   Everything is visible and reachable; navigation is explicit. Prefer clarity and findability over
   scroll spectacle.
@@ -1301,10 +1305,10 @@ every choice in the subject.
   read the shared metadata in `index.html`.
 - `src/views/<Name>/<Name>View.vue` — one folder per route. `HomeView` (hero, reels, booking CTA),
   `AboutView` (bio, casting-profile spec card, headshots gallery), `ContactView` (booking CTA plus
-  external profile links). The current route drives the nav highlight (sapphire underline); `RouterLink` sets `aria-current` automatically.
+  external profile links). The current route drives the nav highlight (underline); `RouterLink` sets `aria-current` automatically.
 - `src/components/` — `layout/` (`SiteHeader` with inline navigation, `SiteFooter`),
   `page/` (`PageHero` intro band), `player/` (`DemoCard`,
-  `AudioBar`), `ui/` (the app-owned PrimeVue wrappers: `AppButton`, `AppIconButton`, `AppSurface`,
+  `AudioBar`, and the shared `AudioSeek` range), `ui/` (the app-owned PrimeVue wrappers: `AppButton`, `AppIconButton`, `AppSurface`,
   `AppIcon`, `ThemeToggle`, plus `appIcons.ts` and `AppTooltip.ts`).
 - `src/utils/className.ts` — `cn()` (clsx + tailwind-merge), the class combiner used by the wrappers.
 - `src/composables/` — `useTheme.ts` (light/dark singleton driving `html[data-theme]`) and
@@ -1348,7 +1352,9 @@ every choice in the subject.
 - **One audio engine.** All playback goes through `usePlayer`. Any new play control calls
   `toggleTrack(track)`; any new demo lives in `src/data/demos.ts`. Only one demo plays at a time and
   every control for the current track stays in sync through the shared reactive state. Do not add a
-  second `Audio` element or a bespoke player.
+  second `Audio` element or a bespoke player. Reuse `AudioSeek` for the inline and persistent
+  scrub controls. Inline seeking is enabled only for the current loaded reel; keep its target 44px
+  tall and give active control tracks their own contrast token rather than the decorative divider token.
 - **Accessibility & semantics.** Landmarks, meaningful `alt`, visible focus, `aria-pressed` on
   toggles, `prefers-reduced-motion` respected.
 - **Theming.** Light and dark via `html[data-theme]`; every color resolves from a token so both

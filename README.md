@@ -25,10 +25,12 @@ npm run preview   # production preview at /BrianWebsite/
 - **About** (`/about`): bio, casting profile, and headshots.
 - **Contact** (`/contact`): booking email (`brianbakaj@icloud.com`) and external profiles.
 
-Light and dark themes use neutral surfaces, clear typography, and a restrained blue
-accent through shared CSS tokens. Fonts are self-hosted. The compact homepage places
-identity, original portrait, and Voice Over Demos together, with no visualizer or
-supporting paragraph beneath the demos heading.
+The visual system uses Tailwind-inspired zinc neutrals, self-hosted Inter, and a shared
+spacing scale. A compact introduction and original portrait lead into a high-contrast
+black listening area with three full-width audio rows. The active reel can be scrubbed
+from its row or the persistent player, including on mobile. Light and dark themes
+share semantic tokens. There is one booking call to action, no visualizer, and no
+supporting paragraph beneath “Voice Over Demos.”
 Home shows the original outdoor portrait as a static image. About retains the three-photo gallery.
 
 ## Source layout

@@ -11,6 +11,17 @@
       @click="toggleTrack(track)"
     />
     <h3 class="demo-row__title">{{ track.title }}</h3>
+    <div class="demo-row__progress">
+      <span>{{ currentLabel }}</span>
+      <AudioSeek
+        :value="active ? progress : 0"
+        :disabled="!active || !duration"
+        :label="`Seek in ${track.title.toLowerCase()}`"
+        :value-text="`${currentLabel} of ${durationLabel(track)}`"
+        @seek="seekToPercent"
+      />
+      <span>{{ durationLabel(track) }}</span>
+    </div>
     <AppButton
       tone="link"
       icon="download"
@@ -20,23 +31,19 @@
       :aria-label="`Download ${track.title.toLowerCase()} as MP3`"
       root-class="demo-row__download"
     />
-    <div class="demo-row__progress">
-      <span>{{ currentLabel }}</span>
-      <div class="demo-row__track" aria-hidden="true"><span :style="{ width: `${active ? progress : 0}%` }" /></div>
-      <span>{{ durationLabel(track) }}</span>
-    </div>
   </article>
 </template>
 
 <script setup lang="ts">
   import AppButton from "@/components/ui/AppButton.vue";
   import AppIconButton from "@/components/ui/AppIconButton.vue";
+  import AudioSeek from "@/components/player/AudioSeek.vue";
   import { usePlayer } from "@/composables/usePlayer";
   import type { DemoTrack } from "@/data/demos";
   import { computed } from "vue";
 
   const props = defineProps<{ track: DemoTrack }>();
-  const { isPlaying, progress, currentTime, toggleTrack, isCurrent, durationLabel, formatTime } = usePlayer();
+  const { isPlaying, progress, currentTime, duration, toggleTrack, seekToPercent, isCurrent, durationLabel, formatTime } = usePlayer();
   const active = computed(() => isCurrent(props.track));
   const currentLabel = computed(() => (active.value ? formatTime(currentTime.value) : "0:00"));
 </script>
@@ -44,69 +51,103 @@
 <style scoped>
   .demo-row {
     display: grid;
-    grid-template-columns: 44px minmax(0, 1fr) auto;
-    grid-template-areas: "play title download" "play progress download";
+    grid-template-columns: 48px minmax(180px, 230px) minmax(0, 1fr) auto;
+    grid-template-areas: "play title progress download";
     align-items: center;
-    gap: 5px 12px;
-    padding-block: 14px;
+    column-gap: var(--space-6);
+    min-height: 80px;
     border-bottom: 1px solid rgb(var(--color-line));
+  }
+
+  .demo-row:last-child {
+    border-bottom: 0;
   }
 
   .demo-row__play {
     grid-area: play;
+    height: 48px;
+    width: 48px;
   }
 
   .demo-row__title {
     grid-area: title;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.35;
-    font-weight: 600;
-    letter-spacing: -0.015em;
+    font-weight: 500;
+    letter-spacing: -0.02em;
   }
 
   .demo-row__download {
     grid-area: download;
     min-height: 44px;
-    padding-inline: 4px;
+    padding-inline: var(--space-2);
+    margin-right: calc(-1 * var(--space-2));
+    gap: var(--space-3);
+    color: rgb(var(--color-accent));
   }
 
   .demo-row__progress {
     grid-area: progress;
     display: flex;
+    min-width: 0;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-4);
     color: rgb(var(--color-secondary));
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.3;
     font-variant-numeric: tabular-nums;
   }
 
-  .demo-row__track {
-    position: relative;
-    flex: 1;
-    height: 3px;
-    overflow: hidden;
-    border-radius: var(--radius-pill);
-    background: rgb(var(--color-line));
+  .demo-row__progress > span {
+    flex: none;
+    min-width: 2.1rem;
+    text-align: center;
   }
 
-  .demo-row__track span {
-    display: block;
-    height: 100%;
-    border-radius: inherit;
-    background: rgb(var(--color-accent));
-  }
-
-  @media (max-width: 360px) {
+  @media (max-width: 900px) {
     .demo-row {
-      column-gap: 10px;
+      grid-template-columns: 48px minmax(0, 1fr) auto;
+      grid-template-areas: "play title download" "play progress download";
+      gap: 0 var(--space-4);
+      padding-block: var(--space-3);
     }
     .demo-row__title {
-      font-size: 15px;
+      align-self: end;
+      font-size: 17px;
+    }
+    .demo-row__progress {
+      gap: var(--space-2);
+    }
+    .demo-row__progress :deep(input) {
+      height: 44px;
     }
     .demo-row__download {
-      gap: 4px;
+      gap: var(--space-2);
+    }
+  }
+
+  @media (max-width: 420px) {
+    .demo-row {
+      grid-template-columns: 44px minmax(0, 1fr) auto;
+      column-gap: var(--space-3);
+    }
+    .demo-row__play {
+      width: 44px;
+      height: 44px;
+    }
+    .demo-row__title {
+      font-size: 16px;
+    }
+    .demo-row__download {
+      gap: 5px;
       font-size: 13px;
+    }
+    .demo-row__progress {
+      gap: 4px;
+      font-size: 12px;
+    }
+    .demo-row__progress > span {
+      min-width: 1.75rem;
     }
   }
 </style>

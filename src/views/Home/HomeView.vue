@@ -1,26 +1,29 @@
 <template>
-  <section class="home-section" aria-labelledby="hero-title">
+  <section class="home-introduction" aria-labelledby="hero-title">
     <div class="site-container home-grid">
       <div class="home-identity">
-        <p class="eyebrow">Voice actor</p>
+        <p class="home-role">Voice actor</p>
         <h1 id="hero-title">Brian Bakaj</h1>
       </div>
-
       <figure class="home-portrait">
         <img :src="headshot" alt="Brian Bakaj, outdoor headshot" width="565" height="476" fetchpriority="high" />
       </figure>
-
       <div class="home-intro">
-        <p class="lead">I’m based in Austin, Texas, and perform in English and Albanian.</p>
-        <AppButton tone="accent" label="Contact Brian" :to="{ name: 'contact' }" />
+        <p>I’m based in Austin, Texas, and perform in English and Albanian.</p>
+        <RouterLink class="home-about" :to="{ name: 'about' }">
+          <span>About Brian</span>
+          <AppIcon icon="arrowRight" class="h-5 w-5" />
+        </RouterLink>
       </div>
+    </div>
+  </section>
 
-      <section id="reels" class="home-demos" aria-labelledby="demos-title">
-        <h2 id="demos-title">Voice Over Demos</h2>
-        <div class="demo-list">
-          <DemoCard v-for="track in demoTracks" :key="track.id" :track="track" />
-        </div>
-      </section>
+  <section id="reels" class="home-demos" aria-labelledby="demos-title">
+    <div class="site-container">
+      <h2 id="demos-title">Voice Over Demos</h2>
+      <div class="demo-list">
+        <DemoCard v-for="track in demoTracks" :key="track.id" :track="track" />
+      </div>
     </div>
   </section>
 
@@ -31,10 +34,10 @@
         <p>Tell me about your project, the role, and your timeline.</p>
         <a href="mailto:brianbakaj@icloud.com">brianbakaj@icloud.com</a>
       </div>
-      <div class="booking-actions">
-        <AppButton tone="accent" label="Contact Brian" :to="{ name: 'contact' }" />
-        <AppButton tone="ghost" label="About Brian" :to="{ name: 'about' }" />
-      </div>
+      <AppButton tone="accent" :to="{ name: 'contact' }" root-class="booking-button">
+        <span>Contact Brian</span>
+        <AppIcon icon="arrowRight" class="h-5 w-5" />
+      </AppButton>
     </div>
   </section>
 </template>
@@ -42,172 +45,223 @@
 <script setup lang="ts">
   import headshot from "@/assets/img/headshot.jpg";
   import AppButton from "@/components/ui/AppButton.vue";
+  import AppIcon from "@/components/ui/AppIcon.vue";
   import DemoCard from "@/components/player/DemoCard.vue";
   import { usePlayer } from "@/composables/usePlayer";
   import { demoTracks } from "@/data/demos";
   import { onMounted } from "vue";
+  import { RouterLink } from "vue-router";
 
   const { loadDurations } = usePlayer();
   onMounted(() => loadDurations(demoTracks));
 </script>
 
 <style scoped>
-  .home-section {
-    padding-block: 36px;
+  .home-introduction {
+    color: rgb(var(--color-intro-ink));
+    background: rgb(var(--color-intro));
   }
 
   .home-grid {
     display: grid;
-    grid-template-columns: 300px minmax(0, 1fr);
-    grid-template-areas: "portrait identity" "portrait intro" "portrait demos";
-    align-items: start;
-    column-gap: 48px;
-    row-gap: 22px;
+    grid-template-columns: minmax(0, 1fr) 304px;
+    grid-template-areas: "identity portrait" "intro portrait";
+    grid-template-rows: min-content 1fr;
+    align-content: center;
+    column-gap: var(--space-12);
+    min-height: 280px;
+    padding-top: var(--space-6);
   }
 
   .home-identity {
     grid-area: identity;
+    padding-top: var(--space-2);
+  }
+
+  .home-role {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.055em;
+    color: rgb(var(--color-intro-muted));
   }
 
   .home-identity h1 {
-    margin-top: 8px;
+    margin-top: var(--space-2);
     font-size: var(--font-size-display);
-    line-height: 1.06;
+    line-height: 1.04;
     font-weight: 600;
     letter-spacing: -0.045em;
   }
 
   .home-portrait {
     grid-area: portrait;
+    align-self: end;
   }
 
   .home-portrait img {
     width: 100%;
-    aspect-ratio: 4 / 5;
     height: auto;
-    object-fit: cover;
-    object-position: center 35%;
-    border-radius: var(--radius-md);
   }
 
   .home-intro {
     grid-area: intro;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
+    padding-block: var(--space-4) var(--space-6);
   }
 
   .home-intro p {
-    flex: 1;
-    min-width: 0;
-    max-width: 40ch;
+    max-width: 30rem;
+    font-size: var(--font-size-lead);
+    line-height: var(--line-height-lead);
   }
 
-  .home-intro :deep(a) {
-    flex: none;
+  .home-about {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 44px;
+    margin-top: var(--space-3);
+    color: rgb(var(--color-intro-muted));
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-thickness: 1px;
+  }
+
+  .home-about:hover {
+    color: rgb(var(--color-intro-ink));
+  }
+
+  .home-about:focus-visible {
+    outline-color: rgb(var(--color-intro-muted));
   }
 
   .home-demos {
-    grid-area: demos;
-    min-width: 0;
+    --color-body: var(--color-demo-body);
+    --color-secondary: var(--color-demo-secondary);
+    --color-line: var(--color-demo-line);
+    --color-control-track: var(--color-demo-control-track);
+    --color-accent: var(--color-demo-control);
+    --color-accent-strong: var(--color-demo-control-hover);
+    --color-accent-contrast: var(--color-demo-control-contrast);
+    --color-focus-ring: var(--color-demo-control);
+    padding-block: 28px 20px;
+    color: rgb(var(--color-body));
+    background: rgb(var(--color-demo-background));
   }
 
   .home-demos h2 {
-    margin-bottom: 10px;
-    font-size: 22px;
-    line-height: 1.3;
-    font-weight: 600;
-    letter-spacing: -0.025em;
-  }
-
-  .demo-list {
-    border-top: 1px solid rgb(var(--color-line));
+    margin-bottom: var(--space-3);
+    font-size: var(--font-size-h2);
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: -0.035em;
   }
 
   .booking-section {
-    border-top: 1px solid rgb(var(--color-line));
-    padding-block: 28px;
+    border-top: 1px solid rgb(var(--color-secondary));
+    padding-block: var(--space-6);
   }
 
   .booking-layout {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
+    gap: var(--space-8);
   }
 
-  .booking-layout h2 {
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: -0.025em;
+  .booking-copy h2 {
+    font-size: 24px;
+    letter-spacing: -0.03em;
   }
 
-  .booking-layout p {
-    margin-top: 6px;
+  .booking-copy p {
+    margin-top: var(--space-2);
     color: rgb(var(--color-secondary));
   }
 
   .booking-copy > a {
-    display: inline-block;
-    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
     color: rgb(var(--color-accent));
     text-decoration: underline;
-    text-underline-offset: 3px;
+    text-underline-offset: 4px;
   }
 
-  .booking-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+  .booking-button {
+    flex: none;
+    gap: var(--space-6);
+    min-height: 48px;
+    padding-inline: var(--space-6);
+    font-size: 15px;
   }
 
   @media (max-width: 960px) {
     .home-grid {
-      grid-template-columns: minmax(0, 1fr) 220px;
-      grid-template-areas: "identity portrait" "intro portrait" "demos demos";
-      column-gap: 32px;
+      grid-template-columns: minmax(0, 1fr) 240px;
+      column-gap: var(--space-8);
+      min-height: 270px;
     }
     .home-identity h1 {
-      font-size: 44px;
+      font-size: 56px;
     }
-    .home-intro {
-      display: block;
-    }
-    .home-intro :deep(a) {
-      margin-top: 16px;
-    }
-    .home-portrait img {
-      aspect-ratio: 1 / 1;
+    .home-intro p {
+      font-size: 17px;
     }
   }
 
-  @media (max-width: 600px) {
-    .home-section {
-      padding-block: 24px 28px;
-    }
+  @media (max-width: 760px) {
     .home-grid {
-      grid-template-columns: minmax(0, 1fr) 104px;
-      grid-template-areas: "identity portrait" "intro intro" "demos demos";
-      gap: 22px 20px;
+      grid-template-columns: minmax(0, 1fr) 128px;
+      grid-template-areas: "identity portrait" "intro intro";
+      align-items: center;
+      gap: 0 var(--space-6);
+      min-height: 0;
+      padding-top: var(--space-6);
+    }
+    .home-identity {
+      padding-top: 0;
     }
     .home-identity h1 {
-      font-size: clamp(30px, 8vw, 40px);
-      letter-spacing: -0.04em;
+      font-size: 42px;
     }
-    .home-portrait img {
-      aspect-ratio: 4 / 5;
+    .home-role {
+      font-size: 13px;
+    }
+    .home-portrait {
+      align-self: center;
+    }
+    .home-intro {
+      padding-top: var(--space-6);
+    }
+    .home-intro p {
+      max-width: 40ch;
+    }
+    .home-about {
+      margin-top: var(--space-2);
+    }
+    .home-demos {
+      padding-block: var(--space-6);
     }
     .home-demos h2 {
-      font-size: 21px;
+      font-size: 26px;
     }
     .booking-layout {
-      flex-direction: column;
       align-items: flex-start;
-      gap: 20px;
+      flex-direction: column;
+      gap: var(--space-4);
     }
-    .booking-layout h2 {
-      font-size: 21px;
+    .booking-copy h2 {
+      font-size: 23px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .home-grid {
+      grid-template-columns: minmax(0, 1fr) 96px;
+      column-gap: var(--space-4);
+    }
+    .home-identity h1 {
+      font-size: clamp(30px, 8.7vw, 36px);
     }
   }
 </style>

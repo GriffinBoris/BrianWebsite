@@ -22,7 +22,8 @@
 <style scoped>
   .site-header {
     border-bottom: 1px solid rgb(var(--color-line));
-    background: rgb(var(--color-background));
+    background: rgb(var(--color-surface));
+    color: rgb(var(--color-body));
   }
 
   .site-nav {
@@ -34,7 +35,7 @@
   }
 
   .site-brand {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     letter-spacing: -0.025em;
     white-space: nowrap;
@@ -43,7 +44,7 @@
   .site-nav__links {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: var(--space-8);
     list-style: none;
   }
 
@@ -63,5 +64,20 @@
   .nav-link.is-active {
     text-decoration: underline;
     text-decoration-thickness: 2px;
+  }
+  .site-header :focus-visible {
+    outline-color: rgb(var(--color-secondary));
+  }
+
+  @media (max-width: 640px) {
+    .site-nav {
+      min-height: 64px;
+    }
+    .site-nav__links {
+      gap: var(--space-6);
+    }
+    .site-brand {
+      font-size: 17px;
+    }
   }
 </style>
