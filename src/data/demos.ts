@@ -8,7 +8,6 @@ export interface DemoTrack {
   title: string;
   description: string;
   src: string;
-  downloadName: string;
   fallbackDuration: string;
 }
 
@@ -19,7 +18,6 @@ export const demoTracks: DemoTrack[] = [
     title: "Video game demo",
     description: "Character voice work for video games.",
     src: videogameSrc,
-    downloadName: "brian-bakaj-videogame-demo.mp3",
     fallbackDuration: "1:57",
   },
   {
@@ -28,7 +26,6 @@ export const demoTracks: DemoTrack[] = [
     title: "Commercial demo",
     description: "Retail and brand spots.",
     src: commercialSrc,
-    downloadName: "brian-bakaj-commercial-demo.mp3",
     fallbackDuration: "0:59",
   },
   {
@@ -37,7 +34,6 @@ export const demoTracks: DemoTrack[] = [
     title: "Narration demo",
     description: "Explainers, corporate reads, and long-form narration.",
     src: narrationSrc,
-    downloadName: "brian-bakaj-narration-demo.mp3",
     fallbackDuration: "1:21",
   },
 ];

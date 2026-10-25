@@ -1311,9 +1311,9 @@ every choice in the subject.
 - `src/composables/` — `useTheme.ts` (light/dark singleton driving `html[data-theme]`) and
   `usePlayer.ts` (the audio engine: one `Audio` element drives demo cards and the
   persistent bar; a Web Audio analyser drives the waveform; it stamps each demo's real length and
-  keeps every control for the current track in sync; playback failures show a retry/download message).
+  keeps every control for the current track in sync; playback failures show a retry message).
 - `src/data/demos.ts` — the demo-track list (id, kicker, title, description, imported `src`,
-  download name, fallback duration): the single source for reels, ordered video games, commercial, narration.
+  fallback duration): the single source for reels, ordered video games, commercial, narration.
 - `src/assets/` — `base.css` (Tailwind entry + `@config` + design tokens + resets + shared
   `.site-container`/`.eyebrow`/`.lead` primitives), self-hosted Inter `woff2` subsets under
   `fonts/`, `img/` (headshot + looks), and `media/` (the demo mp3s). Fonts/images/media are imported
@@ -1359,7 +1359,7 @@ every choice in the subject.
   must be confirmed by Brian before publication.
 - **Public wording.** Use plain, specific copy and natural sentences. Do not use decorative dot
   separators between words, including in the header, footer, casting profile, or page titles.
-  Use words such as "and" or separate lines. Keep the header to Brian’s name and navigation.
+  Use words such as "and" or separate lines. Keep the header to Brian’s name and navigation. Demo reels offer playback without download links.
 - **Performance.** Optimized images, `loading="lazy"` below the fold, self-hosted fonts, route-level
   code splitting via lazy `import()` in the router.
 

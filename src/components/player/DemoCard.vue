@@ -12,17 +12,7 @@
       />
 
       <div class="min-w-0 flex-1">
-        <div class="flex flex-wrap items-start justify-between gap-x-3 gap-y-2">
-          <span class="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-accent">{{ track.kicker }}</span>
-          <AppButton
-            tone="link"
-            :href="track.src"
-            :download="track.downloadName"
-            icon="download"
-            label="Download"
-            root-class="flex-none text-[0.85rem]"
-          />
-        </div>
+        <span class="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-accent">{{ track.kicker }}</span>
         <h3 class="mt-0.5 text-[1.35rem]">{{ track.title }}</h3>
         <p class="mt-1.5 text-[0.98rem] leading-[1.5] text-secondary">{{ track.description }}</p>
       </div>
@@ -39,7 +29,6 @@
 </template>
 
 <script setup lang="ts">
-  import AppButton from "@/components/ui/AppButton.vue";
   import AppIconButton from "@/components/ui/AppIconButton.vue";
   import AppSurface from "@/components/ui/AppSurface.vue";
   import { usePlayer } from "@/composables/usePlayer";

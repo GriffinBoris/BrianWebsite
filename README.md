@@ -20,7 +20,7 @@ npm run preview   # production preview at /BrianWebsite/
 ## Pages
 
 - **Home** (`/`): headshot carousel, voice demos, and booking links. Demo order:
-  video games, commercial, narration. Each reel supports playback and download;
+  video games, commercial, narration. Each reel supports playback;
   the shared audio bar keeps playing across pages and supports seeking on mobile.
 - **About** (`/about`): bio, casting profile, and headshots.
 - **Contact** (`/contact`): booking email (`brianbakaj@icloud.com`) and external profiles.
@@ -40,7 +40,7 @@ src/
   views/              page components and the home headshot carousel
   components/         layout, page, player, and app-owned UI wrappers
   composables/        shared audio engine and theme preference
-  data/demos.ts       demo order, labels, asset imports, and download filenames
+  data/demos.ts       demo order, labels, asset imports, and durations
   assets/             design tokens, fonts, images, and MP3s
   utils/              class merging and route metadata
 public/               favicon, social image, sitemap, robots.txt, Pages fallback
@@ -67,7 +67,7 @@ updates during navigation, but social previews read the shared HTML metadata.
 
 Before shipping, run the production build and check all three routes in both
 themes, narrow and wide layouts, carousel controls, demo playback, seeking,
-downloads, playback across route changes, and the booking links. There is no
+playback across route changes, and the booking links. There is no
 configured linter or automated test suite.
 
 ## Agent guidance
