@@ -43,8 +43,9 @@ every choice in the subject.
   composable). At rest a tapered, centered ripple travels across 64 bars; while a demo plays,
   mirrored logarithmic frequency bands respond to Brian's voice with quick attack and smooth release.
   Use transform animation, respect reduced motion, and suspend analysis offscreen or in hidden tabs. This is the one orchestrated motion moment — do
-  not scatter other decorative animations across the page. Photos appear only in the static
-  headshot gallery on About; keep the homepage introduction free of a carousel or photos.
+  not scatter other decorative animations across the page. Home uses a single static original
+  portrait (`headshot.jpg`), with no carousel. About keeps its static three-photo gallery.
+  Keep the version-two AI portrait in the repository without active site references.
 - **Palette is cinematic and cool:** a single confident **sapphire** accent (`--color-accent`) on a
   ladder of cool charcoal ink and clean off-white neutrals (light) / deep charcoal (dark). It reads
   professional, modern, and captivating without going warm or generic. The accent is reserved for
@@ -171,6 +172,6 @@ every choice in the subject.
 - No test suite. Before committing, run `npm run dev` (or `npm run preview` for the production base
   path) and confirm in a browser: both themes render, fonts load locally with no external/network
   errors, all three routes resolve, inline navigation and its active-page highlight work, the
-  About headshots render correctly, the homepage contains no photos or carousel, pressing a demo plays
+  About headshots and the static original homepage portrait render correctly, no carousel appears, pressing a demo plays
   audio and drives the persistent bar + waveform, only one demo plays at a time, the mobile seek
   control works, and the layout is responsive with no console errors. There is no configured linter.

@@ -19,7 +19,7 @@ npm run preview   # production preview at /BrianWebsite/
 
 ## Pages
 
-- **Home** (`/`): introduction, voice demos, and booking links. Demo order:
+- **Home** (`/`): introduction with a static original portrait, voice demos, and booking links. Demo order:
   video games, commercial, narration. Each reel supports playback;
   the shared audio bar keeps playing across pages and supports seeking on mobile.
 - **About** (`/about`): bio, casting profile, and headshots.
@@ -28,7 +28,7 @@ npm run preview   # production preview at /BrianWebsite/
 Light and dark themes use shared CSS tokens. Fonts are self-hosted. The waveform
 uses 64 centered bars that react to voice frequencies through Web Audio, with a
 flowing ripple while idle. It respects reduced motion and stops analysis offscreen.
-Photos appear only in the static headshot gallery on About.
+Home shows the original outdoor portrait as a static image. About retains the three-photo gallery.
 
 ## Source layout
 
