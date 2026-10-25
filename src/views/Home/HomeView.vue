@@ -1,7 +1,7 @@
 <template>
   <section class="relative overflow-hidden py-[clamp(3.5rem,9vw,7rem)]" aria-labelledby="hero-title">
     <div class="site-container">
-      <div class="max-w-container-narrow">
+      <div class="grid items-center gap-[clamp(2rem,5vw,4rem)] min-[861px]:grid-cols-[1.15fr_0.85fr]">
         <div>
           <p class="eyebrow mb-4">Screen and voice actor</p>
           <h1 id="hero-title" class="text-display">Brian Bakaj</h1>
@@ -12,6 +12,17 @@
             <AppButton tone="ghost" label="Contact Brian" :to="{ name: 'contact' }" />
           </div>
         </div>
+
+        <figure class="aspect-[4/5] w-full overflow-hidden rounded-lg bg-surface-muted shadow-lg max-[860px]:order-first max-[860px]:mx-auto max-[860px]:max-w-[20rem]">
+          <img
+            :src="headshot"
+            alt="Brian Bakaj, outdoor headshot"
+            width="565"
+            height="476"
+            fetchpriority="high"
+            class="h-full w-full object-cover object-[center_30%]"
+          />
+        </figure>
       </div>
     </div>
   </section>
@@ -44,6 +55,7 @@
 </template>
 
 <script setup lang="ts">
+  import headshot from "@/assets/img/headshot.jpg";
   import AppButton from "@/components/ui/AppButton.vue";
   import DemoCard from "@/components/player/DemoCard.vue";
   import WaveformDisplay from "@/components/player/WaveformDisplay.vue";
