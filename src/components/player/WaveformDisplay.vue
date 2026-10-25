@@ -60,7 +60,6 @@
 <style scoped>
   .visualizer {
     width: 100%;
-    max-width: 44rem;
   }
 
   .visualizer__stage {
