@@ -25,9 +25,8 @@ npm run preview   # production preview at /BrianWebsite/
 - **About** (`/about`): bio, casting profile, and headshots.
 - **Contact** (`/contact`): booking email (`brianbakaj@icloud.com`) and external profiles.
 
-Light and dark themes use shared CSS tokens. Fonts are self-hosted. The waveform
-uses 64 centered bars that react to voice frequencies through Web Audio, with a
-flowing ripple while idle. It respects reduced motion and stops analysis offscreen.
+Light and dark themes use shared CSS tokens. Fonts are self-hosted. The Voice Over Demos
+section contains only its heading and demo cards, with no visualizer or supporting text.
 Home shows the original outdoor portrait as a static image. About retains the three-photo gallery.
 
 ## Source layout

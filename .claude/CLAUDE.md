@@ -1250,7 +1250,7 @@ These guidelines are constraints in service of clarity, not bureaucracy. If foll
   TypeScript, `vue-router` (HTML5 history) — that compiles to fully static assets. GitHub Actions runs
   the Vite build and publishes `dist/` to GitHub Pages; there is no backend, database, or API.
 - It was migrated from an earlier hand-authored no-build site. The framework and Vue guidance in
-  `agents/` now applies; the design system (tokens, sapphire signature, Inter type, waveform,
+  `agents/` now applies; the design system (tokens, sapphire accent, Inter type,
   voice-focused positioning) carried over intact.
 
 ## Design Intent
@@ -1258,17 +1258,14 @@ These guidelines are constraints in service of clarity, not bureaucracy. If foll
 The design follows the frontend-design principle of **spending boldness in one place** and grounding
 every choice in the subject.
 
-- **Signature element:** the reels **waveform** (`WaveformDisplay.vue`, driven by the `usePlayer`
-  composable). At rest a tapered, centered ripple travels across 64 bars; while a demo plays,
-  mirrored logarithmic frequency bands respond to Brian's voice with quick attack and smooth release.
-  Use transform animation, respect reduced motion, and suspend analysis offscreen or in hidden tabs. This is the one orchestrated motion moment — do
-  not scatter other decorative animations across the page. Home uses a single static original
-  portrait (`headshot.jpg`), with no carousel. About keeps its static three-photo gallery.
-  Keep the version-two AI portrait in the repository without active site references.
+- **Focused demo presentation:** the “Voice Over Demos” section contains its heading and demo cards.
+  Do not add a waveform, audio visualizer, or supporting paragraph beneath the heading.
+  Home uses a single static original portrait (`headshot.jpg`), with no carousel. About keeps its
+  static three-photo gallery. Keep the version-two AI portrait in the repository without active site references.
 - **Palette is cinematic and cool:** a single confident **sapphire** accent (`--color-accent`) on a
   ladder of cool charcoal ink and clean off-white neutrals (light) / deep charcoal (dark). It reads
   professional, modern, and captivating without going warm or generic. The accent is reserved for
-  actions, focus, active state, and the waveform — reading text stays on neutral tokens.
+  actions, focus, and active state — reading text stays on neutral tokens.
 - **Type is one clean sans:** **Inter** across the whole site — headings and body alike — self-hosted
   (see below). Hierarchy comes from size, weight, and spacing, not a decorative display face. Keep it
   clean and professional; do not reintroduce an ornamental serif.
@@ -1304,13 +1301,13 @@ every choice in the subject.
   `AboutView` (bio, casting-profile spec card, headshots gallery), `ContactView` (booking CTA plus
   external profile links). The current route drives the nav highlight (sapphire underline); `RouterLink` sets `aria-current` automatically.
 - `src/components/` — `layout/` (`SiteHeader` with inline navigation, `SiteFooter`),
-  `page/` (`PageHero` intro band), `player/` (`WaveformDisplay`, `DemoCard`,
+  `page/` (`PageHero` intro band), `player/` (`DemoCard`,
   `AudioBar`), `ui/` (the app-owned PrimeVue wrappers: `AppButton`, `AppIconButton`, `AppSurface`,
   `AppIcon`, `ThemeToggle`, plus `appIcons.ts` and `AppTooltip.ts`).
 - `src/utils/className.ts` — `cn()` (clsx + tailwind-merge), the class combiner used by the wrappers.
 - `src/composables/` — `useTheme.ts` (light/dark singleton driving `html[data-theme]`) and
   `usePlayer.ts` (the audio engine: one `Audio` element drives demo cards and the
-  persistent bar; a Web Audio analyser drives the waveform; it stamps each demo's real length and
+  persistent bar; it stamps each demo's real length and
   keeps every control for the current track in sync; playback failures show a retry message).
 - `src/data/demos.ts` — the demo-track list (id, title, imported `src`,
   fallback duration): the single source for reels, ordered video games, commercial, narration.
@@ -1338,20 +1335,20 @@ every choice in the subject.
   sizes, focus rings, and icons (per `agents/.../vue-app-owned-wrapper-component.md`). Callers pass
   semantic props (`tone`, `size`, `icon`, `label`, `to`/`href`). `cn()` (`src/utils/className.ts`)
   merges classes; icons come from Lucide via `src/components/ui/appIcons.ts` + `AppIcon`, not inline
-  SVG. The bespoke waveform/audio UI and the responsive nav shell stay custom by design.
+  SVG. The bespoke audio UI and the responsive nav shell stay custom by design.
 - **Design tokens first.** Never hard-code a raw color, radius, or shadow. Use the semantic Tailwind
   utilities (`text-accent`, `bg-surface`, `border-line`, `rounded-lg`, `shadow-md`) or the CSS
   variables in `base.css`. Add a token before introducing a one-off value.
 - **Tailwind-first, small components layer.** Style with Tailwind utilities in templates; the only
   shared CSS classes are the cross-cutting primitives in `base.css` (`.site-container`, `.eyebrow`,
   `.lead`, `.btn`) and component-scoped `<style>` where a pure-utility expression would be unreadable
-  (the nav dropdown, the waveform, the scrub range).
+  (the nav dropdown and the scrub range).
 - **One audio engine.** All playback goes through `usePlayer`. Any new play control calls
   `toggleTrack(track)`; any new demo lives in `src/data/demos.ts`. Only one demo plays at a time and
   every control for the current track stays in sync through the shared reactive state. Do not add a
   second `Audio` element or a bespoke player.
 - **Accessibility & semantics.** Landmarks, meaningful `alt`, visible focus, `aria-pressed` on
-  toggles, `prefers-reduced-motion` respected (waveform falls back to a static rest state).
+  toggles, `prefers-reduced-motion` respected.
 - **Theming.** Light and dark via `html[data-theme]`; every color resolves from a token so both
   themes stay correct. The anti-FOUC snippet in `index.html` sets the theme before the app mounts.
 - **Honesty in copy.** Do not fabricate credits, clients, representation, or stats. Confident,
@@ -1392,5 +1389,5 @@ every choice in the subject.
   path) and confirm in a browser: both themes render, fonts load locally with no external/network
   errors, all three routes resolve, inline navigation and its active-page highlight work, the
   About headshots and the static original homepage portrait render correctly, no carousel appears, pressing a demo plays
-  audio and drives the persistent bar + waveform, only one demo plays at a time, the mobile seek
+  audio and drives the persistent bar, only one demo plays at a time, the mobile seek
   control works, and the layout is responsive with no console errors. There is no configured linter.

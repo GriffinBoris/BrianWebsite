@@ -30,11 +30,8 @@
   <section id="reels" class="section section--muted" aria-labelledby="demos-title">
     <div class="site-container">
       <div class="mb-[clamp(2rem,4vw,3.25rem)] max-w-container-narrow">
-        <h2 id="demos-title" class="text-h2">Voice demos</h2>
-        <p class="lead mt-4">Listen to the demos below.</p>
+        <h2 id="demos-title" class="text-h2">Voice Over Demos</h2>
       </div>
-
-      <WaveformDisplay class="mb-[clamp(1.75rem,4vw,2.75rem)]" />
 
       <div class="grid grid-cols-1 gap-5">
         <DemoCard v-for="track in demoTracks" :key="track.id" :track="track" />
@@ -58,7 +55,6 @@
   import headshot from "@/assets/img/headshot.jpg";
   import AppButton from "@/components/ui/AppButton.vue";
   import DemoCard from "@/components/player/DemoCard.vue";
-  import WaveformDisplay from "@/components/player/WaveformDisplay.vue";
   import { usePlayer } from "@/composables/usePlayer";
   import { demoTracks } from "@/data/demos";
   import { onMounted } from "vue";
