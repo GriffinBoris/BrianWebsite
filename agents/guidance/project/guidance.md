@@ -44,18 +44,16 @@ every choice in the subject.
   The homepage has no “Listen to demos” button; the demo section itself provides playback and downloads.
   Home uses a single static original portrait (`headshot.jpg`), with no carousel. About keeps its
   static three-photo gallery. Keep the version-two AI portrait in the repository without active site references.
-- **Monochrome, demo-focused presentation:** white, black, and zinc-gray tones inspired by Tailwind.
-  Keep the header and introduction quiet; the high-contrast black listening area gives the demos
-  visual priority. A shared 8/16/24/32/48 spacing scale, fine dividers, and horizontal audio rows
-  create the hierarchy. Keep the original color portrait at its natural landscape ratio, straight
-  and unframed. On desktop, it aligns with the bottom of the compact introduction. Home has one
-  booking CTA below the demos, with no duplicate hero CTA. All three demos fit near the top.
-  On mobile, place the small portrait beside the name and the introduction above full-width demos.
-  Do not reintroduce colored brand palettes, yellow/paper tones, slanted objects, split names,
-  giant empty hero bands, decorative numbering, or floating cards.
-- **Type is one clean sans:** **Inter** across the whole site, self-hosted. Use weight 600 for the
-  name, 500 for headings, and 400 for body text; preserve readable sizes. Keep the original
-  photograph as the human element rather than adding decorative type or invented copy.
+- **Softer, focused presentation:** the owner wants the name and introduction at the top left,
+  the original portrait at the top right, and a separate row below that draws attention to the
+  demos. Keep the surfaces light and neutral; the demo row uses a soft gray surround and clear
+  controls rather than a black band. The original outdoor headshot is larger, with a subtle
+  rounded edge and shadow. Retain natural image detail and use the original asset.
+  Optional dark mode uses muted charcoal surfaces and softer foregrounds rather than near-black
+  and bright-white contrast. Avoid another broad redesign unless the owner asks.
+- **Type is one clean sans:** **Inter** across the whole site, self-hosted. Keep headings modest,
+  retain the shared spacing scale, and use familiar controls. The original photograph provides
+  personality; avoid slants, decorative type, giant hero bands, or invented copy.
 - **Usable, not a maze.** No scroll-triggered reveals or content hidden until scrolled into view.
   Everything is visible and reachable; navigation is explicit. Prefer clarity and findability over
   scroll spectacle.
