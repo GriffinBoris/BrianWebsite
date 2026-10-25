@@ -64,12 +64,12 @@
 
   .home-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 304px;
+    grid-template-columns: minmax(0, 1fr) 360px;
     grid-template-areas: "identity portrait" "intro portrait";
     grid-template-rows: min-content 1fr;
     align-content: center;
     column-gap: var(--space-12);
-    min-height: 280px;
+    min-height: 320px;
     padding-top: var(--space-6);
   }
 
@@ -95,12 +95,15 @@
 
   .home-portrait {
     grid-area: portrait;
-    align-self: end;
+    align-self: center;
+    padding-bottom: var(--space-6);
   }
 
   .home-portrait img {
     width: 100%;
     height: auto;
+    border-radius: var(--radius-photo);
+    box-shadow: var(--shadow-photo);
   }
 
   .home-intro {
@@ -135,21 +138,13 @@
   }
 
   .home-demos {
-    --color-body: var(--color-demo-body);
-    --color-secondary: var(--color-demo-secondary);
-    --color-line: var(--color-demo-line);
-    --color-control-track: var(--color-demo-control-track);
-    --color-accent: var(--color-demo-control);
-    --color-accent-strong: var(--color-demo-control-hover);
-    --color-accent-contrast: var(--color-demo-control-contrast);
-    --color-focus-ring: var(--color-demo-control);
     padding-block: 28px 20px;
-    color: rgb(var(--color-body));
-    background: rgb(var(--color-demo-background));
+    border-block: 1px solid rgb(var(--color-line));
+    background: rgb(var(--color-surface-muted));
   }
 
   .home-demos h2 {
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-4);
     font-size: var(--font-size-h2);
     line-height: 1.2;
     font-weight: 500;
@@ -157,7 +152,6 @@
   }
 
   .booking-section {
-    border-top: 1px solid rgb(var(--color-secondary));
     padding-block: var(--space-6);
   }
 
@@ -211,7 +205,7 @@
 
   @media (max-width: 760px) {
     .home-grid {
-      grid-template-columns: minmax(0, 1fr) 128px;
+      grid-template-columns: minmax(0, 1fr) 144px;
       grid-template-areas: "identity portrait" "intro intro";
       align-items: center;
       gap: 0 var(--space-6);
@@ -222,13 +216,19 @@
       padding-top: 0;
     }
     .home-identity h1 {
-      font-size: 42px;
+      font-size: 38px;
     }
     .home-role {
       font-size: 13px;
     }
     .home-portrait {
       align-self: center;
+      padding-bottom: 0;
+    }
+    .home-portrait img {
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center 40%;
     }
     .home-intro {
       padding-top: var(--space-6);
@@ -257,11 +257,19 @@
 
   @media (max-width: 420px) {
     .home-grid {
-      grid-template-columns: minmax(0, 1fr) 96px;
+      grid-template-columns: minmax(0, 1fr) 128px;
       column-gap: var(--space-4);
     }
     .home-identity h1 {
-      font-size: clamp(30px, 8.7vw, 36px);
+      font-size: clamp(28px, 8vw, 34px);
+    }
+  }
+  @media (max-width: 360px) {
+    .home-grid {
+      grid-template-columns: minmax(0, 1fr) 104px;
+    }
+    .home-identity h1 {
+      font-size: 26px;
     }
   }
 </style>
