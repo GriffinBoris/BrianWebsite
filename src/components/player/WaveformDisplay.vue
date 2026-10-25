@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="visualizer__caption">
-      <span class="visualizer__status"><span class="visualizer__indicator" aria-hidden="true" />{{ status }}</span>
+      <span v-if="status" class="visualizer__status"><span class="visualizer__indicator" aria-hidden="true" />{{ status }}</span>
       <span class="visualizer__hint">{{ isBuffering ? 'One moment' : isPlaying ? 'Now playing' : 'Choose a demo below' }}</span>
     </div>
   </div>
@@ -35,7 +35,7 @@
     if (isBuffering.value) return 'Loading audio';
     if (isPlaying.value && currentTrack.value) return currentTrack.value.title;
     if (currentTrack.value) return 'Paused';
-    return 'Ready when you are';
+    return '';
   });
 
   // A tapered silhouette with a traveling ripple, even before a reel is chosen.
@@ -136,6 +136,10 @@
     color: rgb(var(--color-secondary));
     font-size: 0.75rem;
     line-height: 1.5;
+  }
+
+  .visualizer__hint {
+    margin-inline-start: auto;
   }
 
   .visualizer__status {
