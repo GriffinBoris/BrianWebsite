@@ -44,10 +44,11 @@ every choice in the subject.
   The homepage has no “Listen to demos” button; the demo section itself provides playback and downloads.
   Home uses a single static original portrait (`headshot.jpg`), with no carousel. About keeps its
   static three-photo gallery. Keep the version-two AI portrait in the repository without active site references.
-- **Palette is warm and personal:** paper-like ivory surfaces and natural ink in light mode,
-  warm charcoal in dark mode, with a quiet blue accent. Keep original photography prominent,
-  use restrained borders and shadows, and favor an editorial rhythm over floating dashboard cards.
-  The accent is reserved for actions, focus, and active state; reading text stays on neutral tokens.
+- **Professional, compact presentation:** neutral white and near-black surfaces with one restrained
+  blue accent. Use a conventional aligned grid, modest type sizes, thin dividers, and familiar controls.
+  Keep the original portrait straight and unframed. Do not reintroduce yellow/paper tones, slanted
+  objects, oversized split names, large empty hero bands, decorative numbering, or floating cards.
+  On desktop, identity and the three demos should fit together in the initial viewport.
 - **Type is one clean sans:** **Inter** across the whole site — headings and body alike — self-hosted
   (see below). Hierarchy comes from size, weight, and spacing, not a decorative display face. Keep it
   clean and professional; do not reintroduce an ornamental serif.

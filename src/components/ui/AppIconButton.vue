@@ -40,7 +40,7 @@
 
   const sizeClass = computed(() => {
     if (props.size === "lg") {
-      return "h-[3.4rem] w-[3.4rem] min-h-0 p-0";
+      return "h-11 w-11 min-h-0 p-0";
     }
     if (props.size === "sm") {
       return "h-9 w-9 min-h-0 p-0";
@@ -48,7 +48,7 @@
     return "h-10 w-10 min-h-0 p-0";
   });
 
-  const iconSize = computed(() => (props.size === "lg" ? "h-[22px] w-[22px]" : "h-[18px] w-[18px]"));
+  const iconSize = computed(() => (props.size === "lg" ? "h-5 w-5" : "h-[18px] w-[18px]"));
 
   const toneClass = computed(() => {
     if (props.tone === "accent") {

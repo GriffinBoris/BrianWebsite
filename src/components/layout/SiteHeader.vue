@@ -1,14 +1,11 @@
 <template>
-  <header class="sticky top-0 z-50 border-b border-line bg-background/85 backdrop-blur-md backdrop-saturate-150">
+  <header class="site-header">
     <div class="site-container">
-      <nav class="flex h-[4.25rem] items-center justify-between gap-3" aria-label="Primary">
-        <RouterLink class="brand" :to="{ name: 'home' }">Brian Bakaj</RouterLink>
-
-        <ul class="flex items-center gap-0.5 sm:gap-1">
+      <nav class="site-nav" aria-label="Primary">
+        <RouterLink class="site-brand" :to="{ name: 'home' }">Brian Bakaj</RouterLink>
+        <ul class="site-nav__links">
           <li v-for="item in items" :key="item.name">
-            <RouterLink :to="{ name: item.name }" class="nav-link" :class="{ 'is-active': route.name === item.name }">
-              {{ item.label }}
-            </RouterLink>
+            <RouterLink :to="{ name: item.name }" class="nav-link" :class="{ 'is-active': route.name === item.name }">{{ item.label }}</RouterLink>
           </li>
         </ul>
       </nav>
@@ -18,53 +15,53 @@
 
 <script setup lang="ts">
   import { useRoute } from "vue-router";
-
   const route = useRoute();
-
-  const items = [
-    { name: "about", label: "About" },
-    { name: "contact", label: "Contact" },
-  ] as const;
+  const items = [{ name: "about", label: "About" }, { name: "contact", label: "Contact" }] as const;
 </script>
 
 <style scoped>
-  .brand {
-    display: inline-flex;
-    flex: none;
-    font-size: 1.2rem;
+  .site-header {
+    border-bottom: 1px solid rgb(var(--color-line));
+    background: rgb(var(--color-background));
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 64px;
+  }
+
+  .site-brand {
+    font-size: 16px;
     font-weight: 600;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.025em;
     white-space: nowrap;
   }
 
-  .nav-link {
-    position: relative;
-    display: inline-flex;
+  .site-nav__links {
+    display: flex;
     align-items: center;
-    padding: 0.5rem 0.6rem;
-    font-size: 0.95rem;
-    color: rgb(var(--color-secondary));
-    transition: color var(--duration) var(--ease);
+    gap: 24px;
+    list-style: none;
   }
 
-  .nav-link:hover {
+  .nav-link {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 14px;
+    color: rgb(var(--color-secondary));
+    text-underline-offset: 6px;
+  }
+
+  .nav-link:hover, .nav-link.is-active {
     color: rgb(var(--color-body));
   }
 
   .nav-link.is-active {
-    color: rgb(var(--color-body));
-    font-weight: 600;
-  }
-
-  /* An accent underline marks the current page. */
-  .nav-link.is-active::after {
-    content: "";
-    position: absolute;
-    left: 0.6rem;
-    right: 0.6rem;
-    bottom: 0.15rem;
-    height: 2px;
-    border-radius: 2px;
-    background: rgb(var(--color-accent));
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
   }
 </style>

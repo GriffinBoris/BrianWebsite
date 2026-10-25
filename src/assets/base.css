@@ -27,81 +27,55 @@
 }
 
 :root {
-  /* Warm paper and natural ink support the original photography. */
-  --color-background: 247 244 237;
-  --color-surface-muted: 237 233 223;
-  --color-surface: 253 251 246;
-  --color-body: 43 47 43;
-  --color-secondary: 100 104 96;
-  --color-line: 214 209 197;
-
-  /* The blue accent is quieter against the warm paper. */
-  --color-accent: 43 79 111;
-  --color-accent-strong: 29 59 86;
-  --color-accent-contrast: 253 251 246;
-
-  /* Neutral primary (used for solid ink surfaces) */
-  --color-primary: 43 47 43;
-  --color-primary-contrast: 247 244 237;
-
-  --color-focus-ring: 43 79 111;
-
-  /* Typography */
+  --color-background: 255 255 255;
+  --color-surface-muted: 245 247 250;
+  --color-surface: 255 255 255;
+  --color-body: 22 27 34;
+  --color-secondary: 86 97 111;
+  --color-line: 221 226 233;
+  --color-accent: 27 88 214;
+  --color-accent-strong: 18 66 168;
+  --color-accent-contrast: 255 255 255;
+  --color-primary: 22 27 34;
+  --color-primary-contrast: 255 255 255;
+  --color-focus-ring: 27 88 214;
   --font-size-eyebrow: 0.75rem;
-  --tracking-eyebrow: 0.08em;
-  --font-size-lead: 1.2rem;
-  --line-height-lead: 1.55;
-  --font-size-display: clamp(3.4rem, 7.5vw, 6.5rem);
-  --font-size-h1: clamp(2.4rem, 5vw, 3.6rem);
-  --font-size-h2: clamp(1.9rem, 3.6vw, 2.9rem);
-  --font-size-h3: clamp(1.2rem, 2vw, 1.5rem);
-
-  /* Spacing & rhythm */
-  --space-section: clamp(3rem, 6vw, 5rem);
-  --container-width: 74rem;
-  --container-narrow: 44rem;
-  --radius-sm: 0.3rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
+  --tracking-eyebrow: 0.075em;
+  --font-size-lead: 1.125rem;
+  --line-height-lead: 1.5;
+  --font-size-display: clamp(2.5rem, 4.6vw, 3.5rem);
+  --font-size-h1: clamp(2rem, 3.4vw, 2.75rem);
+  --font-size-h2: clamp(1.375rem, 2.5vw, 1.75rem);
+  --font-size-h3: 1.125rem;
+  --space-section: clamp(2rem, 4vw, 3rem);
+  --container-width: 70rem;
+  --container-narrow: 42rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
   --radius-pill: 999px;
-
-  /* Elevation */
-  --shadow-sm: 0 1px 2px rgb(20 22 28 / 0.06);
-  --shadow-md: 0 8px 24px -16px rgb(43 47 43 / 0.2);
-  --shadow-lg: 0 36px 64px -26px rgb(20 22 28 / 0.34);
-
-  /* Player bar height, used to pad the page bottom when active */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
   --player-height: calc(4.75rem + env(safe-area-inset-bottom, 0px));
-
-  /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --duration: 240ms;
-
+  --duration: 160ms;
   color-scheme: light;
 }
 
 html[data-theme="dark"] {
-  --color-background: 27 30 29;
-  --color-surface-muted: 35 39 37;
-  --color-surface: 39 44 41;
-  --color-body: 240 237 226;
-  --color-secondary: 177 181 170;
-  --color-line: 69 76 70;
-
-  /* Lift the blue for contrast against dark, warm charcoal. */
-  --color-accent: 156 190 220;
-  --color-accent-strong: 189 214 235;
-  --color-accent-contrast: 27 30 29;
-
-  --color-primary: 240 237 226;
-  --color-primary-contrast: 27 30 29;
-
-  --color-focus-ring: 156 190 220;
-
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.45);
-  --shadow-md: 0 14px 34px -16px rgb(0 0 0 / 0.6);
-  --shadow-lg: 0 34px 60px -24px rgb(0 0 0 / 0.72);
-
+  --color-background: 17 20 26;
+  --color-surface-muted: 24 29 37;
+  --color-surface: 22 27 35;
+  --color-body: 237 241 247;
+  --color-secondary: 168 178 194;
+  --color-line: 55 65 81;
+  --color-accent: 119 167 255;
+  --color-accent-strong: 154 190 255;
+  --color-accent-contrast: 17 20 26;
+  --color-primary: 237 241 247;
+  --color-primary-contrast: 17 20 26;
+  --color-focus-ring: 119 167 255;
   color-scheme: dark;
 }
 
@@ -125,15 +99,15 @@ html[data-theme="dark"] {
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: 1rem;
     background-color: rgb(var(--color-background));
   }
 
   body {
     min-height: 100dvh;
     font-family: theme("fontFamily.sans");
-    font-size: 1.0625rem;
-    line-height: 1.7;
+    font-size: 1rem;
+    line-height: 1.6;
     color: rgb(var(--color-body));
     background-color: rgb(var(--color-background));
     -webkit-font-smoothing: antialiased;
@@ -146,8 +120,8 @@ html[data-theme="dark"] {
   h1,
   h2,
   h3 {
-    font-weight: 500;
-    line-height: 1.08;
+    font-weight: 600;
+    line-height: 1.15;
     letter-spacing: -0.02em;
     text-wrap: balance;
   }
@@ -208,7 +182,7 @@ html[data-theme="dark"] {
     width: 100%;
     max-width: var(--container-width);
     margin-inline: auto;
-    padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+    padding-inline: 24px;
   }
 
   .site-container--narrow {
@@ -228,12 +202,19 @@ html[data-theme="dark"] {
     font-size: var(--font-size-eyebrow);
     font-weight: 600;
     letter-spacing: var(--tracking-eyebrow);
-    color: rgb(var(--color-accent));
+    color: rgb(var(--color-secondary));
+    text-transform: uppercase;
   }
 
   .lead {
     font-size: var(--font-size-lead);
     line-height: var(--line-height-lead);
     color: rgb(var(--color-secondary));
+  }
+}
+
+@media (max-width: 600px) {
+  .site-container {
+    padding-inline: 20px;
   }
 }

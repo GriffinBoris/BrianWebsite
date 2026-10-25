@@ -25,9 +25,10 @@ npm run preview   # production preview at /BrianWebsite/
 - **About** (`/about`): bio, casting profile, and headshots.
 - **Contact** (`/contact`): booking email (`brianbakaj@icloud.com`) and external profiles.
 
-Light and dark themes use warm paper, natural ink, and a quiet blue accent through
-shared CSS tokens. Fonts are self-hosted. The Voice Over Demos section contains only
-its heading and compact demo rows, with no visualizer or supporting text.
+Light and dark themes use neutral surfaces, clear typography, and a restrained blue
+accent through shared CSS tokens. Fonts are self-hosted. The compact homepage places
+identity, original portrait, and Voice Over Demos together, with no visualizer or
+supporting paragraph beneath the demos heading.
 Home shows the original outdoor portrait as a static image. About retains the three-photo gallery.
 
 ## Source layout
