@@ -1,6 +1,6 @@
 <template>
   <AppSurface :root-class="active ? 'border-accent shadow-md' : ''">
-    <div class="flex items-start gap-4 sm:gap-[1.1rem]">
+    <div class="flex items-center gap-4 sm:gap-[1.1rem]">
       <AppIconButton
         size="lg"
         tone="accent"
@@ -11,11 +11,7 @@
         @click="toggleTrack(track)"
       />
 
-      <div class="min-w-0 flex-1">
-        <span class="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-accent">{{ track.kicker }}</span>
-        <h3 class="mt-0.5 text-[1.35rem]">{{ track.title }}</h3>
-        <p class="mt-1.5 text-[0.98rem] leading-[1.5] text-secondary">{{ track.description }}</p>
-      </div>
+      <h3 class="min-w-0 flex-1 text-[1.35rem]">{{ track.title }}</h3>
     </div>
 
     <div class="mt-[1.1rem] flex items-center gap-3">
