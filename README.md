@@ -19,7 +19,7 @@ npm run preview   # production preview at /BrianWebsite/
 
 ## Pages
 
-- **Home** (`/`): headshot carousel, voice demos, and booking links. Demo order:
+- **Home** (`/`): introduction, voice demos, and booking links. Demo order:
   video games, commercial, narration. Each reel supports playback;
   the shared audio bar keeps playing across pages and supports seeking on mobile.
 - **About** (`/about`): bio, casting profile, and headshots.
@@ -27,10 +27,8 @@ npm run preview   # production preview at /BrianWebsite/
 
 Light and dark themes use shared CSS tokens. Fonts are self-hosted. The waveform
 uses 64 centered bars that react to voice frequencies through Web Audio, with a
-flowing ripple while idle. It respects reduced motion and stops analysis offscreen. Headshots rotate every five seconds;
-visitors can pause rotation, select a photo, swipe, or use previous/next controls.
-Arrow keys work while a carousel control has focus. Keyboard focus pauses rotation,
-and reduced-motion preferences disable autoplay by default.
+flowing ripple while idle. It respects reduced motion and stops analysis offscreen.
+Photos appear only in the static headshot gallery on About.
 
 ## Source layout
 
@@ -38,7 +36,7 @@ and reduced-motion preferences disable autoplay by default.
 src/
   App.vue             shared header, route outlet, footer, and audio bar
   router/             Home, About, Contact; HTML5 history
-  views/              page components and the home headshot carousel
+  views/              page components
   components/         layout, page, player, and app-owned UI wrappers
   composables/        shared audio engine and theme preference
   data/demos.ts       demo order, labels, asset imports, and durations
@@ -67,7 +65,7 @@ Old hash links remain supported. This is a client-rendered site: route metadata
 updates during navigation, but social previews read the shared HTML metadata.
 
 Before shipping, run the production build and check all three routes in both
-themes, narrow and wide layouts, carousel controls, demo playback, seeking,
+themes, narrow and wide layouts, the About gallery, demo playback, seeking,
 playback across route changes, and the booking links. There is no
 configured linter or automated test suite.
 

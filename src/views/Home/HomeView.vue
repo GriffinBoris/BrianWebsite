@@ -1,7 +1,7 @@
 <template>
   <section class="relative overflow-hidden py-[clamp(3.5rem,9vw,7rem)]" aria-labelledby="hero-title">
     <div class="site-container">
-      <div class="grid items-center gap-[clamp(2rem,5vw,4rem)] min-[861px]:grid-cols-[1.15fr_0.85fr]">
+      <div class="max-w-container-narrow">
         <div>
           <p class="eyebrow mb-4">Screen and voice actor</p>
           <h1 id="hero-title" class="text-display">Brian Bakaj</h1>
@@ -12,8 +12,6 @@
             <AppButton tone="ghost" label="Contact Brian" :to="{ name: 'contact' }" />
           </div>
         </div>
-
-        <HeroCarousel />
       </div>
     </div>
   </section>
@@ -46,7 +44,6 @@
 </template>
 
 <script setup lang="ts">
-  import HeroCarousel from "@/views/Home/HeroCarousel.vue";
   import AppButton from "@/components/ui/AppButton.vue";
   import DemoCard from "@/components/player/DemoCard.vue";
   import WaveformDisplay from "@/components/player/WaveformDisplay.vue";
