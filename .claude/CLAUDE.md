@@ -1260,12 +1260,13 @@ every choice in the subject.
 
 - **Focused demo presentation:** the “Voice Over Demos” section contains its heading and demo cards.
   Do not add a waveform, audio visualizer, or supporting paragraph beneath the heading.
+  The homepage has no “Listen to demos” button; the demo section itself provides playback and downloads.
   Home uses a single static original portrait (`headshot.jpg`), with no carousel. About keeps its
   static three-photo gallery. Keep the version-two AI portrait in the repository without active site references.
-- **Palette is cinematic and cool:** a single confident **sapphire** accent (`--color-accent`) on a
-  ladder of cool charcoal ink and clean off-white neutrals (light) / deep charcoal (dark). It reads
-  professional, modern, and captivating without going warm or generic. The accent is reserved for
-  actions, focus, and active state — reading text stays on neutral tokens.
+- **Palette is warm and personal:** paper-like ivory surfaces and natural ink in light mode,
+  warm charcoal in dark mode, with a quiet blue accent. Keep original photography prominent,
+  use restrained borders and shadows, and favor an editorial rhythm over floating dashboard cards.
+  The accent is reserved for actions, focus, and active state; reading text stays on neutral tokens.
 - **Type is one clean sans:** **Inter** across the whole site — headings and body alike — self-hosted
   (see below). Hierarchy comes from size, weight, and spacing, not a decorative display face. Keep it
   clean and professional; do not reintroduce an ornamental serif.
@@ -1309,7 +1310,7 @@ every choice in the subject.
   `usePlayer.ts` (the audio engine: one `Audio` element drives demo cards and the
   persistent bar; it stamps each demo's real length and
   keeps every control for the current track in sync; playback failures show a retry message).
-- `src/data/demos.ts` — the demo-track list (id, title, imported `src`,
+- `src/data/demos.ts` — the demo-track list (id, title, imported `src`, download filename,
   fallback duration): the single source for reels, ordered video games, commercial, narration.
 - `src/assets/` — `base.css` (Tailwind entry + `@config` + design tokens + resets + shared
   `.site-container`/`.eyebrow`/`.lead` primitives), self-hosted Inter `woff2` subsets under
@@ -1356,7 +1357,7 @@ every choice in the subject.
   must be confirmed by Brian before publication.
 - **Public wording.** Use plain, specific copy and natural sentences. Do not use decorative dot
   separators between words, including in the header, footer, casting profile, or page titles.
-  Use words such as "and" or separate lines. Keep the header to Brian’s name and navigation. Demo reels show only titles and playback controls, with no category labels, descriptions, or download links.
+  Use words such as "and" or separate lines. Keep the header to Brian’s name and navigation. Demo reels show titles, playback controls, progress, and explicit MP3 download links, with no category labels or descriptions.
 - **Performance.** Optimized images, `loading="lazy"` below the fold, self-hosted fonts, route-level
   code splitting via lazy `import()` in the router.
 

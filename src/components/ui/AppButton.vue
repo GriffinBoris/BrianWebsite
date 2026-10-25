@@ -61,7 +61,7 @@
 
   const rootClasses = computed(() =>
     cn(
-      "inline-flex items-center justify-center rounded-md font-medium transition duration-[240ms] ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring/40",
+      "inline-flex items-center justify-center rounded-md font-medium transition duration-[240ms] ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring",
       sizeClasses.value,
       toneClasses.value,
       props.rootClass,
