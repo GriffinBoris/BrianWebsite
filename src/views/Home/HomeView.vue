@@ -1,16 +1,15 @@
 <template>
-  <!-- Hero -->
   <section class="relative overflow-hidden py-[clamp(3.5rem,9vw,7rem)]" aria-labelledby="hero-title">
     <div class="site-container">
       <div class="grid items-center gap-[clamp(2rem,5vw,4rem)] min-[861px]:grid-cols-[1.15fr_0.85fr]">
         <div>
-          <p class="eyebrow mb-4">Actor · Austin, TX</p>
+          <p class="eyebrow mb-4">Screen and voice actor</p>
           <h1 id="hero-title" class="text-display">Brian Bakaj</h1>
-          <p class="lead mt-6 max-w-[40ch]">A natural read for screen and voice that sounds like a real person, not a performance. English and Albanian.</p>
+          <p class="lead mt-6 max-w-[40ch]">I’m based in Austin, Texas, and perform in English and Albanian.</p>
 
           <div class="mt-8 flex flex-wrap gap-3.5">
-            <AppButton tone="accent" label="Hear the reels" icon="play" @click="scrollToReels" />
-            <AppButton tone="ghost" label="Get in touch" :to="{ name: 'contact' }" />
+            <AppButton tone="accent" label="Listen to demos" icon="play" href="#reels" />
+            <AppButton tone="ghost" label="Contact Brian" :to="{ name: 'contact' }" />
           </div>
         </div>
 
@@ -19,32 +18,28 @@
     </div>
   </section>
 
-  <!-- Voice reels: the single audio home, with the waveform reacting where you press play -->
-  <section class="section section--muted" aria-labelledby="demos-title">
+  <section id="reels" class="section section--muted" aria-labelledby="demos-title">
     <div class="site-container">
       <div class="mb-[clamp(2rem,4vw,3.25rem)] max-w-container-narrow">
-        <p class="eyebrow mb-4">Voice</p>
-        <h2 id="demos-title" class="text-h2">Hear the reels</h2>
-        <p class="lead mt-4">Commercial and narration. The same natural read, bright or steady.</p>
+        <h2 id="demos-title" class="text-h2">Voice demos</h2>
+        <p class="lead mt-4">Listen here or download an MP3.</p>
       </div>
 
       <WaveformDisplay class="mb-[clamp(1.75rem,4vw,2.75rem)]" />
 
-      <div class="grid gap-5">
+      <div class="grid grid-cols-1 gap-5">
         <DemoCard v-for="track in demoTracks" :key="track.id" :track="track" />
       </div>
     </div>
   </section>
 
-  <!-- Booking CTA -->
   <section class="section" aria-labelledby="book-title">
     <div class="site-container site-container--narrow text-center">
-      <p class="eyebrow mb-4">Booking</p>
-      <h2 id="book-title" class="mt-1 text-h2">Casting something?</h2>
-      <p class="lead mx-auto mt-4 max-w-[42ch]">Booking now for commercial, narrative, explainer, and corporate. On camera or voice only, remote on request.</p>
+      <h2 id="book-title" class="text-h2">Bookings and auditions</h2>
+      <p class="lead mx-auto mt-4 max-w-[42ch]">Tell me about your project, the role, and your timeline.</p>
       <div class="mt-7 flex flex-wrap justify-center gap-3.5">
-        <AppButton tone="accent" label="Get in touch" :to="{ name: 'contact' }" />
-        <AppButton tone="ghost" label="More about Brian" :to="{ name: 'about' }" />
+        <AppButton tone="accent" label="Contact Brian" :to="{ name: 'contact' }" />
+        <AppButton tone="ghost" label="About Brian" :to="{ name: 'about' }" />
       </div>
     </div>
   </section>
@@ -60,10 +55,6 @@
   import { onMounted } from "vue";
 
   const { loadDurations } = usePlayer();
-
-  function scrollToReels() {
-    document.getElementById("demos-title")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
 
   onMounted(() => loadDurations(demoTracks));
 </script>

@@ -1,8 +1,10 @@
-import { ArrowUpRight, Download, type LucideIcon, Moon, Pause, Play, Sun, X } from "@lucide/vue";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Download, type LucideIcon, Moon, Pause, Play, Sun, X } from "@lucide/vue";
 
 // The icon boundary: shared wrappers reference these names instead of pasting
 // inline SVG. Add a Lucide icon here before using it in a wrapper.
 export const appIcons = {
+  chevronLeft: ChevronLeft,
+  chevronRight: ChevronRight,
   close: X,
   download: Download,
   externalLink: ArrowUpRight,

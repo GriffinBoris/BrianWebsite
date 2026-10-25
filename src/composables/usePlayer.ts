@@ -2,13 +2,7 @@ import { computed, reactive, ref } from "vue";
 
 import type { DemoTrack } from "@/data/demos";
 
-// One <audio> element backs everything: the demo cards, the hero quick-listen
-// chips, and the persistent bar. Only one demo plays at a time, and every
-// control that points at the current track stays in sync through shared state.
-//
-// The hero waveform is the site's one bold moment. While a demo plays it is
-// driven by the Web Audio analyser, so the bars are literally Brian's voice. If
-// the browser can't provide that, the bars keep their calm idle animation.
+// Shared playback survives route changes. Web Audio only enhances the waveform.
 
 export const WAVE_BAR_COUNT = 48;
 
@@ -16,6 +10,7 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 
 const currentTrack = ref<DemoTrack | null>(null);
 const isPlaying = ref(false);
+const playbackError = ref("");
 const currentTime = ref(0);
 const duration = ref(0);
 const isWaveActive = ref(false);
@@ -73,8 +68,15 @@ function ensureAudio(): HTMLAudioElement {
     isPlaying.value = false;
     stopWave();
   });
+  audio.addEventListener("error", reportPlaybackError);
 
   return audio;
+}
+
+function reportPlaybackError() {
+  playbackError.value = "Couldn’t play this reel. Try again or download the MP3.";
+  isPlaying.value = false;
+  stopWave();
 }
 
 function setupAnalyser() {
@@ -141,8 +143,9 @@ function stopWave() {
 
 function playTrack(track: DemoTrack) {
   const element = ensureAudio();
+  playbackError.value = "";
 
-  if (currentTrack.value?.id !== track.id) {
+  if (currentTrack.value?.id !== track.id || element.error) {
     currentTrack.value = track;
     element.src = track.src;
     currentTime.value = 0;
@@ -153,7 +156,12 @@ function playTrack(track: DemoTrack) {
   if (audioContext?.state === "suspended") {
     void audioContext.resume();
   }
-  void element.play();
+  void element.play().catch((error: DOMException) => {
+    // Switching tracks or closing the player intentionally aborts play().
+    if (error.name !== "AbortError" && currentTrack.value?.id === track.id) {
+      reportPlaybackError();
+    }
+  });
 }
 
 export function usePlayer() {
@@ -191,6 +199,7 @@ export function usePlayer() {
       audio.load();
     }
     currentTrack.value = null;
+    playbackError.value = "";
     isPlaying.value = false;
     currentTime.value = 0;
     duration.value = 0;
@@ -224,6 +233,7 @@ export function usePlayer() {
   return {
     currentTrack,
     isPlaying,
+    playbackError,
     currentTime,
     duration,
     progress,

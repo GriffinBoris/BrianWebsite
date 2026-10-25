@@ -1,12 +1,15 @@
 <template>
   <figure
-    class="relative aspect-[4/5] w-full overflow-hidden rounded-lg bg-surface-muted shadow-lg max-[860px]:order-first max-[860px]:mx-auto max-[860px]:max-w-[20rem]"
+    ref="carousel"
+    class="relative aspect-[4/5] w-full touch-pan-y overflow-hidden rounded-lg bg-surface-muted shadow-lg max-[860px]:order-first max-[860px]:mx-auto max-[860px]:max-w-[20rem]"
     aria-roledescription="carousel"
     aria-label="Headshots of Brian Bakaj"
-    @pointerenter="pause"
-    @pointerleave="resume"
-    @focusin="pause"
-    @focusout="resume"
+    @focusin="stopOnFocus"
+    @pointerdown="onPointerDown"
+    @pointerup="onPointerUp"
+    @pointercancel="swipeStart = null"
+    @keydown.left.prevent="select(activeIndex - 1)"
+    @keydown.right.prevent="select(activeIndex + 1)"
   >
     <img
       v-for="(shot, index) in shots"
@@ -15,6 +18,7 @@
       :alt="shot.alt"
       width="640"
       height="800"
+      draggable="false"
       :loading="index === 0 ? 'eager' : 'lazy'"
       :fetchpriority="index === 0 ? 'high' : undefined"
       :aria-hidden="index === activeIndex ? undefined : 'true'"
@@ -22,18 +26,46 @@
       :class="index === activeIndex ? 'opacity-100' : 'opacity-0'"
     />
 
-    <div class="absolute inset-x-0 bottom-3.5 flex justify-center gap-2">
-      <button
-        v-for="(shot, index) in shots"
-        :key="shot.src"
-        type="button"
-        class="h-2 rounded-pill shadow-sm outline-none transition-all duration-300 ease-smooth focus-visible:ring-2 focus-visible:ring-white/90"
-        :class="index === activeIndex ? 'w-5 bg-white' : 'w-2 bg-white/55 hover:bg-white/80'"
-        :aria-label="`Show headshot ${index + 1} of ${shots.length}`"
-        :aria-current="index === activeIndex ? 'true' : undefined"
-        @click="select(index)"
-      />
+    <AppIconButton
+      icon="chevronLeft"
+      label="Previous headshot"
+      :show-tooltip="false"
+      root-class="absolute left-3 top-1/2 h-11 w-11 -translate-y-1/2 border-0 bg-photo-overlay/80 text-photo-contrast hover:-translate-y-1/2 hover:bg-photo-overlay hover:text-photo-contrast focus-visible:ring-photo-contrast"
+      @click="select(activeIndex - 1)"
+    />
+    <AppIconButton
+      icon="chevronRight"
+      label="Next headshot"
+      :show-tooltip="false"
+      root-class="absolute right-3 top-1/2 h-11 w-11 -translate-y-1/2 border-0 bg-photo-overlay/80 text-photo-contrast hover:-translate-y-1/2 hover:bg-photo-overlay hover:text-photo-contrast focus-visible:ring-photo-contrast"
+      @click="select(activeIndex + 1)"
+    />
+
+    <div class="absolute inset-x-0 bottom-3 flex justify-center">
+      <div class="flex items-center rounded-pill bg-photo-overlay/80 p-1">
+        <AppButton
+          :icon="rotationEnabled ? 'pause' : 'play'"
+          :aria-label="rotationEnabled ? 'Pause headshot rotation' : 'Start headshot rotation'"
+          tone="ghost"
+          root-class="h-11 w-11 min-h-0 rounded-pill border-0 p-0 text-photo-contrast hover:translate-y-0 hover:bg-photo-contrast/15 hover:text-photo-contrast focus-visible:ring-photo-contrast"
+          @click="rotationEnabled = !rotationEnabled"
+        />
+        <AppButton
+          v-for="(shot, index) in shots"
+          :key="shot.src"
+          tone="ghost"
+          root-class="h-11 w-11 min-h-0 rounded-pill border-0 p-0 hover:translate-y-0 hover:bg-photo-contrast/15 focus-visible:ring-photo-contrast"
+          :aria-label="`Show headshot ${index + 1} of ${shots.length}`"
+          :aria-current="index === activeIndex ? 'true' : undefined"
+          @click="select(index)"
+        >
+          <span class="h-2 rounded-pill bg-photo-contrast" :class="index === activeIndex ? 'w-5' : 'w-2 opacity-60'" />
+        </AppButton>
+      </div>
     </div>
+    <figcaption class="sr-only" :aria-live="rotationEnabled ? 'off' : 'polite'" aria-atomic="true">
+      Headshot {{ activeIndex + 1 }} of {{ shots.length }}
+    </figcaption>
   </figure>
 </template>
 
@@ -41,32 +73,43 @@
   import look01 from "@/assets/img/brian-look-01.jpg";
   import look02 from "@/assets/img/brian-look-02.jpg";
   import headshot from "@/assets/img/headshot.jpg";
-  import { onMounted, onUnmounted, ref } from "vue";
+  import AppButton from "@/components/ui/AppButton.vue";
+  import AppIconButton from "@/components/ui/AppIconButton.vue";
+  import { onMounted, onUnmounted, ref, useTemplateRef, watch } from "vue";
 
-  // The hero photo rotates through Brian's recent looks so the first thing a
-  // visitor sees quietly shows range. This is the second orchestrated motion
-  // moment after the waveform; keep it a slow crossfade, nothing louder.
   const shots = [
     { src: headshot, alt: "Brian Bakaj, headshot" },
     { src: look01, alt: "Brian Bakaj, portrait" },
     { src: look02, alt: "Brian Bakaj, portrait" },
   ];
 
-  const intervalMs = 5000;
   const activeIndex = ref(0);
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const carousel = useTemplateRef<HTMLElement>("carousel");
+  const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const rotationEnabled = ref(!motionPreference.matches);
 
   let timer: number | undefined;
+  let swipeStart: { x: number; y: number } | null = null;
 
-  function advance() {
-    activeIndex.value = (activeIndex.value + 1) % shots.length;
-  }
-
-  function start() {
-    if (reduceMotion || timer) {
+  function onPointerDown(event: PointerEvent) {
+    if (!event.isPrimary || event.button !== 0 || (event.target as HTMLElement).closest("button, a")) {
       return;
     }
-    timer = window.setInterval(advance, intervalMs);
+    swipeStart = { x: event.clientX, y: event.clientY };
+    (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
+  }
+
+  function onPointerUp(event: PointerEvent) {
+    if (!swipeStart || !event.isPrimary) {
+      return;
+    }
+    const deltaX = event.clientX - swipeStart.x;
+    const deltaY = event.clientY - swipeStart.y;
+    swipeStart = null;
+    // Leave vertical gestures to page scrolling; short taps do not change photos.
+    if (Math.abs(deltaX) >= 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      select(activeIndex.value + (deltaX < 0 ? 1 : -1));
+    }
   }
 
   function stop() {
@@ -75,25 +118,46 @@
   }
 
   function select(index: number) {
-    activeIndex.value = index;
-    stop();
-    start();
+    activeIndex.value = (index + shots.length) % shots.length;
+    rotationEnabled.value = false;
   }
 
-  const pause = stop;
-  const resume = start;
-
-  function onVisibilityChange() {
-    document.hidden ? stop() : start();
+  // Pause when keyboard focus enters, then require an explicit restart.
+  // Moving between its controls must not cancel the user's Start action.
+  function stopOnFocus(event: FocusEvent) {
+    const enteredFromOutside = !(event.currentTarget as HTMLElement).contains(event.relatedTarget as Node | null);
+    if (enteredFromOutside && (event.target as HTMLElement).matches(":focus-visible")) {
+      rotationEnabled.value = false;
+    }
   }
+
+  function onMotionChange() {
+    if (motionPreference.matches) {
+      rotationEnabled.value = false;
+    }
+  }
+
+  watch(
+    rotationEnabled,
+    (enabled) => {
+      stop();
+      if (enabled) {
+        timer = window.setInterval(() => {
+          if (!document.hidden && !carousel.value?.matches(":hover")) {
+            activeIndex.value = (activeIndex.value + 1) % shots.length;
+          }
+        }, 5000);
+      }
+    },
+    { immediate: true },
+  );
 
   onMounted(() => {
-    start();
-    document.addEventListener("visibilitychange", onVisibilityChange);
+    motionPreference.addEventListener("change", onMotionChange);
   });
 
   onUnmounted(() => {
     stop();
-    document.removeEventListener("visibilitychange", onVisibilityChange);
+    motionPreference.removeEventListener("change", onMotionChange);
   });
 </script>

@@ -1,8 +1,7 @@
 import { applyRouteMeta } from "@/utils/pageMeta";
 import { createRouter, createWebHistory } from "vue-router";
 
-// Clean history URLs (/about, /contact) so every route is a real, crawlable
-// page. GitHub Pages has no server-side SPA fallback, so public/404.html stashes
+// GitHub Pages has no server-side SPA fallback, so public/404.html stashes
 // deep links and index.html restores them before the router boots.
 
 // Preserve links shared under the old hash URLs (/#/about) after the switch.
@@ -24,7 +23,7 @@ const router = createRouter({
       meta: {
         title: "Brian Bakaj, Actor",
         description:
-          "Brian Bakaj, screen and voice actor in Austin, Texas. On camera and on mic, in English and Albanian. Hear the reels and get in touch.",
+          "Brian Bakaj is a screen and voice actor based in Austin, Texas, working in English and Albanian. Listen to his voice demos and contact him for bookings.",
       },
     },
     {
@@ -32,9 +31,9 @@ const router = createRouter({
       name: "about",
       component: () => import("@/views/About/AboutView.vue"),
       meta: {
-        title: "About · Brian Bakaj",
+        title: "About Brian Bakaj",
         description:
-          "About Brian Bakaj, an Austin screen and voice actor working on camera and on mic in English and Albanian. Casting profile, range, and recent headshots.",
+          "Learn about Brian Bakaj, a screen and voice actor in Austin, Texas. View his casting profile and headshots.",
       },
     },
     {
@@ -42,9 +41,9 @@ const router = createRouter({
       name: "contact",
       component: () => import("@/views/Contact/ContactView.vue"),
       meta: {
-        title: "Contact · Brian Bakaj",
+        title: "Contact Brian Bakaj",
         description:
-          "Book Brian Bakaj for commercial, narrative, explainer, and corporate work. Screen and voice, based in Austin, TX and remote-ready.",
+          "Contact Brian Bakaj about screen acting and voiceover bookings, auditions, and project availability.",
       },
     },
     {

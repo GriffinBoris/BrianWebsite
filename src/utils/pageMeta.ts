@@ -5,7 +5,7 @@ import type { RouteLocationNormalized } from "vue-router";
 const SITE_URL = "https://griffinboris.github.io/BrianWebsite";
 const DEFAULT_TITLE = "Brian Bakaj, Actor";
 const DEFAULT_DESCRIPTION =
-  "Brian Bakaj, screen and voice actor in Austin, Texas. On camera and on mic, in English and Albanian. Hear the reels and get in touch.";
+  "Brian Bakaj is a screen and voice actor based in Austin, Texas, working in English and Albanian. Listen to his voice demos and contact him for bookings.";
 
 function upsertMeta(attribute: "name" | "property", key: string, content: string) {
   let element = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`);
@@ -27,8 +27,7 @@ function upsertCanonical(href: string) {
   element.href = href;
 }
 
-// Keep title, description, canonical, and Open Graph URL in step with the active
-// route so each page presents distinct, crawlable metadata in a client-rendered SPA.
+// Update metadata during client navigation. Social previews still read index.html.
 export function applyRouteMeta(route: RouteLocationNormalized) {
   const title = typeof route.meta.title === "string" ? route.meta.title : DEFAULT_TITLE;
   const description = typeof route.meta.description === "string" ? route.meta.description : DEFAULT_DESCRIPTION;

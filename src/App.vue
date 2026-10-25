@@ -42,6 +42,8 @@
     (name) => {
       const page = pageNames[String(name)];
       routeAnnouncement.value = page ? `${page} page` : "";
+      document.getElementById("main")?.focus({ preventScroll: true });
     },
+    { flush: "post" },
   );
 </script>

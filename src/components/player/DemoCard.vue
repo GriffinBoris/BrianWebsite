@@ -12,7 +12,7 @@
       />
 
       <div class="min-w-0 flex-1">
-        <div class="flex items-start justify-between gap-3">
+        <div class="flex flex-wrap items-start justify-between gap-x-3 gap-y-2">
           <span class="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-accent">{{ track.kicker }}</span>
           <AppButton
             tone="link"
