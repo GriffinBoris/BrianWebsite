@@ -3,9 +3,9 @@ import type { RouteLocationNormalized } from "vue-router";
 // Canonical production origin (GitHub Pages project site). Keep in step with the
 // vite base, robots.txt, and sitemap.xml.
 const SITE_URL = "https://griffinboris.github.io/BrianWebsite";
-const DEFAULT_TITLE = "Brian Bakaj, Actor";
+const DEFAULT_TITLE = "Brian Bakaj, Voice Actor";
 const DEFAULT_DESCRIPTION =
-  "Brian Bakaj is a screen and voice actor based in Austin, Texas, working in English and Albanian. Listen to his voice demos and contact him for bookings.";
+  "Brian Bakaj is a voice actor based in Austin, Texas, working in English and Albanian. Listen to his voice demos and contact him for bookings.";
 
 function upsertMeta(attribute: "name" | "property", key: string, content: string) {
   let element = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`);

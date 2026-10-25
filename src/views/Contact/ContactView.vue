@@ -4,7 +4,7 @@
       <p class="eyebrow mb-4">Contact</p>
       <h1 id="contact-title" class="mt-1 text-h1">Bookings and auditions</h1>
       <p class="lead mx-auto mt-5 max-w-[42ch]">
-        Email your project details, dates, and a script or brief. For voice work, include how the recording will be used.
+        Email your project details, dates, and a script or brief. Include how the recording will be used.
       </p>
 
       <div class="mt-8 flex flex-wrap justify-center gap-3.5">

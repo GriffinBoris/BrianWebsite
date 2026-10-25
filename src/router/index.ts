@@ -21,9 +21,9 @@ const router = createRouter({
       name: "home",
       component: () => import("@/views/Home/HomeView.vue"),
       meta: {
-        title: "Brian Bakaj, Actor",
+        title: "Brian Bakaj, Voice Actor",
         description:
-          "Brian Bakaj is a screen and voice actor based in Austin, Texas, working in English and Albanian. Listen to his voice demos and contact him for bookings.",
+          "Brian Bakaj is a voice actor based in Austin, Texas, working in English and Albanian. Listen to his voice demos and contact him for bookings.",
       },
     },
     {
@@ -33,7 +33,7 @@ const router = createRouter({
       meta: {
         title: "About Brian Bakaj",
         description:
-          "Learn about Brian Bakaj, a screen and voice actor in Austin, Texas. View his casting profile and headshots.",
+          "Learn about Brian Bakaj, a voice actor in Austin, Texas. View his casting profile and headshots.",
       },
     },
     {
@@ -43,7 +43,7 @@ const router = createRouter({
       meta: {
         title: "Contact Brian Bakaj",
         description:
-          "Contact Brian Bakaj about screen acting and voiceover bookings, auditions, and project availability.",
+          "Contact Brian Bakaj about voiceover bookings, auditions, and project availability.",
       },
     },
     {
