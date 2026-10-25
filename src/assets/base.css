@@ -46,10 +46,6 @@
 
   --color-focus-ring: 44 85 200;
 
-  /* Photo controls keep the same contrast in both themes. */
-  --color-photo-overlay: 16 18 24;
-  --color-photo-contrast: 255 255 255;
-
   /* Typography */
   --font-size-eyebrow: 0.75rem;
   --tracking-eyebrow: 0.24em;
