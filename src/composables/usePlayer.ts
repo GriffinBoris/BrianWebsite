@@ -4,12 +4,14 @@ import type { DemoTrack } from "@/data/demos";
 
 // Shared playback survives route changes. Web Audio only enhances the waveform.
 
-export const WAVE_BAR_COUNT = 48;
+export const WAVE_BAR_COUNT = 64;
 
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const currentTrack = ref<DemoTrack | null>(null);
 const isPlaying = ref(false);
+const isBuffering = ref(false);
+let waveVisible = false;
 const playbackError = ref("");
 const currentTime = ref(0);
 const duration = ref(0);
@@ -31,6 +33,8 @@ let audioContext: AudioContext | null = null;
 let analyser: AnalyserNode | null = null;
 let frequencyData: Uint8Array<ArrayBuffer> | null = null;
 let rafId: number | null = null;
+let lastWaveTime = 0;
+let frequencyBands: { start: number; end: number }[] = [];
 
 function formatTime(seconds: number): string {
   if (!Number.isFinite(seconds)) {
@@ -50,10 +54,18 @@ function ensureAudio(): HTMLAudioElement {
   audio.preload = "metadata";
   audio.addEventListener("play", () => {
     isPlaying.value = true;
+  });
+  audio.addEventListener("waiting", () => {
+    isBuffering.value = true;
+    stopWave();
+  });
+  audio.addEventListener("playing", () => {
+    isBuffering.value = false;
     startWave();
   });
   audio.addEventListener("pause", () => {
     isPlaying.value = false;
+    isBuffering.value = false;
     stopWave();
   });
   audio.addEventListener("timeupdate", () => {
@@ -66,6 +78,7 @@ function ensureAudio(): HTMLAudioElement {
     audio!.currentTime = 0;
     currentTime.value = 0;
     isPlaying.value = false;
+    isBuffering.value = false;
     stopWave();
   });
   audio.addEventListener("error", reportPlaybackError);
@@ -76,11 +89,12 @@ function ensureAudio(): HTMLAudioElement {
 function reportPlaybackError() {
   playbackError.value = "Couldn’t play this reel. Please try again.";
   isPlaying.value = false;
+  isBuffering.value = false;
   stopWave();
 }
 
 function setupAnalyser() {
-  if (analyser || prefersReducedMotion || !audio) {
+  if (analyser || motionPreference.matches || !audio) {
     return;
   }
 
@@ -94,8 +108,16 @@ function setupAnalyser() {
   try {
     audioContext = new AudioContextClass();
     analyser = audioContext.createAnalyser();
-    analyser.fftSize = 128;
-    analyser.smoothingTimeConstant = 0.8;
+    analyser.fftSize = 2048;
+    analyser.smoothingTimeConstant = 0.65;
+    // Logarithmic bands give the voice range room to move, instead of spending
+    // most of the display on nearly silent high frequencies.
+    const binWidth = audioContext.sampleRate / analyser.fftSize;
+    const maxFrequency = Math.min(10000, audioContext.sampleRate / 2);
+    frequencyBands = Array.from({ length: WAVE_BAR_COUNT / 2 }, (_, index) => ({
+      start: Math.max(1, Math.floor((90 * Math.pow(maxFrequency / 90, index / (WAVE_BAR_COUNT / 2))) / binWidth)),
+      end: Math.min(analyser!.frequencyBinCount, Math.ceil((90 * Math.pow(maxFrequency / 90, (index + 1) / (WAVE_BAR_COUNT / 2))) / binWidth)),
+    }));
     const source = audioContext.createMediaElementSource(audio);
     source.connect(analyser);
     analyser.connect(audioContext.destination);
@@ -106,25 +128,38 @@ function setupAnalyser() {
   }
 }
 
-function renderWave() {
-  if (!analyser || !frequencyData) {
-    return;
-  }
+function renderWave(timestamp = 0) {
+  if (!analyser || !frequencyData) return;
 
-  analyser.getByteFrequencyData(frequencyData);
-  const bins = frequencyData.length;
-  const next = new Array<number>(WAVE_BAR_COUNT);
-  for (let i = 0; i < WAVE_BAR_COUNT; i++) {
-    const index = Math.floor((i / WAVE_BAR_COUNT) * bins);
-    next[i] = Math.max(8, (frequencyData[index] / 255) * 100);
+  // About 30 updates per second; transforms handle the motion between samples.
+  if (!lastWaveTime || timestamp - lastWaveTime >= 32) {
+    const elapsed = lastWaveTime ? Math.min(timestamp - lastWaveTime, 100) : 33;
+    lastWaveTime = timestamp;
+    analyser.getByteFrequencyData(frequencyData);
+    const next = new Array<number>(WAVE_BAR_COUNT);
+    for (let i = 0; i < WAVE_BAR_COUNT / 2; i++) {
+      const band = frequencyBands[WAVE_BAR_COUNT / 2 - 1 - i]!;
+      let energy = 0;
+      for (let bin = band.start; bin < band.end; bin++) {
+        energy += Math.pow(frequencyData[bin]! / 255, 2);
+      }
+      const amplitude = Math.sqrt(energy / Math.max(1, band.end - band.start));
+      const envelope = 0.4 + 0.6 * Math.sin((Math.PI * (i + 0.5)) / WAVE_BAR_COUNT);
+      const target = 6 + Math.pow(amplitude, 0.8) * 94 * envelope;
+      const previous = waveHeights.value[i] ?? 8;
+      // Quick attack, slower release keeps quiet syllables fluid and readable.
+      const smoothing = 1 - Math.exp(-elapsed / (target > previous ? 45 : 160));
+      const height = previous + (target - previous) * smoothing;
+      next[i] = height;
+      next[WAVE_BAR_COUNT - 1 - i] = height;
+    }
+    waveHeights.value = next;
   }
-  waveHeights.value = next;
-
   rafId = window.requestAnimationFrame(renderWave);
 }
 
 function startWave() {
-  if (!analyser) {
+  if (!analyser || !waveVisible || document.hidden || motionPreference.matches || !isPlaying.value || isBuffering.value) {
     return;
   }
   isWaveActive.value = true;
@@ -139,11 +174,32 @@ function stopWave() {
     rafId = null;
   }
   isWaveActive.value = false;
+  lastWaveTime = 0;
 }
+
+function setWaveVisible(visible: boolean) {
+  waveVisible = visible;
+  if (visible) startWave();
+  else stopWave();
+}
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) stopWave();
+  else startWave();
+});
+motionPreference.addEventListener("change", () => {
+  if (motionPreference.matches) stopWave();
+  else {
+    setupAnalyser();
+    startWave();
+  }
+});
 
 function playTrack(track: DemoTrack) {
   const element = ensureAudio();
   playbackError.value = "";
+  isBuffering.value = true;
+  stopWave();
 
   if (currentTrack.value?.id !== track.id || element.error) {
     currentTrack.value = track;
@@ -201,6 +257,7 @@ export function usePlayer() {
     currentTrack.value = null;
     playbackError.value = "";
     isPlaying.value = false;
+    isBuffering.value = false;
     currentTime.value = 0;
     duration.value = 0;
     stopWave();
@@ -233,12 +290,14 @@ export function usePlayer() {
   return {
     currentTrack,
     isPlaying,
+    isBuffering,
     playbackError,
     currentTime,
     duration,
     progress,
     isWaveActive,
     waveHeights,
+    setWaveVisible,
     toggleTrack,
     togglePlayback,
     seekToPercent,
