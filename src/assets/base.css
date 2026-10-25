@@ -27,47 +27,47 @@
 }
 
 :root {
-  /* Surfaces and text: a three-step cool neutral ladder */
-  --color-background: 245 246 248;
-  --color-surface-muted: 233 236 241;
-  --color-surface: 255 255 255;
-  --color-body: 20 22 28;
-  --color-secondary: 86 94 112;
-  --color-line: 219 223 230;
+  /* Warm paper and natural ink support the original photography. */
+  --color-background: 247 244 237;
+  --color-surface-muted: 237 233 223;
+  --color-surface: 253 251 246;
+  --color-body: 43 47 43;
+  --color-secondary: 100 104 96;
+  --color-line: 214 209 197;
 
-  /* Signature: a single confident sapphire */
-  --color-accent: 44 85 200;
-  --color-accent-strong: 32 66 168;
-  --color-accent-contrast: 255 255 255;
+  /* The blue accent is quieter against the warm paper. */
+  --color-accent: 43 79 111;
+  --color-accent-strong: 29 59 86;
+  --color-accent-contrast: 253 251 246;
 
   /* Neutral primary (used for solid ink surfaces) */
-  --color-primary: 20 22 28;
-  --color-primary-contrast: 245 246 248;
+  --color-primary: 43 47 43;
+  --color-primary-contrast: 247 244 237;
 
-  --color-focus-ring: 44 85 200;
+  --color-focus-ring: 43 79 111;
 
   /* Typography */
   --font-size-eyebrow: 0.75rem;
-  --tracking-eyebrow: 0.24em;
-  --font-size-lead: 1.3rem;
+  --tracking-eyebrow: 0.08em;
+  --font-size-lead: 1.2rem;
   --line-height-lead: 1.55;
-  --font-size-display: clamp(3rem, 8vw, 6rem);
+  --font-size-display: clamp(3.4rem, 7.5vw, 6.5rem);
   --font-size-h1: clamp(2.4rem, 5vw, 3.6rem);
   --font-size-h2: clamp(1.9rem, 3.6vw, 2.9rem);
   --font-size-h3: clamp(1.2rem, 2vw, 1.5rem);
 
   /* Spacing & rhythm */
-  --space-section: clamp(4rem, 8vw, 7rem);
+  --space-section: clamp(3rem, 6vw, 5rem);
   --container-width: 74rem;
   --container-narrow: 44rem;
-  --radius-sm: 0.4rem;
-  --radius-md: 0.7rem;
-  --radius-lg: 1.1rem;
+  --radius-sm: 0.3rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
   --radius-pill: 999px;
 
   /* Elevation */
   --shadow-sm: 0 1px 2px rgb(20 22 28 / 0.06);
-  --shadow-md: 0 16px 36px -18px rgb(20 22 28 / 0.24);
+  --shadow-md: 0 8px 24px -16px rgb(43 47 43 / 0.2);
   --shadow-lg: 0 36px 64px -26px rgb(20 22 28 / 0.34);
 
   /* Player bar height, used to pad the page bottom when active */
@@ -81,22 +81,22 @@
 }
 
 html[data-theme="dark"] {
-  --color-background: 16 18 24;
-  --color-surface-muted: 23 26 34;
-  --color-surface: 30 34 44;
-  --color-body: 232 234 240;
-  --color-secondary: 154 161 178;
-  --color-line: 45 50 62;
+  --color-background: 27 30 29;
+  --color-surface-muted: 35 39 37;
+  --color-surface: 39 44 41;
+  --color-body: 240 237 226;
+  --color-secondary: 177 181 170;
+  --color-line: 69 76 70;
 
-  /* Sapphire lifts to a luminous periwinkle-blue that glows on charcoal */
-  --color-accent: 110 155 255;
-  --color-accent-strong: 140 178 255;
-  --color-accent-contrast: 16 18 24;
+  /* Lift the blue for contrast against dark, warm charcoal. */
+  --color-accent: 156 190 220;
+  --color-accent-strong: 189 214 235;
+  --color-accent-contrast: 27 30 29;
 
-  --color-primary: 232 234 240;
-  --color-primary-contrast: 16 18 24;
+  --color-primary: 240 237 226;
+  --color-primary-contrast: 27 30 29;
 
-  --color-focus-ring: 110 155 255;
+  --color-focus-ring: 156 190 220;
 
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.45);
   --shadow-md: 0 14px 34px -16px rgb(0 0 0 / 0.6);
@@ -146,7 +146,7 @@ html[data-theme="dark"] {
   h1,
   h2,
   h3 {
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.08;
     letter-spacing: -0.02em;
     text-wrap: balance;
@@ -228,7 +228,6 @@ html[data-theme="dark"] {
     font-size: var(--font-size-eyebrow);
     font-weight: 600;
     letter-spacing: var(--tracking-eyebrow);
-    text-transform: uppercase;
     color: rgb(var(--color-accent));
   }
 

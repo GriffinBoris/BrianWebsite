@@ -13,6 +13,7 @@
           :icon="isPlaying ? 'pause' : 'play'"
           :label="`${isPlaying ? 'Pause' : 'Play'} ${currentTrack.title.toLowerCase()}`"
           :show-tooltip="false"
+          :aria-pressed="isPlaying"
           root-class="h-11 w-11 flex-none"
           @click="togglePlayback"
         />
