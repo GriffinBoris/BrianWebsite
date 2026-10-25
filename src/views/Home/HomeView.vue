@@ -3,7 +3,7 @@
     <div class="site-container">
       <div class="grid items-center gap-[clamp(2rem,5vw,4rem)] min-[861px]:grid-cols-[1.15fr_0.85fr]">
         <div>
-          <p class="eyebrow mb-4">Screen and voice actor</p>
+          <p class="eyebrow mb-4">Voice actor</p>
           <h1 id="hero-title" class="text-display">Brian Bakaj</h1>
           <p class="lead mt-6 max-w-[40ch]">I’m based in Austin, Texas, and perform in English and Albanian.</p>
 

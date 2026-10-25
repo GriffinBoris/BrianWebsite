@@ -1,6 +1,6 @@
-# Brian Bakaj — Actor
+# Brian Bakaj — Voice Actor
 
-Actor portfolio for Brian Bakaj, based in Austin, Texas. Screen and voice work
+Voice actor portfolio for Brian Bakaj, based in Austin, Texas, working
 in English and Albanian.
 
 **Website:** https://griffinboris.github.io/BrianWebsite/

@@ -1242,16 +1242,16 @@ These guidelines are constraints in service of clarity, not bureaucracy. If foll
 
 ## Purpose
 
-- Maintain a professional portfolio site for **Brian Bakaj, actor** — he works both **on screen and
-  in voiceover**, so the site positions him as an actor first, with the voice reels as one prominent
-  facet of his range, not the whole identity. Its job is to let a casting director, producer, or
-  agency size him up fast — see the face and the profile, hear the reels in one click, and reach him.
+- Maintain a professional portfolio site for **Brian Bakaj, voice actor**. Voice acting is his
+  current focus, as confirmed by the owner. Public copy, page titles, social previews, and structured
+  metadata should reflect that focus. Make it easy to hear his demos, review his profile, and contact
+  him for voiceover bookings. Do not position the site around screen acting.
 - The site is a **reactive static site** built on the house stack — **Vue 3 + Vite + Tailwind v4**,
   TypeScript, `vue-router` (HTML5 history) — that compiles to fully static assets. GitHub Actions runs
   the Vite build and publishes `dist/` to GitHub Pages; there is no backend, database, or API.
 - It was migrated from an earlier hand-authored no-build site. The framework and Vue guidance in
   `agents/` now applies; the design system (tokens, sapphire signature, Inter type, waveform,
-  actor-first IA) carried over intact.
+  voice-focused positioning) carried over intact.
 
 ## Design Intent
 
@@ -1365,10 +1365,10 @@ every choice in the subject.
 
 ## Known Facts (from Brian's Backstage profile)
 
-- Actor working on screen and in voiceover. Austin, TX. Playing age 18–27. Nonunion. English and
+- Voice actor. Austin, TX. Playing age 18–27. Nonunion. English and
   **Albanian**. Records on a **Shure SM7B** in a dedicated home studio. Movement: dance. Holds a
   driver's license and passport (travel-ready). These are reflected in the About copy and the
-  casting-profile card — keep them accurate, and do not invent screen/stage credits he can't back up.
+  casting-profile card — keep them accurate, and do not invent credits he can't back up.
 
 ## Content The Owner Supplies Or Confirms Later
 

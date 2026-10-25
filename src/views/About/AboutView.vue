@@ -1,6 +1,6 @@
 <template>
   <PageHero
-    eyebrow="Screen and voice"
+    eyebrow="Voice actor"
     title="About Brian"
     title-id="about-title"
   />
@@ -10,7 +10,7 @@
       <div class="grid items-start gap-[clamp(2rem,5vw,4rem)] min-[721px]:grid-cols-[1.1fr_0.9fr]">
         <div class="space-y-4">
           <p>
-            I’m Brian, a screen and voice actor based in Austin, Texas. I work in English and Albanian.
+            I’m Brian, a voice actor based in Austin, Texas. I work in English and Albanian.
           </p>
           <p>
             For voice projects, I record from a dedicated home studio with a Shure SM7B.
@@ -71,7 +71,7 @@
   import AppSurface from "@/components/ui/AppSurface.vue";
 
   const specRows = [
-    { label: "Work", value: "Screen and voice" },
+    { label: "Work", value: "Voice acting" },
     { label: "Playing age", value: "18–27" },
     { label: "Based in", value: "Austin, Texas" },
     { label: "Languages", value: "English and Albanian" },
