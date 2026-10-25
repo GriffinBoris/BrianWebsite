@@ -19,6 +19,8 @@ export default {
         "accent-strong": semanticColor("--color-accent-strong"),
         "accent-contrast": semanticColor("--color-accent-contrast"),
         "focus-ring": semanticColor("--color-focus-ring"),
+        "photo-overlay": semanticColor("--color-photo-overlay"),
+        "photo-contrast": semanticColor("--color-photo-contrast"),
       },
       fontFamily: {
         sans: ['"Inter"', "system-ui", "-apple-system", '"Segoe UI"', "Roboto", "sans-serif"],

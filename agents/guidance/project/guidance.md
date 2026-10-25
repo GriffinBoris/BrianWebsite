@@ -28,7 +28,7 @@ order: 0
   facet of his range, not the whole identity. Its job is to let a casting director, producer, or
   agency size him up fast — see the face and the profile, hear the reels in one click, and reach him.
 - The site is a **reactive static site** built on the house stack — **Vue 3 + Vite + Tailwind v4**,
-  TypeScript, `vue-router` (hash history) — that compiles to fully static assets. GitHub Actions runs
+  TypeScript, `vue-router` (HTML5 history) — that compiles to fully static assets. GitHub Actions runs
   the Vite build and publishes `dist/` to GitHub Pages; there is no backend, database, or API.
 - It was migrated from an earlier hand-authored no-build site. The framework and Vue guidance in
   `agents/` now applies; the design system (tokens, sapphire signature, Inter type, waveform,
@@ -39,10 +39,13 @@ order: 0
 The design follows the frontend-design principle of **spending boldness in one place** and grounding
 every choice in the subject.
 
-- **Signature element:** the hero **waveform** (`WaveformDisplay.vue`, driven by the `usePlayer`
+- **Signature element:** the reels **waveform** (`WaveformDisplay.vue`, driven by the `usePlayer`
   composable). At rest it breathes slowly; while a demo plays it is animated by the Web Audio
   analyser, so the bars are literally Brian's voice. This is the one orchestrated motion moment — do
-  not scatter other decorative animations across the page.
+  not scatter other decorative animations across the page. The headshot carousel uses a slow crossfade,
+  has an explicit pause/start control and 44px photo selectors, supports swiping and previous/next
+  buttons, pauses on hover and keyboard focus, and disables autoplay for reduced motion. Selecting
+  a photo stops rotation until restarted.
 - **Palette is cinematic and cool:** a single confident **sapphire** accent (`--color-accent`) on a
   ladder of cool charcoal ink and clean off-white neutrals (light) / deep charcoal (dark). It reads
   professional, modern, and captivating without going warm or generic. The accent is reserved for
@@ -74,25 +77,26 @@ every choice in the subject.
 - `src/main.ts` — creates the app, installs the router, runs `initTheme()`, mounts `#app`.
 - `src/App.vue` — the shared shell: `SiteHeader`, `<RouterView>`, `SiteFooter`, and the persistent
   `AudioBar` (which survives route changes so playback keeps going as you navigate).
-- `src/router/index.ts` — `vue-router` on **hash history**, so GitHub Pages serves every route from
-  one file with no server-side SPA fallback. Routes: `home` (`/`), `about`, `contact`.
+- `src/router/index.ts` — `vue-router` on **HTML5 history**. GitHub Pages deep links use
+  `public/404.html` and the restoration script in `index.html`; old hash links remain supported.
+  Routes: `home` (`/`), `about`, `contact`. Route metadata updates client-side; social previews
+  read the shared metadata in `index.html`.
 - `src/views/<Name>/<Name>View.vue` — one folder per route. `HomeView` (hero, reels, booking CTA),
   `AboutView` (bio, casting-profile spec card, headshots gallery), `ContactView` (booking CTA plus
-  "find Brian elsewhere" links). The current route drives the nav highlight (sapphire underline on
-  desktop, tinted pill on mobile); `RouterLink` sets `aria-current` automatically.
-- `src/components/` — `layout/` (`SiteHeader` with the polished mobile dropdown, `SiteFooter`),
-  `page/` (`PageHero` intro band), `player/` (`WaveformDisplay`, `DemoCard`, `ListenChip`,
+  external profile links). The current route drives the nav highlight (sapphire underline); `RouterLink` sets `aria-current` automatically.
+- `src/components/` — `layout/` (`SiteHeader` with inline navigation, `SiteFooter`),
+  `page/` (`PageHero` intro band), `player/` (`WaveformDisplay`, `DemoCard`,
   `AudioBar`), `ui/` (the app-owned PrimeVue wrappers: `AppButton`, `AppIconButton`, `AppSurface`,
   `AppIcon`, `ThemeToggle`, plus `appIcons.ts` and `AppTooltip.ts`).
 - `src/utils/className.ts` — `cn()` (clsx + tailwind-merge), the class combiner used by the wrappers.
 - `src/composables/` — `useTheme.ts` (light/dark singleton driving `html[data-theme]`) and
-  `usePlayer.ts` (the audio engine: one `Audio` element drives demo cards, hero chips, and the
+  `usePlayer.ts` (the audio engine: one `Audio` element drives demo cards and the
   persistent bar; a Web Audio analyser drives the waveform; it stamps each demo's real length and
-  keeps every control for the current track in sync).
+  keeps every control for the current track in sync; playback failures show a retry/download message).
 - `src/data/demos.ts` — the demo-track list (id, kicker, title, description, imported `src`,
-  download name, fallback duration): the single source for reels and hero chips.
+  download name, fallback duration): the single source for reels, ordered video games, commercial, narration.
 - `src/assets/` — `base.css` (Tailwind entry + `@config` + design tokens + resets + shared
-  `.site-container`/`.eyebrow`/`.lead`/`.btn` primitives), self-hosted Inter `woff2` subsets under
+  `.site-container`/`.eyebrow`/`.lead` primitives), self-hosted Inter `woff2` subsets under
   `fonts/`, `img/` (headshot + looks), and `media/` (the demo mp3s). Fonts/images/media are imported
   so Vite hashes them and rewrites URLs for the Pages base path.
 - `tailwind.config.js` — maps the CSS-variable tokens onto semantic Tailwind names (`bg-surface`,
@@ -132,8 +136,11 @@ every choice in the subject.
 - **Theming.** Light and dark via `html[data-theme]`; every color resolves from a token so both
   themes stay correct. The anti-FOUC snippet in `index.html` sets the theme before the app mounts.
 - **Honesty in copy.** Do not fabricate credits, clients, representation, or stats. Confident,
-  voice-focused prose is fine; unverified specifics (location, exact voice age, booking email) are
-  marked with `TODO(Brian)` for him to confirm.
+  voice-focused prose is fine; unverified specifics (location, exact voice age, booking email)
+  must be confirmed by Brian before publication.
+- **Public wording.** Use plain, specific copy and natural sentences. Do not use decorative dot
+  separators between words, including in the header, footer, casting profile, or page titles.
+  Use words such as "and" or separate lines. Keep the header to Brian’s name and navigation.
 - **Performance.** Optimized images, `loading="lazy"` below the fold, self-hosted fonts, route-level
   code splitting via lazy `import()` in the router.
 
@@ -146,8 +153,8 @@ every choice in the subject.
 
 ## Content The Owner Supplies Or Confirms Later
 
-- **Booking email** is still a `mailto:` placeholder (`TODO(Brian)` in `ContactView.vue`) — the only
-  remaining unknown. Replace it once Brian provides a real address.
+- **Booking email:** `brianbakaj@icloud.com`, confirmed by the owner. Keep the button and visible
+  address in `ContactView.vue` in sync.
 - Real training, representation, and specific credits/clients can be added to About when he has
   details he can back up. Do not invent them.
 - External profiles are linked on the **Contact** page (Backstage, LinkedIn, Facebook). These
@@ -164,7 +171,7 @@ every choice in the subject.
 - `npm run build` must pass (it runs `vue-tsc` type-check, then the Vite production build).
 - No test suite. Before committing, run `npm run dev` (or `npm run preview` for the production base
   path) and confirm in a browser: both themes render, fonts load locally with no external/network
-  errors, all three routes resolve, the nav works (including the mobile dropdown and the active-page
-  highlight), the hero portrait is centered on mobile, pressing a demo plays audio and drives the
-  persistent bar + waveform, only one demo plays at a time, and the layout is responsive with no
-  console errors.
+  errors, all three routes resolve, inline navigation and its active-page highlight work, the
+  hero portrait is centered on mobile, carousel swipe/pause/select controls work, pressing a demo plays
+  audio and drives the persistent bar + waveform, only one demo plays at a time, the mobile seek
+  control works, and the layout is responsive with no console errors. There is no configured linter.

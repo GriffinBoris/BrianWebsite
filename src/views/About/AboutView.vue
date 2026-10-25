@@ -1,26 +1,22 @@
 <template>
   <PageHero
-    eyebrow="About"
+    eyebrow="Screen and voice"
     title="About Brian"
     title-id="about-title"
-    lead="A natural read for screen and voice, with real range across the two."
   />
 
-  <!-- Bio + casting profile -->
   <section class="section pt-[clamp(2.25rem,4vw,3.25rem)]">
     <div class="site-container">
       <div class="grid items-start gap-[clamp(2rem,5vw,4rem)] min-[721px]:grid-cols-[1.1fr_0.9fr]">
         <div class="space-y-4">
           <p>
-            I’m an actor in Austin working on camera and in voiceover. I go for honest, lived-in performances that feel less like acting and more
-            like watching a real person.
+            I’m Brian, a screen and voice actor based in Austin, Texas. I work in English and Albanian.
           </p>
           <p>
-            My voice runs from bright commercial spots to steady long-form narration, recorded broadcast-ready on a Shure SM7B with remote
-            direction on request. English and Albanian; dance is part of the kit.
+            For voice projects, I record from a dedicated home studio with a Shure SM7B.
           </p>
           <p>
-            On set or on mic, I come prepared, take direction easily, and turn around clean, usable takes without a lot of fuss.
+            I also have a background in dance. I’m nonunion and hold a passport and driver’s license for projects that involve travel.
           </p>
         </div>
 
@@ -41,12 +37,10 @@
     </div>
   </section>
 
-  <!-- Headshots -->
   <section class="section section--muted" aria-labelledby="headshots-title">
     <div class="site-container">
       <div class="mb-[clamp(2rem,4vw,3.25rem)]">
-        <p class="eyebrow mb-4">Headshots</p>
-        <h2 id="headshots-title" class="text-h2">Recent looks</h2>
+        <h2 id="headshots-title" class="text-h2">Headshots</h2>
       </div>
 
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -59,7 +53,9 @@
             :src="shot.src"
             :alt="shot.alt"
             loading="lazy"
-            class="h-full w-full object-cover transition-transform duration-[400ms] ease-smooth group-hover:scale-[1.03]"
+            width="640"
+            height="800"
+            class="h-full w-full object-cover"
           />
         </figure>
       </div>
@@ -75,14 +71,13 @@
   import AppSurface from "@/components/ui/AppSurface.vue";
 
   const specRows = [
-    { label: "Works in", value: "Screen · Voice" },
+    { label: "Work", value: "Screen and voice" },
     { label: "Playing age", value: "18–27" },
-    { label: "Based in", value: "Austin, TX" },
-    { label: "Languages", value: "English · Albanian" },
-    { label: "Union", value: "Nonunion" },
-    { label: "Voice", value: "Warm · Conversational" },
+    { label: "Based in", value: "Austin, Texas" },
+    { label: "Languages", value: "English and Albanian" },
+    { label: "Union status", value: "Nonunion" },
     { label: "Movement", value: "Dance" },
-    { label: "Travel", value: "Passport · Driver’s license" },
+    { label: "Travel", value: "Passport and driver’s license" },
   ];
 
   const shots = [

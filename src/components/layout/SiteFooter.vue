@@ -5,7 +5,7 @@
         Brian Bakaj
       </RouterLink>
       <div class="flex items-center gap-4">
-        <p>Austin, TX &middot; Screen &amp; voice &middot; Remote-ready</p>
+        <p>Actor based in Austin, Texas.</p>
         <ThemeToggle />
       </div>
     </div>
