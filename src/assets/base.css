@@ -27,22 +27,22 @@
 }
 
 :root {
-  --color-background: 255 255 255;
-  --color-surface-muted: 246 247 248;
+  --color-background: 250 251 252;
+  --color-surface-muted: 239 244 247;
   --color-surface: 255 255 255;
-  --color-body: 31 33 37;
-  --color-secondary: 91 96 104;
-  --color-line: 228 228 231;
-  --color-control-track: 113 113 122;
-  --color-accent: 67 74 83;
-  --color-accent-strong: 48 55 64;
-  --color-accent-contrast: 250 250 250;
-  --color-primary: 48 55 64;
-  --color-primary-contrast: 250 250 250;
-  --color-focus-ring: 67 74 83;
-  --color-intro: 250 250 250;
-  --color-intro-ink: 9 9 11;
-  --color-intro-muted: 82 82 91;
+  --color-body: 36 48 59;
+  --color-secondary: 91 106 118;
+  --color-line: 220 228 234;
+  --color-control-track: 123 141 154;
+  --color-accent: 56 86 108;
+  --color-accent-strong: 41 66 86;
+  --color-accent-contrast: 255 255 255;
+  --color-primary: 36 48 59;
+  --color-primary-contrast: 255 255 255;
+  --color-focus-ring: 56 86 108;
+  --color-intro: 247 250 252;
+  --color-intro-ink: 36 48 59;
+  --color-intro-muted: 91 106 118;
   --font-size-eyebrow: 0.75rem;
   --tracking-eyebrow: 0.06em;
   --font-size-lead: 1.125rem;
@@ -61,11 +61,11 @@
   --space-section: clamp(2rem, 4vw, 3rem);
   --container-width: 74rem;
   --container-narrow: 42rem;
-  --color-panel-line: 211 216 223;
+  --color-panel-line: 202 215 224;
   --radius-panel: 0.875rem;
-  --shadow-panel: 0 8px 28px rgb(31 33 37 / 0.06);
+  --shadow-panel: 0 8px 28px rgb(36 48 59 / 0.06);
   --radius-photo: 0.875rem;
-  --shadow-photo: 0 8px 24px rgb(31 33 37 / 0.08);
+  --shadow-photo: 0 8px 24px rgb(36 48 59 / 0.08);
   --radius-sm: 0.125rem;
   --radius-md: 0.25rem;
   --radius-lg: 0.375rem;
@@ -80,24 +80,24 @@
 }
 
 html[data-theme="dark"] {
-  --color-background: 33 36 40;
-  --color-surface-muted: 40 44 49;
-  --color-surface: 45 49 55;
-  --color-body: 230 233 237;
-  --color-secondary: 179 186 195;
-  --color-line: 75 82 92;
-  --color-control-track: 140 149 162;
-  --color-accent: 211 218 228;
-  --color-accent-strong: 231 236 243;
-  --color-accent-contrast: 33 36 40;
-  --color-primary: 230 233 237;
-  --color-primary-contrast: 33 36 40;
-  --color-focus-ring: 211 218 228;
-  --color-intro: 40 44 49;
-  --color-intro-ink: 230 233 237;
-  --color-intro-muted: 179 186 195;
+  --color-background: 31 40 48;
+  --color-surface-muted: 36 47 57;
+  --color-surface: 43 55 66;
+  --color-body: 229 237 243;
+  --color-secondary: 178 195 208;
+  --color-line: 74 94 111;
+  --color-control-track: 143 167 185;
+  --color-accent: 185 210 227;
+  --color-accent-strong: 213 230 241;
+  --color-accent-contrast: 28 44 56;
+  --color-primary: 229 237 243;
+  --color-primary-contrast: 31 40 48;
+  --color-focus-ring: 185 210 227;
+  --color-intro: 36 47 57;
+  --color-intro-ink: 229 237 243;
+  --color-intro-muted: 178 195 208;
   --shadow-photo: 0 8px 24px rgb(0 0 0 / 0.12);
-  --color-panel-line: 91 101 114;
+  --color-panel-line: 91 114 133;
   --shadow-panel: 0 8px 28px rgb(0 0 0 / 0.14);
   color-scheme: dark;
 }

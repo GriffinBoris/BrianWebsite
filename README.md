@@ -29,8 +29,9 @@ The homepage places Brian’s name and introduction on the left and his original
 on the right. The photo is larger, with a subtle rounded edge and shadow. A separate
 light-gray row below contains a defined white demo panel, with a stronger heading,
 bolder track titles, and prominent play controls.
-Inter and a shared spacing scale keep the pages consistent. Optional dark mode uses
-muted charcoal tones rather than near-black surfaces.
+Soft whites and a muted slate-blue accent carry through the demo controls, links,
+booking actions, and focus states. Inter and a shared spacing scale keep the pages
+consistent. Optional dark mode uses softened slate surfaces rather than near-black.
 
 The active reel can be scrubbed from its row or the persistent player, including on
 mobile. MP3 downloads remain visible. There is no visualizer or supporting paragraph
