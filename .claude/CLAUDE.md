@@ -1268,7 +1268,10 @@ every choice in the subject.
   demos. Use soft whites with a muted slate-blue accent, chosen by the owner. Reserve the accent
   for playback controls, links, booking actions, and focus states; keep the demo panel white in light mode. The demo row uses a defined white panel on a soft
   gray surround, with a stronger heading, bold track titles, prominent play controls, and fine
-  separators. It should read as a primary task area, not recede into the background. Do not use
+  separators. Center the panel vertically within its surround using equal padding above and below.
+  Keep that slate background very subtle and the panel border/shadow quiet so it feels integrated
+  with the page. Emphasis comes from the heading and slightly bluer controls, not a heavy frame.
+  It should read as a primary task area, not recede into the background. Do not use
   a black band to create emphasis. The original outdoor headshot is larger, with a subtle
   rounded edge and shadow. Retain natural image detail and use the original asset.
   Optional dark mode uses softened slate surfaces and softer foregrounds rather than near-black
@@ -1342,7 +1345,9 @@ every choice in the subject.
   sizes, focus rings, and icons (per `agents/.../vue-app-owned-wrapper-component.md`). Callers pass
   semantic props (`tone`, `size`, `icon`, `label`, `to`/`href`). `cn()` (`src/utils/className.ts`)
   merges classes; icons come from Lucide via `src/components/ui/appIcons.ts` + `AppIcon`, not inline
-  SVG. The bespoke audio UI and the responsive nav shell stay custom by design.
+  SVG. Shared buttons use softened corners, token-based shadows and hover/focus states; play
+  icons are filled and press motion respects reduced-motion preferences. The bespoke audio UI
+  and the responsive nav shell stay custom by design.
 - **Design tokens first.** Never hard-code a raw color, radius, or shadow. Use the semantic Tailwind
   utilities (`text-accent`, `bg-surface`, `border-line`, `rounded-lg`, `shadow-md`) or the CSS
   variables in `base.css`. Add a token before introducing a one-off value.

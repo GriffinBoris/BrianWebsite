@@ -29,8 +29,10 @@ The homepage places Brian’s name and introduction on the left and his original
 on the right. The photo is larger, with a subtle rounded edge and shadow. A separate
 light-gray row below contains a defined white demo panel, with a stronger heading,
 bolder track titles, and prominent play controls.
-Soft whites and a muted slate-blue accent carry through the demo controls, links,
-booking actions, and focus states. Inter and a shared spacing scale keep the pages
+Soft whites and a muted blue-slate accent carry through the demo controls, links,
+booking actions, and focus states. Buttons use softened corners, filled play icons,
+and restrained hover/press feedback. The demo panel is vertically centered within a
+very subtle slate surround, with a quiet border and shadow that integrate it with the page. Inter and a shared spacing scale keep the pages
 consistent. Optional dark mode uses softened slate surfaces rather than near-black.
 
 The active reel can be scrubbed from its row or the persistent player, including on

@@ -48,20 +48,20 @@
 
   const toneClasses = computed(() => {
     if (props.tone === "accent") {
-      return "bg-accent text-accent-contrast hover:bg-accent-strong";
+      return "border border-transparent bg-accent text-accent-contrast shadow-button hover:bg-accent-strong hover:shadow-button-hover motion-safe:active:translate-y-px";
     }
     if (props.tone === "ghost") {
       return "border border-line text-body hover:border-accent hover:text-accent";
     }
     if (props.tone === "link") {
-      return "text-secondary hover:text-accent";
+      return "text-secondary hover:bg-accent-soft hover:text-accent-strong";
     }
     return "border border-line bg-surface text-body hover:border-accent";
   });
 
   const rootClasses = computed(() =>
     cn(
-      "inline-flex items-center justify-center rounded-md font-medium transition-colors duration-[160ms] ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring",
+      "inline-flex items-center justify-center rounded-md font-medium transition-[background-color,color,border-color,box-shadow,transform] duration-[160ms] ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
       sizeClasses.value,
       toneClasses.value,
       props.rootClass,
