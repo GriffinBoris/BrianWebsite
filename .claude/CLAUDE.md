@@ -1265,8 +1265,10 @@ every choice in the subject.
   static three-photo gallery. Keep the version-two AI portrait in the repository without active site references.
 - **Softer, focused presentation:** the owner wants the name and introduction at the top left,
   the original portrait at the top right, and a separate row below that draws attention to the
-  demos. Keep the surfaces light and neutral; the demo row uses a soft gray surround and clear
-  controls rather than a black band. The original outdoor headshot is larger, with a subtle
+  demos. Keep the surfaces light and neutral. The demo row uses a defined white panel on a soft
+  gray surround, with a stronger heading, bold track titles, prominent play controls, and fine
+  separators. It should read as a primary task area, not recede into the background. Do not use
+  a black band to create emphasis. The original outdoor headshot is larger, with a subtle
   rounded edge and shadow. Retain natural image detail and use the original asset.
   Optional dark mode uses muted charcoal surfaces and softer foregrounds rather than near-black
   and bright-white contrast. Avoid another broad redesign unless the owner asks.
