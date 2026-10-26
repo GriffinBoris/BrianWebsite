@@ -92,3 +92,7 @@ task agents:check
 ## License
 
 [MIT](./LICENSE)
+
+### Demo waveforms
+
+Audio timelines use real RMS envelopes extracted from each demo MP3. After replacing recordings, run `npm run waveforms:generate` with Python 3 and FFmpeg installed, then commit `src/data/demo-waveforms.json` alongside the audio. The generated file includes source SHA-256 hashes. Waveforms render immediately without downloading or decoding full audio in the browser; the normal site build does not require FFmpeg.

@@ -1259,7 +1259,8 @@ The design follows the frontend-design principle of **spending boldness in one p
 every choice in the subject.
 
 - **Focused demo presentation:** the “Voice Over Demos” section contains its heading and demo cards.
-  Do not add a waveform, audio visualizer, or supporting paragraph beneath the heading.
+  Timelines show real recording-derived waveforms; do not add a separate decorative audio
+  visualizer or supporting paragraph beneath the heading.
   The homepage has no “Listen to demos” button; the demo section itself provides playback and downloads.
   Home uses a single static original portrait (`headshot.jpg`), with no carousel. About keeps its
   static three-photo gallery. Keep the version-two AI portrait in the repository without active site references.
@@ -1361,6 +1362,10 @@ every choice in the subject.
   second `Audio` element or a bespoke player. Reuse `AudioSeek` for the inline and persistent
   scrub controls. Inline seeking is enabled only for the current loaded reel; keep its target 44px
   tall and give active control tracks their own contrast token rather than the decorative divider token.
+  Timeline envelopes come from the actual MP3 files via `npm run waveforms:generate` (Python 3 and
+  FFmpeg, needed only when recordings change). Commit `src/data/demo-waveforms.json` with the audio;
+  it contains 512 normalized RMS samples and a source SHA-256 for each track. `AudioSeek` groups
+  those samples to fit its width, shows played progress, and retains the native keyboard/touch range.
 - **Accessibility & semantics.** Landmarks, meaningful `alt`, visible focus, `aria-pressed` on
   toggles, `prefers-reduced-motion` respected.
 - **Theming.** Light and dark via `html[data-theme]`; every color resolves from a token so both

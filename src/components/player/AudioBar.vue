@@ -25,6 +25,7 @@
         <div class="flex min-w-0 flex-1 items-center gap-[0.7rem] max-[620px]:order-last max-[620px]:basis-full">
           <span class="min-w-[2.6rem] text-center text-[0.8rem] tabular-nums text-secondary">{{ formatTime(currentTime) }}</span>
           <AudioSeek
+            :waveform="currentTrack.waveform"
             :value="progress"
             :disabled="!duration"
             :label="`Seek in ${currentTrack.title.toLowerCase()}`"

@@ -14,6 +14,7 @@
     <div class="demo-row__progress">
       <span>{{ currentLabel }}</span>
       <AudioSeek
+        :waveform="track.waveform"
         :value="active ? progress : 0"
         :disabled="!active || !duration"
         :label="`Seek in ${track.title.toLowerCase()}`"
