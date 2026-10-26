@@ -27,7 +27,8 @@ npm run preview   # production preview at /BrianWebsite/
 
 The homepage places Brian’s name and introduction on the left and his original portrait
 on the right. The photo is larger, with a subtle rounded edge and shadow. A separate
-light-gray row below brings attention to all three voice demos without a black band.
+light-gray row below contains a defined white demo panel, with a stronger heading,
+bolder track titles, and prominent play controls.
 Inter and a shared spacing scale keep the pages consistent. Optional dark mode uses
 muted charcoal tones rather than near-black surfaces.
 

@@ -51,11 +51,11 @@
 <style scoped>
   .demo-row {
     display: grid;
-    grid-template-columns: 48px minmax(180px, 230px) minmax(0, 1fr) auto;
+    grid-template-columns: 56px minmax(180px, 230px) minmax(0, 1fr) auto;
     grid-template-areas: "play title progress download";
     align-items: center;
     column-gap: var(--space-6);
-    min-height: 80px;
+    min-height: 84px;
     border-bottom: 1px solid rgb(var(--color-line));
   }
 
@@ -65,15 +65,24 @@
 
   .demo-row__play {
     grid-area: play;
-    height: 48px;
-    width: 48px;
+    height: 56px;
+    width: 56px;
+  }
+
+  .demo-row__play :deep(svg) {
+    width: 24px;
+    height: 24px;
+  }
+
+  .demo-row.is-active .demo-row__title {
+    color: rgb(var(--color-accent-strong));
   }
 
   .demo-row__title {
     grid-area: title;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.35;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -0.02em;
   }
 
@@ -109,11 +118,15 @@
       grid-template-columns: 48px minmax(0, 1fr) auto;
       grid-template-areas: "play title download" "play progress download";
       gap: 0 var(--space-4);
-      padding-block: var(--space-3);
+      padding-block: var(--space-2);
+    }
+    .demo-row__play {
+      width: 48px;
+      height: 48px;
     }
     .demo-row__title {
       align-self: end;
-      font-size: 17px;
+      font-size: 18px;
     }
     .demo-row__progress {
       gap: var(--space-2);
@@ -148,6 +161,14 @@
     }
     .demo-row__progress > span {
       min-width: 1.75rem;
+    }
+  }
+  @media (max-width: 360px) {
+    .demo-row {
+      grid-template-areas: "play title title" "progress progress download";
+    }
+    .demo-row__title {
+      align-self: center;
     }
   }
 </style>

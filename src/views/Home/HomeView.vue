@@ -20,9 +20,11 @@
 
   <section id="reels" class="home-demos" aria-labelledby="demos-title">
     <div class="site-container">
-      <h2 id="demos-title">Voice Over Demos</h2>
-      <div class="demo-list">
-        <DemoCard v-for="track in demoTracks" :key="track.id" :track="track" />
+      <div class="demo-panel">
+        <h2 id="demos-title">Voice Over Demos</h2>
+        <div class="demo-list">
+          <DemoCard v-for="track in demoTracks" :key="track.id" :track="track" />
+        </div>
       </div>
     </div>
   </section>
@@ -138,16 +140,23 @@
   }
 
   .home-demos {
-    padding-block: 28px 20px;
-    border-block: 1px solid rgb(var(--color-line));
+    padding-block: 0 28px;
     background: rgb(var(--color-surface-muted));
   }
 
+  .demo-panel {
+    padding: var(--space-6) var(--space-8);
+    border: 1px solid rgb(var(--color-panel-line));
+    border-radius: var(--radius-panel);
+    background: rgb(var(--color-surface));
+    box-shadow: var(--shadow-panel);
+  }
+
   .home-demos h2 {
-    margin-bottom: var(--space-4);
-    font-size: var(--font-size-h2);
+    margin-bottom: var(--space-3);
+    font-size: 30px;
     line-height: 1.2;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -0.035em;
   }
 
@@ -240,10 +249,14 @@
       margin-top: var(--space-2);
     }
     .home-demos {
-      padding-block: var(--space-6);
+      padding-block: 0 var(--space-6);
+    }
+    .demo-panel {
+      padding: var(--space-4);
     }
     .home-demos h2 {
-      font-size: 26px;
+      margin-bottom: var(--space-2);
+      font-size: 25px;
     }
     .booking-layout {
       align-items: flex-start;
