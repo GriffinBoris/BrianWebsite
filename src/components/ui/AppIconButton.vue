@@ -48,11 +48,11 @@
     return "h-10 w-10 min-h-0 p-0";
   });
 
-  const iconSize = computed(() => (props.size === "lg" ? "h-5 w-5" : "h-[18px] w-[18px]"));
+  const iconSize = computed(() => cn(props.size === "lg" ? "h-5 w-5" : "h-[18px] w-[18px]", props.icon === "play" && "fill-current"));
 
   const toneClass = computed(() => {
     if (props.tone === "accent") {
-      return "border-transparent bg-accent text-accent-contrast hover:bg-accent-strong hover:translate-y-0";
+      return "border-transparent bg-accent text-accent-contrast shadow-button hover:bg-accent-strong hover:border-accent-strong hover:shadow-button-hover motion-safe:active:translate-y-px";
     }
     if (props.tone === "ghost") {
       return "border-transparent bg-transparent text-secondary hover:border-line hover:text-body hover:translate-y-0";

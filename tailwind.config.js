@@ -17,6 +17,7 @@ export default {
         "primary-contrast": semanticColor("--color-primary-contrast"),
         accent: semanticColor("--color-accent"),
         "accent-strong": semanticColor("--color-accent-strong"),
+        "accent-soft": semanticColor("--color-accent-soft"),
         "accent-contrast": semanticColor("--color-accent-contrast"),
         "focus-ring": semanticColor("--color-focus-ring"),
       },
@@ -36,6 +37,8 @@ export default {
         pill: "var(--radius-pill)",
       },
       boxShadow: {
+        button: "var(--shadow-button)",
+        "button-hover": "var(--shadow-button-hover)",
         sm: "var(--shadow-sm)",
         md: "var(--shadow-md)",
         lg: "var(--shadow-lg)",

@@ -140,7 +140,7 @@
   }
 
   .home-demos {
-    padding-block: 0 28px;
+    padding-block: var(--space-4);
     background: rgb(var(--color-surface-muted));
   }
 
@@ -249,7 +249,7 @@
       margin-top: var(--space-2);
     }
     .home-demos {
-      padding-block: 0 var(--space-6);
+      padding-block: var(--space-4);
     }
     .demo-panel {
       padding: var(--space-4);
