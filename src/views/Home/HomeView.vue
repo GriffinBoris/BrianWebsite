@@ -6,10 +6,8 @@
         <h1 id="hero-title" class="text-h1">Brian Bakaj</h1>
         <p class="mt-1 text-secondary">Voice actor in English and Albanian</p>
       </div>
-      <div class="intro__actions">
-        <AppButton tone="accent" size="lg" :href="auditionRequestHref" root-class="w-full">Request an audition</AppButton>
-        <a class="intro__email" :href="`mailto:${bookingEmail}`">{{ bookingEmail }}</a>
-      </div>
+      <!-- The header carries this button on wider screens. -->
+      <AppButton tone="accent" size="lg" :href="auditionRequestHref" root-class="intro__action">Request an audition</AppButton>
     </section>
 
     <div class="main">
@@ -20,28 +18,20 @@
         </div>
       </section>
 
-      <section class="bio" aria-labelledby="bio-title">
-        <h2 id="bio-title" class="text-h2">About</h2>
-        <p class="mt-3">
-          I’m Brian, a voice actor based in Austin, Texas, working in English and Albanian. I record from a dedicated home studio with a
-          Shure SM7B, and I hold a passport and driver’s license for projects that involve travel.
-        </p>
+      <section class="facts" aria-labelledby="facts-title">
+        <h2 id="facts-title" class="text-h2">Casting profile</h2>
+        <dl>
+          <div v-for="fact in facts" :key="fact.label" class="facts__row">
+            <dt>{{ fact.label }}</dt>
+            <dd>{{ fact.value }}</dd>
+          </div>
+        </dl>
+        <AppButton tone="link" :to="{ name: 'about' }" root-class="mt-2">
+          <span>Bio and headshots</span>
+          <AppIcon icon="arrowRight" class="h-4 w-4" />
+        </AppButton>
       </section>
     </div>
-
-    <section class="facts" aria-labelledby="facts-title">
-      <h2 id="facts-title" class="sr-only">Casting profile</h2>
-      <dl>
-        <div v-for="fact in facts" :key="fact.label" class="facts__row">
-          <dt>{{ fact.label }}</dt>
-          <dd>{{ fact.value }}</dd>
-        </div>
-      </dl>
-      <AppButton tone="link" :to="{ name: 'about' }" root-class="mt-2">
-        <span>Full profile and headshots</span>
-        <AppIcon icon="arrowRight" class="h-4 w-4" />
-      </AppButton>
-    </section>
   </div>
 </template>
 
@@ -52,7 +42,7 @@
   import AppIcon from "@/components/ui/AppIcon.vue";
   import { usePlayer } from "@/composables/usePlayer";
   import { demoTracks } from "@/data/demos";
-  import { auditionRequestHref, bookingEmail } from "@/data/profiles";
+  import { auditionRequestHref } from "@/data/profiles";
   import { onMounted } from "vue";
 
   const { loadDurations } = usePlayer();
@@ -72,8 +62,8 @@
   .one-sheet {
     display: grid;
     grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr);
-    grid-template-areas: "intro main" "facts main";
-    grid-template-rows: auto 1fr;
+    grid-template-areas: "intro main";
+    align-items: start;
     gap: 2rem clamp(2rem, 5vw, 4rem);
     padding-block: clamp(2rem, 5vw, 3.5rem) var(--space-section);
   }
@@ -91,22 +81,15 @@
     margin-top: 1.25rem;
   }
 
-  .intro__actions {
+  .intro :deep(.intro__action) {
+    width: 100%;
     margin-top: 1.25rem;
   }
 
-  .intro__email {
-    display: inline-flex;
-    align-items: center;
-    min-height: 2.75rem;
-    font-size: 0.875rem;
-    color: rgb(var(--color-secondary));
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-
-  .intro__email:hover {
-    color: rgb(var(--color-body));
+  @media (min-width: 721px) {
+    .intro :deep(.intro__action) {
+      display: none;
+    }
   }
 
   .main {
@@ -123,14 +106,12 @@
     background: rgb(var(--color-surface));
   }
 
-  .bio {
-    max-width: 40rem;
+  .facts {
     margin-top: 3rem;
-    line-height: 1.7;
   }
 
-  .facts {
-    grid-area: facts;
+  .facts dl {
+    margin-top: 1rem;
   }
 
   .facts__row {
@@ -158,14 +139,13 @@
   @media (max-width: 860px) {
     .one-sheet {
       grid-template-columns: minmax(0, 1fr);
-      grid-template-areas: "intro" "main" "facts";
-      grid-template-rows: auto;
+      grid-template-areas: "intro" "main";
     }
 
     .intro {
       display: grid;
       grid-template-columns: 5.5rem minmax(0, 1fr);
-      grid-template-areas: "photo text" "actions actions";
+      grid-template-areas: "photo text" "action action";
       align-items: center;
       column-gap: 1rem;
     }
@@ -181,8 +161,8 @@
       margin-top: 0;
     }
 
-    .intro__actions {
-      grid-area: actions;
+    .intro :deep(.intro__action) {
+      grid-area: action;
     }
   }
 </style>

@@ -5,5 +5,4 @@ export const auditionRequestHref = `mailto:${bookingEmail}?subject=${encodeURICo
 export const profiles = [
   { label: "Backstage", href: "https://www.backstage.com/u/brian-bakaj/" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/brian-bakaj" },
-  { label: "Facebook", href: "https://www.facebook.com/brian.bakaj/" },
 ];

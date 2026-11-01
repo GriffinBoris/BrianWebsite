@@ -11,7 +11,6 @@
           tone="accent"
           :icon="isPlaying ? 'pause' : 'play'"
           :label="`${isPlaying ? 'Pause' : 'Play'} ${currentTrack.title.toLowerCase()}`"
-          :show-tooltip="false"
           :aria-pressed="isPlaying"
           @click="togglePlayback"
         />

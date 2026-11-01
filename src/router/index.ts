@@ -36,7 +36,7 @@ const router = createRouter({
       meta: {
         title: "About Brian Bakaj",
         description:
-          "Learn about Brian Bakaj, a voice actor in Austin, Texas. View his casting profile and headshots.",
+          "About Brian Bakaj, a voice actor in Austin, Texas, working in English and Albanian. View his headshots.",
       },
     },
     {

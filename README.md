@@ -7,7 +7,7 @@ in English and Albanian.
 
 ## Development
 
-Vue 3, TypeScript, Vite, Tailwind v4, and PrimeVue in unstyled mode. The site
+Vue 3, TypeScript, Vite, and Tailwind v4. The site
 builds to static assets; it has no backend or database.
 
 ```bash
@@ -19,25 +19,16 @@ npm run preview   # production preview at /BrianWebsite/
 
 ## Pages
 
-- **Home** (`/`): introduction with a static original portrait, voice demos, and booking links. Demo order:
-  video games, commercial, narration. Each reel supports playback and MP3 downloads;
-  the shared audio bar keeps playing across pages and supports seeking on mobile.
-- **About** (`/about`): bio, casting profile, and headshots.
-- **Contact** (`/contact`): booking email (`brianbakaj@icloud.com`) and external profiles.
+- **Home** (`/`): a talent one-sheet. Headshot, name, and "Request an audition" on
+  the left; the demos (video game, commercial, narration, each with playback,
+  seeking, and MP3 download) and the casting profile on the right. The bottom
+  audio bar keeps playing across pages.
+- **About** (`/about`): short bio and headshots.
+- **Contact** (`/contact`): booking email (`brianbakaj@icloud.com`), what to
+  include in an inquiry, and external profiles.
 
-The homepage places Brian’s name and introduction on the left and his original portrait
-on the right. The photo is larger, with a subtle rounded edge and shadow. A separate
-light-gray row below contains a defined white demo panel, with a stronger heading,
-bolder track titles, and prominent play controls.
-Soft whites and a muted blue-slate accent carry through the demo controls, links,
-booking actions, and focus states. Buttons use softened corners, filled play icons,
-and restrained hover/press feedback. The demo panel is vertically centered within a
-very subtle slate surround, with a quiet border and shadow that integrate it with the page. Inter and a shared spacing scale keep the pages
-consistent. Optional dark mode uses softened slate surfaces rather than near-black.
-
-The active reel can be scrubbed from its row or the persistent player, including on
-mobile. MP3 downloads remain visible. There is no visualizer or supporting paragraph
-beneath “Voice Over Demos.” About retains the three-photo gallery.
+The design is deliberately plain: white page, near-black text, one solid indigo
+accent, Inter only, and a black footer. Light and dark themes are supported.
 
 ## Source layout
 
@@ -46,9 +37,10 @@ src/
   App.vue             shared header, route outlet, footer, and audio bar
   router/             Home, About, Contact; HTML5 history
   views/              page components
-  components/         layout, page, player, and app-owned UI wrappers
+  components/         layout, player, and app-owned UI wrappers
   composables/        shared audio engine and theme preference
   data/demos.ts       demo order, labels, asset imports, and durations
+  data/profiles.ts    booking email and external profile links
   assets/             design tokens, fonts, images, and MP3s
   utils/              class merging and route metadata
 public/               favicon, social image, sitemap, robots.txt, Pages fallback
@@ -58,8 +50,9 @@ public/               favicon, social image, sitemap, robots.txt, Pages fallback
 
 - Add or reorder reels in `src/data/demos.ts`. Import audio from
   `src/assets/media/` so Vite generates the production URL.
-- Booking links and the visible email live in `src/views/Contact/ContactView.vue`.
-- Update the bio and casting profile in `src/views/About/AboutView.vue`.
+- The booking email and profile links live in `src/data/profiles.ts`.
+- The casting profile is in `src/views/Home/HomeView.vue`; the bio is in
+  `src/views/About/AboutView.vue`.
 - Keep credits, representation, and client claims limited to confirmed facts.
 
 ## GitHub Pages
