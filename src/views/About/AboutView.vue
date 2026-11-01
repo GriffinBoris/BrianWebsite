@@ -21,7 +21,6 @@
 
 <style scoped>
   .about-biography {
-    max-width: 38rem;
     margin-top: 1.5rem;
     font-size: 1.0625rem;
     line-height: 1.7;
