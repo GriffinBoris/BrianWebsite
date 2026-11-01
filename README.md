@@ -19,11 +19,11 @@ npm run preview   # production preview at /BrianWebsite/
 
 ## Pages
 
-- **Home** (`/`): a talent one-sheet. Headshot, name, and "Request an audition" on
-  the left; the demos (video game, commercial, narration, each with playback,
-  seeking, and MP3 download) and the casting profile on the right. The bottom
+- **Home** (`/`): a talent one-sheet. Headshot and name on the left; the demos
+  (video game, commercial, narration, each with playback, seeking, and MP3
+  download) on the right. The bottom
   audio bar keeps playing across pages.
-- **About** (`/about`): short bio and headshots.
+- **About** (`/about`): short bio, casting profile, and headshots.
 - **Contact** (`/contact`): booking email (`brianbakaj@icloud.com`), what to
   include in an inquiry, and external profiles.
 
@@ -51,8 +51,7 @@ public/               favicon, social image, sitemap, robots.txt, Pages fallback
 - Add or reorder reels in `src/data/demos.ts`. Import audio from
   `src/assets/media/` so Vite generates the production URL.
 - The booking email and profile links live in `src/data/profiles.ts`.
-- The casting profile is in `src/views/Home/HomeView.vue`; the bio is in
-  `src/views/About/AboutView.vue`.
+- The bio and casting profile are in `src/views/About/AboutView.vue`.
 - Keep credits, representation, and client claims limited to confirmed facts.
 
 ## GitHub Pages
