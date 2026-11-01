@@ -5,10 +5,6 @@
       <div class="intro__text">
         <h1 id="hero-title" class="text-h1">Brian Bakaj</h1>
         <p class="mt-1 text-secondary">Voice actor in English and Albanian</p>
-        <AppButton tone="link" :to="{ name: 'about' }" root-class="mt-2">
-          <span>Casting profile</span>
-          <AppIcon icon="arrowRight" class="h-4 w-4" />
-        </AppButton>
       </div>
     </section>
 
@@ -24,8 +20,6 @@
 <script setup lang="ts">
   import headshot from "@/assets/img/headshot.jpg";
   import DemoRow from "@/components/player/DemoRow.vue";
-  import AppButton from "@/components/ui/AppButton.vue";
-  import AppIcon from "@/components/ui/AppIcon.vue";
   import { usePlayer } from "@/composables/usePlayer";
   import { demoTracks } from "@/data/demos";
   import { onMounted } from "vue";
