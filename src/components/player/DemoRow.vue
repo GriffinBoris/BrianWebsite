@@ -5,7 +5,6 @@
       :tone="active ? 'accent' : 'outline'"
       :icon="playing ? 'pause' : 'play'"
       :label="`${playing ? 'Pause' : 'Play'} ${track.title.toLowerCase()}`"
-      :show-tooltip="false"
       :aria-pressed="playing"
       root-class="demo-row__play"
       @click="toggleTrack(track)"

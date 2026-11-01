@@ -12,7 +12,6 @@
   import type { AppIconName } from "@/components/ui/appIcons";
   import { cn } from "@/utils/className";
   import type { LucideIcon } from "@lucide/vue";
-  import Button from "primevue/button";
   import { computed } from "vue";
   import { RouterLink, type RouteLocationRaw } from "vue-router";
 
@@ -76,7 +75,7 @@
     ),
   );
 
-  const rootComponent = computed(() => (props.to ? RouterLink : props.href ? "a" : Button));
+  const rootComponent = computed(() => (props.to ? RouterLink : props.href ? "a" : "button"));
 
   const rootBindings = computed(() => {
     if (props.to) {
@@ -86,6 +85,6 @@
       const rel = props.target === "_blank" ? "noopener noreferrer" : undefined;
       return { href: props.href, download: props.download, target: props.target, rel, class: rootClasses.value, "aria-label": props.ariaLabel };
     }
-    return { unstyled: true, pt: { root: rootClasses.value }, "aria-label": props.ariaLabel };
+    return { type: "button", class: rootClasses.value, "aria-label": props.ariaLabel };
   });
 </script>

@@ -44,24 +44,31 @@ every choice in the subject.
   business rather than a design showcase. No taglines, wordplay headings, gradients, glows,
   ornamental animation, or filler copy. Headings are plain ("Demos", "About", "Casting profile",
   "Headshots", "Bookings and auditions").
-- **Home is a talent one-sheet.** Left column: headshot, name, "Voice actor in English and
-  Albanian", a "Request an audition" button (mailto with an "Audition request" subject), the email,
-  and a short casting-profile list. Right column: the Demos list (stacked, labelled players with
-  waveform, times, and MP3 download), then a short About paragraph. On phones: compact photo and
-  name row, the CTA, then demos immediately.
-- **Contact everywhere.** The header carries "Request an audition" (hidden on narrow screens, where
-  Contact remains in the nav). The black footer repeats the email and profile links.
+- **Home is a talent one-sheet.** Left column: headshot, name, and "Voice actor in English and
+  Albanian". Right column: the Demos list (stacked, labelled players with waveform, times, and MP3
+  download), then the casting profile (languages, location, playing age, union status, studio). On
+  phones: compact photo and name row, a "Request an audition" button (shown only where the header
+  hides its copy), then demos immediately.
+- **Each fact appears once.** The casting profile lives only on Home; About is a short bio plus
+  headshots; the footer is just name, email, and profiles. Omit details that do not matter for
+  voice work (on-camera items such as movement or travel documents) and personal social accounts
+  such as Facebook.
+- **Contact everywhere.** The header carries "Request an audition" (a mailto with an "Audition
+  request" subject; hidden on narrow screens, where Contact stays in the nav). The footer
+  repeats the email and profile links.
 - **Colour: Brian's favourites, used with restraint.** White page, near-black ink, one solid indigo
-  accent (blue-purple) for buttons, links, the active demo, and focus. Black footer
-  (`.theme-ink`). Dark theme is near-black with a light indigo accent. Small radii; round buttons
+  accent (blue-purple) for buttons, links, the active demo, and focus. The header and
+  footer share the page's theme (light in light mode, dark in dark mode) so the page is framed
+  evenly; a single dark band at one end looked unbalanced. Dark theme is near-black with a light indigo accent. Small radii; round buttons
   only for audio controls.
 - **Type: Inter only** (one self-hosted variable file), semibold headings at modest sizes. No
   serif, italic emphasis, or display faces; the owner asked for normal, good fonts.
 - **Do not invent credibility.** Industry sites often show client logos, testimonials, agent
   representation, and remote-session tools (Source-Connect, ipDTL). Add these only when Brian
   supplies real ones.
-- No carousel. About keeps its static three-photo gallery. Keep the version-two AI portrait in the
-  repository without active site references.
+- No carousel. About keeps its static three-photo gallery. The version-two AI portrait is kept at
+  `src/assets/img/headshot-v2.png` with no references; files there ship only when imported, so it
+  is not deployed. Do not put unused files in `public/`, which is published verbatim.
 - **Usable, not a maze.** No scroll-triggered reveals or content hidden until scrolled into view.
   Everything is visible and reachable; navigation is explicit. Prefer clarity and findability over
   scroll spectacle.
@@ -90,14 +97,14 @@ every choice in the subject.
   `public/404.html` and the restoration script in `index.html`; old hash links remain supported.
   Routes: `home` (`/`), `about`, `contact`. Route metadata updates client-side; social previews
   read the shared metadata in `index.html`.
-- `src/views/<Name>/<Name>View.vue` — one folder per route. `HomeView` (one-sheet: profile column, demos, short bio),
-  `AboutView` (bio, casting-profile spec card, headshots gallery), `ContactView` (email, what to
+- `src/views/<Name>/<Name>View.vue` — one folder per route. `HomeView` (one-sheet: identity column, demos, casting profile),
+  `AboutView` (short bio and headshots gallery), `ContactView` (email, what to
   include, profile links). The header shows Demos (a `#demos` anchor on home), About, Contact, and a
   "Request an audition" button; the current page gets an accent underline.
 - `src/components/` — `layout/` (`SiteHeader` with inline navigation, `SiteFooter`),
   `player/` (`DemoRow`,
-  `AudioBar`, and the shared `AudioSeek` range), `ui/` (the app-owned PrimeVue wrappers: `AppButton`, `AppIconButton`,
-  `AppIcon`, `ThemeToggle`, plus `appIcons.ts` and `AppTooltip.ts`).
+  `AudioBar`, and the shared `AudioSeek` range), `ui/` (the app-owned wrappers: `AppButton`, `AppIconButton`,
+  `AppIcon`, `ThemeToggle`, plus `appIcons.ts`).
 - `src/utils/className.ts` — `cn()` (clsx + tailwind-merge), the class combiner used by the wrappers.
 - `src/composables/` — `useTheme.ts` (light/dark singleton driving `html[data-theme]`) and
   `usePlayer.ts` (the audio engine: one `Audio` element drives the demo rows and the
@@ -108,27 +115,29 @@ every choice in the subject.
   `src/data/profiles.ts` holds the booking email and external profile links used by the footer,
   home, and Contact.
 - `src/assets/` — `base.css` (Tailwind entry + `@config` + design tokens + resets + shared
-  `.site-container`/`.eyebrow`/`.lead` primitives, and the `.theme-ink` scope for the black footer), the self-hosted Inter
+  `.site-container`/`.section`/`.lead` primitives), the self-hosted Inter
   variable `woff2` under `fonts/`, `img/` (headshot + looks), and `media/` (the demo mp3s). Fonts/images/media are imported
   so Vite hashes them and rewrites URLs for the Pages base path.
 - `tailwind.config.js` — maps the CSS-variable tokens onto semantic Tailwind names (`bg-surface`,
   `text-body`, `text-accent`, `rounded-lg`, …). `darkMode` keys off `[data-theme="dark"]`.
 - `public/` — assets served verbatim at the site root: `favicon.svg`, `og-image.jpg` (social crawlers
-  need a static URL), and `resume/` (reserved for a résumé PDF).
+  need a static URL), `404.html` (deep-link fallback), `robots.txt`, and `sitemap.xml`.
 - `vite.config.ts` — Vue + Tailwind plugins, `@` → `src` alias, and `base: '/BrianWebsite/'` in
   production for the GitHub Pages project subpath.
 - `.github/workflows/pages.yml` — installs deps, runs `npm run build`, and publishes `dist/` to Pages.
 
 ## Conventions
 
-- **Reactive static, house stack.** Vue 3 `<script setup lang="ts">` SFCs, `vue-router`, Tailwind v4,
-  and **PrimeVue in unstyled mode** — all bundled by Vite into `dist/`, so the site stays fully static
+- **Reactive static, house stack.** Vue 3 `<script setup lang="ts">` SFCs, `vue-router`, and Tailwind v4,
+  all bundled by Vite into `dist/`, so the site stays fully static
   and self-hosted (no CDN, no runtime external requests). No pinia/axios/backend — this is a brochure
   site, so keep dependencies minimal (YAGNI) and reach for a composable before a store.
-- **App-owned wrappers around PrimeVue.** Route views and route-local components never import
-  `primevue/*` directly. They use the app-owned wrappers under `src/components/ui/` — `AppButton`,
-  `AppIconButton`, `AppIcon`, `ThemeToggle` — which own the `unstyled` `pt` maps, tones,
-  sizes, focus rings, and icons (per `agents/.../vue-app-owned-wrapper-component.md`). Callers pass
+- **App-owned wrappers, no component library.** PrimeVue was removed: it supplied only one plain
+  button and two tooltips but made up about two-thirds of the main bundle (257 KB to 79 KB). This
+  deliberately overrides the Vue guide's PrimeVue preference for this small brochure site. Route
+  views use the app-owned wrappers under `src/components/ui/` — `AppButton`, `AppIconButton`,
+  `AppIcon`, `ThemeToggle` — which render native elements and own tones, sizes, focus rings, and
+  icons. Icon buttons carry an `aria-label` and no tooltip. Callers pass
   semantic props (`tone`, `size`, `icon`, `label`, `to`/`href`). `cn()` (`src/utils/className.ts`)
   merges classes; icons come from Lucide via `src/components/ui/appIcons.ts` + `AppIcon`, not inline
   SVG. Buttons are solid with small radii and tones `accent`, `outline`, and `link`;
@@ -136,12 +145,11 @@ every choice in the subject.
   and the responsive nav shell stay custom by design.
 - **Design tokens first.** Never hard-code a raw color, radius, or shadow. Use the semantic Tailwind
   utilities (`text-accent`, `bg-surface`, `border-line`, `rounded-lg`) or the CSS
-  variables in `base.css`. Add a token before introducing a one-off value. For a black section,
-  add `.theme-ink`; it redefines the base tokens so components inside need no special cases.
+  variables in `base.css`. Add a token before introducing a one-off value.
   Scoped `<style>` blocks cannot call `theme()`; use the CSS variables there.
 - **Tailwind-first, small components layer.** Style with Tailwind utilities in templates; the only
   shared CSS classes are the cross-cutting primitives in `base.css` (`.site-container`, `.section`,
-  `.lead`, `.theme-ink`) and component-scoped `<style>` where a pure-utility
+  `.lead`) and component-scoped `<style>` where a pure-utility
   expression would be unreadable (grid layouts, the nav underline, the demo rows, and the scrub range). Demo rows use a
   container query so they fit both the one-sheet column and phones.
 - **One audio engine.** All playback goes through `usePlayer`. Any new play control calls
@@ -171,16 +179,17 @@ every choice in the subject.
 
 - Voice actor. Austin, TX. Playing age 18–27. Nonunion. English and
   **Albanian**. Records on a **Shure SM7B** in a dedicated home studio. Movement: dance. Holds a
-  driver's license and passport (travel-ready). These are reflected in the About copy and the
-  casting-profile card — keep them accurate, and do not invent credits he can't back up.
+  driver's license and passport (travel-ready). The voice-relevant ones appear in the Home casting
+  profile and the About bio; dance and travel documents are on-camera details left off the site.
+  Keep them accurate, and do not invent credits he can't back up.
 
 ## Content The Owner Supplies Or Confirms Later
 
-- **Booking email:** `brianbakaj@icloud.com`, confirmed by the owner. Keep the button and visible
-  address in `ContactView.vue` in sync.
+- **Booking email:** `brianbakaj@icloud.com`, confirmed by the owner. It lives in `src/data/profiles.ts`.
 - Real training, representation, and specific credits/clients can be added to About when he has
   details he can back up. Do not invent them.
-- External profiles are linked on the **Contact** page (Backstage, LinkedIn, Facebook). These
+- External profiles (Backstage and LinkedIn, from `src/data/profiles.ts`) are linked on the
+  **Contact** page and in the footer. These
   are gated to automated fetching, so their content is linked, not scraped.
 
 ## Future Direction

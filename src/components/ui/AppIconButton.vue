@@ -1,6 +1,5 @@
 <template>
   <AppButton
-    v-tooltip="tooltipBinding"
     :aria-label="label"
     :icon="icon"
     :icon-size="iconSize"
@@ -12,7 +11,6 @@
 <script setup lang="ts">
   import AppButton from "@/components/ui/AppButton.vue";
   import type { AppIconName } from "@/components/ui/appIcons";
-  import { buildAppTooltipBinding } from "@/components/ui/AppTooltip";
   import { cn } from "@/utils/className";
   import type { LucideIcon } from "@lucide/vue";
   import { computed } from "vue";
@@ -24,14 +22,12 @@
     icon: AppIconName | LucideIcon;
     label: string;
     rootClass?: string;
-    showTooltip?: boolean;
     size?: IconButtonSize;
     tone?: IconButtonTone;
   }
 
   const props = withDefaults(defineProps<Props>(), {
     rootClass: undefined,
-    showTooltip: true,
     size: "md",
     tone: "outline",
   });
@@ -68,6 +64,4 @@
   });
 
   const iconButtonClass = computed(() => cn("min-h-0 shrink-0 rounded-pill p-0", sizeClass.value, toneClass.value, props.rootClass));
-
-  const tooltipBinding = computed(() => buildAppTooltipBinding({ disabled: !props.showTooltip, text: props.label }));
 </script>
