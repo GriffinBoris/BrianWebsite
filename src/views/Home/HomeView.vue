@@ -6,7 +6,7 @@
         <h1 id="hero-title" class="text-h1">Brian Bakaj</h1>
         <p class="mt-1 text-secondary">Voice actor in English and Albanian</p>
         <AppButton tone="link" :to="{ name: 'about' }" root-class="mt-2">
-          <span>Casting profile and headshots</span>
+          <span>Casting profile</span>
           <AppIcon icon="arrowRight" class="h-4 w-4" />
         </AppButton>
       </div>

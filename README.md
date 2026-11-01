@@ -23,7 +23,7 @@ npm run preview   # production preview at /BrianWebsite/
   (video game and animation, commercial, narration, each with playback, seeking, and MP3
   download) on the right. The bottom
   audio bar keeps playing across pages.
-- **About** (`/about`): short bio, casting profile, and headshots.
+- **About** (`/about`): short bio and casting profile.
 - **Contact** (`/contact`): a contact card with the booking email
   (`brianbakaj@icloud.com`, with a copy button), location and time zone, and a Request an audition button.
 
@@ -66,7 +66,7 @@ Old hash links remain supported. This is a client-rendered site: route metadata
 updates during navigation, but social previews read the shared HTML metadata.
 
 Before shipping, run the production build and check all three routes in both
-themes, narrow and wide layouts, the About gallery, demo playback, seeking,
+themes, narrow and wide layouts, demo playback, seeking,
 playback across route changes, and the booking links. There is no
 configured linter or automated test suite.
 

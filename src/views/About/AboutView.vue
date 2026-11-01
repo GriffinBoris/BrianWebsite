@@ -18,33 +18,16 @@
         </dl>
       </section>
     </div>
-
-    <section class="mt-14" aria-labelledby="headshots-title">
-      <h2 id="headshots-title" class="text-h2">Headshots</h2>
-      <div class="headshots-grid">
-        <img v-for="shot in shots" :key="shot.src" class="headshot" :src="shot.src" :alt="shot.alt" loading="lazy" width="640" height="800" />
-      </div>
-    </section>
   </div>
 </template>
 
 <script setup lang="ts">
-  import look01 from "@/assets/img/brian-look-01.jpg";
-  import look02 from "@/assets/img/brian-look-02.jpg";
-  import headshot from "@/assets/img/headshot.jpg";
-
   const facts = [
     { label: "Languages", value: "English and Albanian" },
     { label: "Based in", value: "Austin, Texas" },
     { label: "Playing age", value: "18–27" },
     { label: "Union status", value: "Nonunion" },
     { label: "Studio", value: "Home studio, Shure SM7B" },
-  ];
-
-  const shots = [
-    { src: look01, alt: "Brian Bakaj, portrait against a yellow wall" },
-    { src: look02, alt: "Brian Bakaj, portrait against a gray wall" },
-    { src: headshot, alt: "Brian Bakaj, outdoor headshot" },
   ];
 </script>
 
@@ -88,29 +71,8 @@
     margin-top: 1rem;
   }
 
-  .headshots-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-    margin-top: 1.25rem;
-  }
-
-  .headshot {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    border-radius: var(--radius-lg);
-    background: rgb(var(--color-surface-muted));
-  }
-
   @media (max-width: 820px) {
     .about-layout {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 560px) {
-    .headshots-grid {
       grid-template-columns: 1fr;
     }
   }
