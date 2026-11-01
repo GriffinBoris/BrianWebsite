@@ -1273,11 +1273,12 @@ every choice in the subject.
   voice work (on-camera items such as movement or travel documents) and personal social accounts
   such as Facebook.
 - **Contact everywhere.** The header carries "Request an audition" (a mailto with an "Audition
-  request" subject; hidden on narrow screens, where Contact stays in the nav). The black footer
+  request" subject; hidden on narrow screens, where Contact stays in the nav). The footer
   repeats the email and profile links.
 - **Colour: Brian's favourites, used with restraint.** White page, near-black ink, one solid indigo
-  accent (blue-purple) for buttons, links, the active demo, and focus. Black footer
-  (`.theme-ink`). Dark theme is near-black with a light indigo accent. Small radii; round buttons
+  accent (blue-purple) for buttons, links, the active demo, and focus. The header and
+  footer share the page's theme (light in light mode, dark in dark mode) so the page is framed
+  evenly; a single dark band at one end looked unbalanced. Dark theme is near-black with a light indigo accent. Small radii; round buttons
   only for audio controls.
 - **Type: Inter only** (one self-hosted variable file), semibold headings at modest sizes. No
   serif, italic emphasis, or display faces; the owner asked for normal, good fonts.
@@ -1333,7 +1334,7 @@ every choice in the subject.
   `src/data/profiles.ts` holds the booking email and external profile links used by the footer,
   home, and Contact.
 - `src/assets/` — `base.css` (Tailwind entry + `@config` + design tokens + resets + shared
-  `.site-container`/`.eyebrow`/`.lead` primitives, and the `.theme-ink` scope for the black footer), the self-hosted Inter
+  `.site-container`/`.section`/`.lead` primitives), the self-hosted Inter
   variable `woff2` under `fonts/`, `img/` (headshot + looks), and `media/` (the demo mp3s). Fonts/images/media are imported
   so Vite hashes them and rewrites URLs for the Pages base path.
 - `tailwind.config.js` — maps the CSS-variable tokens onto semantic Tailwind names (`bg-surface`,
@@ -1363,12 +1364,11 @@ every choice in the subject.
   and the responsive nav shell stay custom by design.
 - **Design tokens first.** Never hard-code a raw color, radius, or shadow. Use the semantic Tailwind
   utilities (`text-accent`, `bg-surface`, `border-line`, `rounded-lg`) or the CSS
-  variables in `base.css`. Add a token before introducing a one-off value. For a black section,
-  add `.theme-ink`; it redefines the base tokens so components inside need no special cases.
+  variables in `base.css`. Add a token before introducing a one-off value.
   Scoped `<style>` blocks cannot call `theme()`; use the CSS variables there.
 - **Tailwind-first, small components layer.** Style with Tailwind utilities in templates; the only
   shared CSS classes are the cross-cutting primitives in `base.css` (`.site-container`, `.section`,
-  `.lead`, `.theme-ink`) and component-scoped `<style>` where a pure-utility
+  `.lead`) and component-scoped `<style>` where a pure-utility
   expression would be unreadable (grid layouts, the nav underline, the demo rows, and the scrub range). Demo rows use a
   container query so they fit both the one-sheet column and phones.
 - **One audio engine.** All playback goes through `usePlayer`. Any new play control calls

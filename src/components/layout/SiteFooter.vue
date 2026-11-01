@@ -1,5 +1,5 @@
 <template>
-  <footer class="theme-ink">
+  <footer class="border-t border-line bg-surface-muted">
     <div class="site-container flex flex-wrap items-center justify-between gap-x-8 gap-y-2 py-8 text-sm">
       <p>
         <span class="font-semibold">Brian Bakaj</span>

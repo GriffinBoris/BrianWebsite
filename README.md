@@ -28,7 +28,7 @@ npm run preview   # production preview at /BrianWebsite/
   include in an inquiry, and external profiles.
 
 The design is deliberately plain: white page, near-black text, one solid indigo
-accent, Inter only, and a black footer. Light and dark themes are supported.
+accent, and Inter only. Light and dark themes are supported.
 
 ## Source layout
 
