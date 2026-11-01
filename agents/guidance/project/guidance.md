@@ -50,7 +50,7 @@ every choice in the subject.
   Home: it repeated the header button and the Contact page. On phones: compact photo and name row,
   then demos immediately.
 - **Each fact appears once.** The casting profile (languages, location, playing age, union
-  status, studio) lives only on About, beside the short bio and above the headshots; the footer is just name, email, and profiles. Omit details that do not matter for
+  status, studio) lives only on About, beside the short bio and above the headshots; the footer is just name, email, profiles, and the theme toggle (one row on wide screens; two full-width rows on phones). Omit details that do not matter for
   voice work (on-camera items such as movement or travel documents) and personal social accounts
   such as Facebook.
 - **Contact everywhere.** The header has Demos, About, and one accent **Contact** button (all
@@ -115,7 +115,7 @@ every choice in the subject.
   persistent bar; it stamps each demo's real length and
   keeps every control for the current track in sync; playback failures show a retry message).
 - `src/data/demos.ts` — the demo-track list (id, title, imported `src`, download filename,
-  fallback duration): the single source for reels, ordered video games, commercial, narration.
+  fallback duration): the single source for reels, ordered video game and animation, commercial, narration. The first reel is labelled "Video game and animation demo": it is game-heavy but about a third of its reads are in an animated register, and peers with one character reel commonly use a combined label.
   `src/data/profiles.ts` holds the booking email and external profile links used by the footer,
   home, and Contact.
 - `src/assets/` — `base.css` (Tailwind entry + `@config` + design tokens + resets + shared
