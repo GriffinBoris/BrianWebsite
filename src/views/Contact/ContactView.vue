@@ -17,16 +17,6 @@
             </AppButton>
           </dd>
         </div>
-        <div v-for="profile in profiles" :key="profile.label" class="contact-card__row">
-          <dt>{{ profile.label }}</dt>
-          <dd>
-            <a :href="profile.href" target="_blank" rel="noopener noreferrer" class="contact-card__link">
-              <span>{{ profile.handle }}</span>
-              <AppIcon icon="externalLink" class="h-4 w-4" />
-              <span class="sr-only"> (opens in a new tab)</span>
-            </a>
-          </dd>
-        </div>
         <div class="contact-card__row">
           <dt>Based in</dt>
           <dd>Austin, Texas (Central Time)</dd>
@@ -43,7 +33,7 @@
 <script setup lang="ts">
   import AppButton from "@/components/ui/AppButton.vue";
   import AppIcon from "@/components/ui/AppIcon.vue";
-  import { auditionRequestHref, bookingEmail, profiles } from "@/data/profiles";
+  import { auditionRequestHref, bookingEmail } from "@/data/profiles";
   import { ref } from "vue";
 
   // Email links do nothing for visitors without a desktop mail app, so the address is also copyable.
@@ -99,24 +89,15 @@
     gap: 0.5rem 1rem;
   }
 
-  .contact-card__email a,
-  .contact-card__link {
+  .contact-card__email a {
     color: rgb(var(--color-accent));
     overflow-wrap: anywhere;
   }
 
-  .contact-card__email a:hover,
-  .contact-card__link:hover {
+  .contact-card__email a:hover {
     color: rgb(var(--color-accent-strong));
     text-decoration: underline;
     text-underline-offset: 4px;
-  }
-
-  .contact-card__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    min-height: 2.75rem;
   }
 
   @media (max-width: 820px) {

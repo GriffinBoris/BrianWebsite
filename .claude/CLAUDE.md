@@ -1276,7 +1276,7 @@ every choice in the subject.
   screen sizes) that opens the Contact page; the footer repeats the email and profile links.
 - **Contact is a dedicated page** because agents look for one and email links do nothing without a
   desktop mail app. Layout: heading and one line on the left; a contact card on the right with
-  Email (plus a Copy button), LinkedIn, Based in (with time zone, for scheduling), and a "Request an
+  Email (plus a Copy button), Based in (with time zone, for scheduling), and a "Request an
   audition" button (a mailto with an "Audition request" subject). No checklist or secondary
   buttons.
 - **Colour: Brian's favourites, used with restraint.** White page, near-black ink, one solid indigo
@@ -1412,8 +1412,7 @@ every choice in the subject.
 - Real training, representation, and specific credits/clients can be added to About when he has
   details he can back up. Do not invent them.
 - External profiles (LinkedIn only, from `src/data/profiles.ts`; Backstage and Facebook were removed at
-  the owner's request) are linked on the
-  **Contact** page and in the footer. These
+  the owner's request) are linked in the footer. These
   are gated to automated fetching, so their content is linked, not scraped.
 
 ## Future Direction
