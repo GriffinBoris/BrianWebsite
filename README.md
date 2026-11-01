@@ -21,7 +21,7 @@ npm run preview   # production preview at /BrianWebsite/
 
 - **Home** (`/`): a talent one-sheet. Headshot and name on the left; the demos
   (video game, commercial, narration, each with playback, seeking, and MP3
-  download) and a booking prompt on the right. The bottom
+  download) on the right. The bottom
   audio bar keeps playing across pages.
 - **About** (`/about`): short bio, casting profile, and headshots.
 - **Contact** (`/contact`): booking email (`brianbakaj@icloud.com`), what to

@@ -17,14 +17,6 @@
       <div class="demos__list">
         <DemoRow v-for="track in demoTracks" :key="track.id" :track="track" />
       </div>
-
-      <div class="booking">
-        <div>
-          <h2 class="text-h3">Bookings and auditions</h2>
-          <p class="mt-1 text-sm text-secondary">Send the project, the role, your dates, and a script or brief.</p>
-        </div>
-        <AppButton tone="accent" :href="auditionRequestHref">Request an audition</AppButton>
-      </div>
     </section>
   </div>
 </template>
@@ -36,7 +28,6 @@
   import AppIcon from "@/components/ui/AppIcon.vue";
   import { usePlayer } from "@/composables/usePlayer";
   import { demoTracks } from "@/data/demos";
-  import { auditionRequestHref } from "@/data/profiles";
   import { onMounted } from "vue";
 
   const { loadDurations } = usePlayer();
@@ -44,7 +35,7 @@
 </script>
 
 <style scoped>
-  /* A talent one-sheet: photo and name on the left, demos and booking on the right. */
+  /* A talent one-sheet: photo and name on the left, demos on the right. */
   .one-sheet {
     display: grid;
     grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr);
@@ -79,18 +70,6 @@
     border: 1px solid rgb(var(--color-line));
     border-radius: var(--radius-lg);
     background: rgb(var(--color-surface));
-  }
-
-  .booking {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem 2rem;
-    margin-top: 1.5rem;
-    padding: 1.5rem;
-    border-radius: var(--radius-lg);
-    background: rgb(var(--color-surface-muted));
   }
 
   /* On narrow screens: compact identity row, then demos straight away. */

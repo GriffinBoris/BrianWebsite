@@ -1265,9 +1265,9 @@ every choice in the subject.
   "Headshots", "Bookings and auditions").
 - **Home is a talent one-sheet.** Left column: headshot, name, "Voice actor in English and
   Albanian", and a link to the casting profile and headshots on About. Right column: the Demos list
-  (stacked, labelled players with waveform, times, and MP3 download), then a short "Bookings and
-  auditions" prompt with the Request an audition button, so booking is the next step after
-  listening. On phones: compact photo and name row, demos immediately, then the booking prompt.
+  (stacked, labelled players with waveform, times, and MP3 download). No separate booking box on
+  Home: it repeated the header button and the Contact page. On phones: compact photo and name row,
+  then demos immediately; Contact stays in the nav and the email is in the footer.
 - **Each fact appears once.** The casting profile (languages, location, playing age, union
   status, studio) lives only on About, beside the short bio and above the headshots; the footer is just name, email, and profiles. Omit details that do not matter for
   voice work (on-camera items such as movement or travel documents) and personal social accounts
@@ -1316,7 +1316,7 @@ every choice in the subject.
   `public/404.html` and the restoration script in `index.html`; old hash links remain supported.
   Routes: `home` (`/`), `about`, `contact`. Route metadata updates client-side; social previews
   read the shared metadata in `index.html`.
-- `src/views/<Name>/<Name>View.vue` — one folder per route. `HomeView` (one-sheet: identity column, demos, booking prompt),
+- `src/views/<Name>/<Name>View.vue` — one folder per route. `HomeView` (one-sheet: identity column and demos),
   `AboutView` (short bio, casting profile, headshots gallery), `ContactView` (email, what to
   include, profile links). The header shows Demos (a `#demos` anchor on home), About, Contact, and a
   "Request an audition" button; the current page gets an accent underline.
@@ -1407,7 +1407,8 @@ every choice in the subject.
 - **Booking email:** `brianbakaj@icloud.com`, confirmed by the owner. It lives in `src/data/profiles.ts`.
 - Real training, representation, and specific credits/clients can be added to About when he has
   details he can back up. Do not invent them.
-- External profiles (Backstage and LinkedIn, from `src/data/profiles.ts`) are linked on the
+- External profiles (LinkedIn only, from `src/data/profiles.ts`; Backstage and Facebook were removed at
+  the owner's request) are linked on the
   **Contact** page and in the footer. These
   are gated to automated fetching, so their content is linked, not scraped.
 
