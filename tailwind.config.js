@@ -13,8 +13,6 @@ export default {
         body: semanticColor("--color-body"),
         secondary: semanticColor("--color-secondary"),
         line: semanticColor("--color-line"),
-        primary: semanticColor("--color-primary"),
-        "primary-contrast": semanticColor("--color-primary-contrast"),
         accent: semanticColor("--color-accent"),
         "accent-strong": semanticColor("--color-accent-strong"),
         "accent-soft": semanticColor("--color-accent-soft"),
@@ -25,10 +23,9 @@ export default {
         sans: ['"Inter"', "system-ui", "-apple-system", '"Segoe UI"', "Roboto", "sans-serif"],
       },
       fontSize: {
-        display: ["var(--font-size-display)", { lineHeight: "1.02", letterSpacing: "-0.02em" }],
-        h1: ["var(--font-size-h1)", { lineHeight: "1.08", letterSpacing: "-0.02em" }],
-        h2: ["var(--font-size-h2)", { lineHeight: "1.08", letterSpacing: "-0.02em" }],
-        h3: ["var(--font-size-h3)", { lineHeight: "1.2", letterSpacing: "-0.02em" }],
+        h1: ["var(--font-size-h1)", { lineHeight: "1.1", letterSpacing: "-0.03em" }],
+        h2: ["var(--font-size-h2)", { lineHeight: "1.2", letterSpacing: "-0.02em" }],
+        h3: ["var(--font-size-h3)", { lineHeight: "1.3", letterSpacing: "-0.01em" }],
       },
       borderRadius: {
         sm: "var(--radius-sm)",
@@ -36,16 +33,8 @@ export default {
         lg: "var(--radius-lg)",
         pill: "var(--radius-pill)",
       },
-      boxShadow: {
-        button: "var(--shadow-button)",
-        "button-hover": "var(--shadow-button-hover)",
-        sm: "var(--shadow-sm)",
-        md: "var(--shadow-md)",
-        lg: "var(--shadow-lg)",
-      },
       maxWidth: {
         container: "var(--container-width)",
-        "container-narrow": "var(--container-narrow)",
       },
       transitionTimingFunction: {
         smooth: "var(--ease)",

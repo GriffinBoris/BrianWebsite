@@ -1,83 +1,56 @@
 <template>
-  <header class="site-header">
-    <div class="site-container">
-      <nav class="site-nav" aria-label="Primary">
-        <RouterLink class="site-brand" :to="{ name: 'home' }">Brian Bakaj</RouterLink>
-        <ul class="site-nav__links">
-          <li v-for="item in items" :key="item.name">
-            <RouterLink :to="{ name: item.name }" class="nav-link" :class="{ 'is-active': route.name === item.name }">{{ item.label }}</RouterLink>
+  <header class="sticky top-0 z-50 border-b border-line bg-background/95 backdrop-blur">
+    <nav class="site-container flex h-[var(--header-height)] items-center justify-between gap-4" aria-label="Primary">
+      <RouterLink class="flex items-baseline gap-2 whitespace-nowrap" :to="{ name: 'home' }">
+        <span class="text-[1.0625rem] font-bold tracking-[-0.02em]">Brian Bakaj</span>
+        <span class="text-sm text-secondary max-[480px]:hidden">Voice actor</span>
+      </RouterLink>
+
+      <div class="flex items-center gap-1 sm:gap-3">
+        <ul class="flex items-center">
+          <li v-for="item in items" :key="item.label">
+            <RouterLink :to="item.to" class="nav-link" :exact-active-class="item.to.hash ? '' : undefined">{{ item.label }}</RouterLink>
           </li>
         </ul>
-      </nav>
-    </div>
+        <AppButton tone="accent" :href="auditionRequestHref" root-class="max-[720px]:hidden">Request an audition</AppButton>
+      </div>
+    </nav>
   </header>
 </template>
 
 <script setup lang="ts">
-  import { useRoute } from "vue-router";
-  const route = useRoute();
-  const items = [{ name: "about", label: "About" }, { name: "contact", label: "Contact" }] as const;
+  import AppButton from "@/components/ui/AppButton.vue";
+  import { auditionRequestHref } from "@/data/profiles";
+  import { RouterLink } from "vue-router";
+
+  const items = [
+    { label: "Demos", to: { name: "home", hash: "#demos" } },
+    { label: "About", to: { name: "about" } },
+    { label: "Contact", to: { name: "contact" } },
+  ];
 </script>
 
 <style scoped>
-  .site-header {
-    border-bottom: 1px solid rgb(var(--color-line));
-    background: rgb(var(--color-surface));
-    color: rgb(var(--color-body));
-  }
-
-  .site-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    min-height: 64px;
-  }
-
-  .site-brand {
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: -0.025em;
-    white-space: nowrap;
-  }
-
-  .site-nav__links {
-    display: flex;
-    align-items: center;
-    gap: var(--space-8);
-    list-style: none;
-  }
-
   .nav-link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     min-height: 44px;
-    font-size: 14px;
+    padding-inline: 0.625rem;
+    font-size: 0.875rem;
+    font-weight: 500;
     color: rgb(var(--color-secondary));
-    text-underline-offset: 6px;
+    transition: color var(--duration) var(--ease);
   }
 
-  .nav-link:hover, .nav-link.is-active {
+  .nav-link:hover {
     color: rgb(var(--color-body));
   }
 
-  .nav-link.is-active {
+  .nav-link.router-link-exact-active {
+    color: rgb(var(--color-body));
     text-decoration: underline;
+    text-decoration-color: rgb(var(--color-accent));
     text-decoration-thickness: 2px;
-  }
-  .site-header :focus-visible {
-    outline-color: rgb(var(--color-secondary));
-  }
-
-  @media (max-width: 640px) {
-    .site-nav {
-      min-height: 64px;
-    }
-    .site-nav__links {
-      gap: var(--space-6);
-    }
-    .site-brand {
-      font-size: 17px;
-    }
+    text-underline-offset: 0.5rem;
   }
 </style>

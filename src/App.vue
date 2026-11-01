@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-dvh flex flex-col" :class="{ 'pb-[var(--player-height)]': currentTrack }">
     <a
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-sm focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-contrast"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-sm focus:bg-body focus:px-4 focus:py-2 focus:text-background"
       href="#main"
     >
       Skip to content

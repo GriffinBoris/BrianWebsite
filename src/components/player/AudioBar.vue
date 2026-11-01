@@ -6,24 +6,20 @@
       role="region"
       aria-label="Audio player"
     >
-      <div class="mx-auto flex h-[calc(var(--player-height)-env(safe-area-inset-bottom,0px))] max-w-container items-center gap-x-4 gap-y-0 px-4 sm:px-10 max-[620px]:flex-wrap max-[620px]:py-2">
+      <div class="site-container flex h-[calc(var(--player-height)-env(safe-area-inset-bottom,0px))] items-center gap-x-4 max-[620px]:flex-wrap max-[620px]:content-center max-[620px]:gap-y-1">
         <AppIconButton
-          size="md"
           tone="accent"
           :icon="isPlaying ? 'pause' : 'play'"
           :label="`${isPlaying ? 'Pause' : 'Play'} ${currentTrack.title.toLowerCase()}`"
           :show-tooltip="false"
           :aria-pressed="isPlaying"
-          root-class="h-11 w-11 flex-none"
           @click="togglePlayback"
         />
 
-        <div class="w-[clamp(7rem,22vw,13rem)] min-w-0 flex-none max-[620px]:w-auto max-[620px]:flex-1">
-          <div class="truncate text-sm font-semibold">{{ currentTrack.title }}</div>
-        </div>
+        <p class="w-[clamp(8rem,18vw,11rem)] min-w-0 flex-none truncate text-sm font-semibold max-[620px]:w-auto max-[620px]:flex-1">{{ currentTrack.title }}</p>
 
-        <div class="flex min-w-0 flex-1 items-center gap-[0.7rem] max-[620px]:order-last max-[620px]:basis-full">
-          <span class="min-w-[2.6rem] text-center text-[0.8rem] tabular-nums text-secondary">{{ formatTime(currentTime) }}</span>
+        <div class="flex min-w-0 flex-1 items-center gap-3 max-[620px]:order-last max-[620px]:basis-full">
+          <span class="min-w-[2.4rem] text-center text-xs tabular-nums text-secondary">{{ formatTime(currentTime) }}</span>
           <AudioSeek
             :waveform="currentTrack.waveform"
             :value="progress"
@@ -32,10 +28,10 @@
             :value-text="`${formatTime(currentTime)} of ${formatTime(duration)}`"
             @seek="seekToPercent"
           />
-          <span class="min-w-[2.6rem] text-center text-[0.8rem] tabular-nums text-secondary">{{ formatTime(duration) }}</span>
+          <span class="min-w-[2.4rem] text-center text-xs tabular-nums text-secondary">{{ formatTime(duration) }}</span>
         </div>
 
-        <AppIconButton size="sm" tone="ghost" icon="close" label="Close player" root-class="h-11 w-11 flex-none" @click="close" />
+        <AppIconButton tone="ghost" icon="close" label="Close player" @click="close" />
       </div>
 
       <div v-if="playbackError" class="absolute inset-x-0 bottom-full border-y border-line bg-surface px-4 py-3 text-center text-sm" role="alert">
@@ -56,15 +52,11 @@
 <style scoped>
   .player-enter-active,
   .player-leave-active {
-    transition:
-      transform var(--duration) var(--ease),
-      opacity var(--duration) var(--ease);
+    transition: transform 200ms var(--ease);
   }
 
   .player-enter-from,
   .player-leave-to {
-    transform: translateY(110%);
-    opacity: 0;
+    transform: translateY(100%);
   }
-
 </style>
