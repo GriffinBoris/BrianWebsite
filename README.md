@@ -20,7 +20,7 @@ npm run preview   # production preview at /BrianWebsite/
 ## Pages
 
 - **Home** (`/`): a talent one-sheet. Headshot and name on the left; the demos
-  (video game, commercial, narration, each with playback, seeking, and MP3
+  (video game and animation, commercial, narration, each with playback, seeking, and MP3
   download) on the right. The bottom
   audio bar keeps playing across pages.
 - **About** (`/about`): short bio, casting profile, and headshots.

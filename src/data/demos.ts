@@ -17,9 +17,9 @@ export const demoTracks: DemoTrack[] = [
   {
     id: "videogame",
     waveform: waveforms.videogame.levels,
-    title: "Video game demo",
+    title: "Video game and animation demo",
     src: videogameSrc,
-    downloadName: "brian-bakaj-videogame-demo.mp3",
+    downloadName: "brian-bakaj-videogame-and-animation-demo.mp3",
     fallbackDuration: "1:57",
   },
   {
