@@ -48,14 +48,18 @@ every choice in the subject.
   Albanian", and a link to the casting profile and headshots on About. Right column: the Demos list
   (stacked, labelled players with waveform, times, and MP3 download). No separate booking box on
   Home: it repeated the header button and the Contact page. On phones: compact photo and name row,
-  then demos immediately; Contact stays in the nav and the email is in the footer.
+  then demos immediately.
 - **Each fact appears once.** The casting profile (languages, location, playing age, union
   status, studio) lives only on About, beside the short bio and above the headshots; the footer is just name, email, and profiles. Omit details that do not matter for
   voice work (on-camera items such as movement or travel documents) and personal social accounts
   such as Facebook.
-- **Contact everywhere.** The header carries "Request an audition" (a mailto with an "Audition
-  request" subject; hidden on narrow screens, where Contact stays in the nav). The footer
-  repeats the email and profile links.
+- **Contact everywhere.** The header has Demos, About, and one accent **Contact** button (all
+  screen sizes) that opens the Contact page; the footer repeats the email and profile links.
+- **Contact is a dedicated page** because agents look for one and email links do nothing without a
+  desktop mail app. Layout: heading and one line on the left; a contact card on the right with
+  Email (plus a Copy button), Based in (with time zone, for scheduling), and a "Request an
+  audition" button (a mailto with an "Audition request" subject). No checklist or secondary
+  buttons.
 - **Colour: Brian's favourites, used with restraint.** White page, near-black ink, one solid indigo
   accent (blue-purple) for buttons, links, the active demo, and focus. The header and
   footer share the page's theme (light in light mode, dark in dark mode) so the page is framed
@@ -98,9 +102,9 @@ every choice in the subject.
   Routes: `home` (`/`), `about`, `contact`. Route metadata updates client-side; social previews
   read the shared metadata in `index.html`.
 - `src/views/<Name>/<Name>View.vue` — one folder per route. `HomeView` (one-sheet: identity column and demos),
-  `AboutView` (short bio, casting profile, headshots gallery), `ContactView` (email, what to
-  include, profile links). The header shows Demos (a `#demos` anchor on home), About, Contact, and a
-  "Request an audition" button; the current page gets an accent underline.
+  `AboutView` (short bio, casting profile, headshots gallery), `ContactView` (heading plus a
+  contact card). The header shows Demos (a `#demos` anchor on home), About, and a Contact
+  button; the current nav link gets an accent underline.
 - `src/components/` — `layout/` (`SiteHeader` with inline navigation, `SiteFooter`),
   `player/` (`DemoRow`,
   `AudioBar`, and the shared `AudioSeek` range), `ui/` (the app-owned wrappers: `AppButton`, `AppIconButton`,
@@ -189,8 +193,7 @@ every choice in the subject.
 - Real training, representation, and specific credits/clients can be added to About when he has
   details he can back up. Do not invent them.
 - External profiles (LinkedIn only, from `src/data/profiles.ts`; Backstage and Facebook were removed at
-  the owner's request) are linked on the
-  **Contact** page and in the footer. These
+  the owner's request) are linked in the footer. These
   are gated to automated fetching, so their content is linked, not scraped.
 
 ## Future Direction

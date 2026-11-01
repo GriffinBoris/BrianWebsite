@@ -12,7 +12,7 @@
             <RouterLink :to="item.to" class="nav-link" :exact-active-class="item.to.hash ? '' : undefined">{{ item.label }}</RouterLink>
           </li>
         </ul>
-        <AppButton tone="accent" :href="auditionRequestHref" root-class="max-[720px]:hidden">Request an audition</AppButton>
+        <AppButton tone="accent" :to="{ name: 'contact' }">Contact</AppButton>
       </div>
     </nav>
   </header>
@@ -20,13 +20,11 @@
 
 <script setup lang="ts">
   import AppButton from "@/components/ui/AppButton.vue";
-  import { auditionRequestHref } from "@/data/profiles";
   import { RouterLink } from "vue-router";
 
   const items = [
     { label: "Demos", to: { name: "home", hash: "#demos" } },
     { label: "About", to: { name: "about" } },
-    { label: "Contact", to: { name: "contact" } },
   ];
 </script>
 
