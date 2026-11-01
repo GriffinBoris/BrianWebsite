@@ -1,21 +1,42 @@
 <template>
-  <section class="site-container contact" aria-labelledby="contact-title">
-    <h1 id="contact-title" class="text-h1">Bookings and auditions</h1>
-    <p class="lead mt-4">Email your project details and I’ll get back to you.</p>
+  <section class="site-container section contact" aria-labelledby="contact-title">
+    <div>
+      <h1 id="contact-title" class="text-h1">Contact</h1>
+      <p class="lead mt-4 max-w-[26rem]">For bookings and auditions, email your project details and I’ll get back to you.</p>
+    </div>
 
-    <a class="contact__email" :href="`mailto:${bookingEmail}`">{{ bookingEmail }}</a>
+    <div class="contact-card">
+      <dl>
+        <div class="contact-card__row">
+          <dt>Email</dt>
+          <dd class="contact-card__email">
+            <a :href="`mailto:${bookingEmail}`">{{ bookingEmail }}</a>
+            <AppButton tone="outline" :aria-label="copied ? 'Email copied' : 'Copy email address'" root-class="min-h-9 px-3" @click="copyEmail">
+              <AppIcon :icon="copied ? 'check' : 'copy'" class="h-4 w-4" />
+              <span>{{ copied ? "Copied" : "Copy" }}</span>
+            </AppButton>
+          </dd>
+        </div>
+        <div v-for="profile in profiles" :key="profile.label" class="contact-card__row">
+          <dt>{{ profile.label }}</dt>
+          <dd>
+            <a :href="profile.href" target="_blank" rel="noopener noreferrer" class="contact-card__link">
+              <span>{{ profile.handle }}</span>
+              <AppIcon icon="externalLink" class="h-4 w-4" />
+              <span class="sr-only"> (opens in a new tab)</span>
+            </a>
+          </dd>
+        </div>
+        <div class="contact-card__row">
+          <dt>Based in</dt>
+          <dd>Austin, Texas (Central Time)</dd>
+        </div>
+      </dl>
 
-    <AppButton tone="accent" size="lg" :href="auditionRequestHref" root-class="mt-8">Request an audition</AppButton>
+      <AppButton tone="accent" size="lg" :href="auditionRequestHref" root-class="mt-6 w-full">Request an audition</AppButton>
+    </div>
 
-    <ul class="contact__profiles">
-      <li v-for="profile in profiles" :key="profile.label">
-        <a :href="profile.href" target="_blank" rel="noopener noreferrer" class="contact__profile">
-          <span>{{ profile.label }}</span>
-          <AppIcon icon="externalLink" class="h-4 w-4" />
-          <span class="sr-only"> (opens in a new tab)</span>
-        </a>
-      </li>
-    </ul>
+    <p class="sr-only" role="status" aria-live="polite">{{ copied ? "Email address copied" : "" }}</p>
   </section>
 </template>
 
@@ -23,56 +44,94 @@
   import AppButton from "@/components/ui/AppButton.vue";
   import AppIcon from "@/components/ui/AppIcon.vue";
   import { auditionRequestHref, bookingEmail, profiles } from "@/data/profiles";
+  import { ref } from "vue";
+
+  // Email links do nothing for visitors without a desktop mail app, so the address is also copyable.
+  const copied = ref(false);
+
+  async function copyEmail() {
+    await navigator.clipboard.writeText(bookingEmail);
+    copied.value = true;
+    window.setTimeout(() => (copied.value = false), 2000);
+  }
 </script>
 
 <style scoped>
-  /* One centred block: the page exists to get an email sent. */
   .contact {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     align-items: center;
-    max-width: 40rem;
-    padding-block: clamp(4rem, 12vh, 8rem);
-    text-align: center;
+    gap: clamp(2rem, 6vw, 5rem);
+    min-height: calc(100dvh - var(--header-height) - 10rem);
   }
 
-  .contact__email {
-    margin-top: 2.5rem;
-    font-size: clamp(1.5rem, 4vw, 2.25rem);
-    font-weight: 650;
-    letter-spacing: -0.03em;
+  .contact-card {
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid rgb(var(--color-line));
+    border-radius: var(--radius-lg);
+    background: rgb(var(--color-surface));
+  }
+
+  .contact-card__row {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    align-items: center;
+    gap: 1rem;
+    min-height: 3.5rem;
+    padding-block: 0.5rem;
+    border-bottom: 1px solid rgb(var(--color-line));
+  }
+
+  .contact-card dt {
+    font-size: 0.875rem;
+    color: rgb(var(--color-secondary));
+  }
+
+  .contact-card dd {
+    font-weight: 500;
+  }
+
+  .contact-card__email {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+  }
+
+  .contact-card__email a,
+  .contact-card__link {
     color: rgb(var(--color-accent));
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.2em;
     overflow-wrap: anywhere;
   }
 
-  .contact__email:hover {
+  .contact-card__email a:hover,
+  .contact-card__link:hover {
     color: rgb(var(--color-accent-strong));
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
 
-  .contact__profiles {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    min-width: 16rem;
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgb(var(--color-line));
-  }
-
-  .contact__profile {
+  .contact-card__link {
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
     min-height: 2.75rem;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: rgb(var(--color-secondary));
   }
 
-  .contact__profile:hover {
-    color: rgb(var(--color-body));
+  @media (max-width: 820px) {
+    .contact {
+      grid-template-columns: 1fr;
+      align-items: start;
+      min-height: 0;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .contact-card__row {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+      padding-block: 0.75rem;
+    }
   }
 </style>

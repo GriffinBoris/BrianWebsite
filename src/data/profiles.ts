@@ -3,5 +3,5 @@ export const bookingEmail = "brianbakaj@icloud.com";
 export const auditionRequestHref = `mailto:${bookingEmail}?subject=${encodeURIComponent("Audition request")}`;
 
 export const profiles = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/brian-bakaj" },
+  { label: "LinkedIn", handle: "in/brian-bakaj", href: "https://www.linkedin.com/in/brian-bakaj" },
 ];
