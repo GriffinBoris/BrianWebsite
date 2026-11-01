@@ -3,7 +3,7 @@
     <div class="site-container contact-layout">
       <div>
         <p class="eyebrow">Contact</p>
-        <h1 id="contact-title" class="mt-5 font-display text-h1">Bookings and <em class="text-accent">auditions.</em></h1>
+        <h1 id="contact-title" class="mt-5 text-h1">Bookings and auditions</h1>
         <p class="lead mt-6 max-w-[34rem]">Email your project details and I’ll get back to you.</p>
 
         <a class="contact-email" :href="`mailto:${bookingEmail}`">{{ bookingEmail }}</a>
@@ -64,9 +64,10 @@
   .contact-email {
     display: inline-block;
     margin-top: clamp(2rem, 5vw, 3.5rem);
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 3.75rem);
-    line-height: 1.1;
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
     text-decoration: underline;
     text-decoration-thickness: 2px;
     text-decoration-color: rgb(var(--color-accent));

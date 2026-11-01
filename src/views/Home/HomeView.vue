@@ -1,20 +1,16 @@
 <template>
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="site-container hero__layout">
+  <section aria-labelledby="hero-title">
+    <div class="site-container hero">
       <div>
-        <p class="eyebrow">Voice actor based in Austin, Texas</p>
-        <h1 id="hero-title" class="hero__name">
-          <span class="block">Brian</span>
-          <span class="block italic text-accent">Bakaj</span>
-        </h1>
-        <p class="lead mt-8 max-w-[34rem]">
-          Voiceover for video games, commercials, and narration in English and Albanian, recorded in a dedicated home studio.
+        <p class="eyebrow">Voice actor</p>
+        <h1 id="hero-title" class="mt-5 text-display font-extrabold">Brian Bakaj</h1>
+        <p class="lead mt-6 max-w-[34rem]">
+          English and Albanian voiceover for video games, commercials, and narration. Based in Austin, Texas, recording from a dedicated home studio.
         </p>
-        <div class="mt-10 flex flex-wrap gap-3">
+        <div class="mt-9 flex flex-wrap gap-3">
           <AppButton tone="accent" size="lg" :aria-pressed="featuredPlaying" @click="toggleTrack(featuredTrack)">
             <AppIcon :icon="featuredPlaying ? 'pause' : 'play'" class="h-5 w-5 fill-current" />
             <span>{{ featuredPlaying ? "Pause demo" : "Play demo" }}</span>
-            <span class="tabular-nums opacity-75">{{ durationLabel(featuredTrack) }}</span>
           </AppButton>
           <AppButton tone="outline" size="lg" :to="{ name: 'contact' }">
             <span>Book Brian</span>
@@ -23,32 +19,21 @@
         </div>
       </div>
 
-      <figure class="hero__portrait">
-        <img :src="headshot" alt="Brian Bakaj, outdoor headshot" width="565" height="476" fetchpriority="high" />
-      </figure>
+      <img class="hero__portrait" :src="headshot" alt="Brian Bakaj, outdoor headshot" width="565" height="476" fetchpriority="high" />
     </div>
   </section>
 
   <section id="demos" class="theme-studio section" aria-labelledby="demos-title">
     <div class="site-container">
-      <div class="mb-10 flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
-        <div>
-          <p class="eyebrow">Voiceover demos</p>
-          <h2 id="demos-title" class="mt-4 font-display text-h2">Press <em>play.</em></h2>
-        </div>
-        <p class="max-w-[22rem] text-secondary">Each reel streams here and downloads as an MP3 for your casting files.</p>
-      </div>
-
-      <div>
-        <DemoRow v-for="(track, index) in demoTracks" :key="track.id" :track="track" :number="index + 1" />
-      </div>
+      <h2 id="demos-title" class="mb-8 text-h2">Demos</h2>
+      <DemoRow v-for="(track, index) in demoTracks" :key="track.id" :track="track" :number="index + 1" />
     </div>
   </section>
 
   <section class="section" aria-labelledby="profile-title">
     <div class="site-container">
       <div class="flex flex-wrap items-center justify-between gap-4">
-        <h2 id="profile-title" class="eyebrow">At a glance</h2>
+        <h2 id="profile-title" class="text-h2">Profile</h2>
         <AppButton tone="link" :to="{ name: 'about' }">
           <span>Full profile</span>
           <AppIcon icon="arrowRight" class="h-4 w-4" />
@@ -66,15 +51,16 @@
   <section class="pb-[var(--space-section)]" aria-labelledby="book-title">
     <div class="site-container">
       <div class="booking">
-        <p class="eyebrow">Bookings and auditions</p>
-        <h2 id="book-title" class="mt-5 font-display text-h1">Have a script? <em class="text-accent">Let’s talk.</em></h2>
-        <p class="lead mt-6 max-w-[34rem]">Tell me about your project, the role, and your timeline.</p>
-        <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
-          <AppButton tone="solid" size="lg" :href="`mailto:${bookingEmail}`">
+        <div>
+          <h2 id="book-title" class="text-h2">Book Brian</h2>
+          <p class="mt-3 text-secondary">Send the project, the role, and your timeline.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+          <a class="booking__email" :href="`mailto:${bookingEmail}`">{{ bookingEmail }}</a>
+          <AppButton tone="accent" size="lg" :href="`mailto:${bookingEmail}`">
             <AppIcon icon="mail" class="h-5 w-5" />
             <span>Email Brian</span>
           </AppButton>
-          <a class="booking__email" :href="`mailto:${bookingEmail}`">{{ bookingEmail }}</a>
         </div>
       </div>
     </div>
@@ -91,7 +77,7 @@
   import { bookingEmail } from "@/data/profiles";
   import { computed, onMounted } from "vue";
 
-  const { isPlaying, isCurrent, toggleTrack, loadDurations, durationLabel } = usePlayer();
+  const { isPlaying, isCurrent, toggleTrack, loadDurations } = usePlayer();
   onMounted(() => loadDurations(demoTracks));
 
   // The hero button plays the first reel in the list.
@@ -100,46 +86,22 @@
 
   const facts = [
     { label: "Languages", value: "English and Albanian" },
-    { label: "Studio", value: "Shure SM7B home studio" },
-    { label: "Based in", value: "Austin, Texas" },
     { label: "Playing age", value: "18–27" },
+    { label: "Based in", value: "Austin, Texas" },
+    { label: "Studio", value: "Shure SM7B home studio" },
   ];
 </script>
 
 <style scoped>
-  .hero__layout {
+  .hero {
     display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.8fr);
     align-items: center;
     gap: clamp(2.5rem, 6vw, 5rem);
-    padding-block: clamp(3rem, 8vw, 6.5rem);
+    padding-block: clamp(3rem, 8vw, 6rem);
   }
 
-  .hero__name {
-    margin-top: 1.5rem;
-    margin-left: -0.04em;
-    font-family: var(--font-display);
-    font-size: var(--font-size-display);
-    line-height: 0.86;
-    letter-spacing: -0.02em;
-  }
-
-  /* An offset block of the accent colour frames the portrait like a studio light. */
   .hero__portrait {
-    position: relative;
-    margin: 0 1.25rem 1.25rem 0;
-  }
-
-  .hero__portrait::before {
-    content: "";
-    position: absolute;
-    inset: 1.25rem -1.25rem -1.25rem 1.25rem;
-    border-radius: var(--radius-lg);
-    background: rgb(var(--color-accent));
-  }
-
-  .hero__portrait img {
-    position: relative;
     width: 100%;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-photo);
@@ -148,17 +110,15 @@
   .facts {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-top: 1.5rem;
-    border-top: 1px solid rgb(var(--color-body));
+    gap: 1rem;
+    margin-top: 2rem;
   }
 
   .facts__item {
-    padding: 1.5rem 1.5rem 0 0;
-  }
-
-  .facts__item + .facts__item {
-    padding-left: 1.5rem;
-    border-left: 1px solid rgb(var(--color-line));
+    padding: 1.25rem;
+    border: 1px solid rgb(var(--color-line));
+    border-radius: var(--radius-md);
+    background: rgb(var(--color-surface));
   }
 
   .facts dt {
@@ -167,20 +127,24 @@
   }
 
   .facts dd {
-    margin-top: 0.5rem;
-    font-family: var(--font-display);
-    font-size: clamp(1.625rem, 2.6vw, 2.125rem);
-    line-height: 1.05;
+    margin-top: 0.375rem;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
   }
 
   .booking {
-    padding: clamp(2rem, 6vw, 4.5rem);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem 3rem;
+    padding: clamp(1.75rem, 5vw, 3rem);
     border-radius: var(--radius-lg);
     background: rgb(var(--color-surface-muted));
   }
 
   .booking__email {
-    font-size: 1.0625rem;
     font-weight: 500;
     text-decoration: underline;
     text-decoration-color: rgb(var(--color-body) / 0.3);
@@ -197,7 +161,7 @@
   }
 
   @media (max-width: 900px) {
-    .hero__layout {
+    .hero {
       grid-template-columns: 1fr;
     }
     .hero__portrait {
@@ -206,21 +170,11 @@
     .facts {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    .facts__item:nth-child(3) {
-      padding-left: 0;
-      border-left: 0;
-    }
   }
 
   @media (max-width: 480px) {
     .facts {
       grid-template-columns: 1fr;
-    }
-    .facts__item,
-    .facts__item + .facts__item {
-      padding: 1.25rem 0;
-      border-left: 0;
-      border-bottom: 1px solid rgb(var(--color-line));
     }
   }
 </style>

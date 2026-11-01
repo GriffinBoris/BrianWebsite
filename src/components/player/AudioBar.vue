@@ -19,7 +19,7 @@
 
         <div class="w-[clamp(8rem,20vw,12rem)] min-w-0 flex-none max-[620px]:w-auto max-[620px]:flex-1">
           <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-accent">{{ isPlaying ? "Now playing" : "Paused" }}</p>
-          <p class="truncate font-display text-xl leading-tight">{{ currentTrack.title }}</p>
+          <p class="truncate font-semibold leading-tight">{{ currentTrack.title }}</p>
         </div>
 
         <div class="flex min-w-0 flex-1 items-center gap-3 max-[620px]:order-last max-[620px]:basis-full">

@@ -1,7 +1,7 @@
 <template>
   <header class="sticky top-0 z-50 border-b border-line/70 bg-background/85 backdrop-blur-md">
     <nav class="site-container flex h-[var(--header-height)] items-center justify-between gap-4" aria-label="Primary">
-      <RouterLink class="font-display text-[1.75rem] leading-none tracking-[-0.01em] whitespace-nowrap max-[380px]:text-2xl" :to="{ name: 'home' }">
+      <RouterLink class="text-lg font-bold tracking-[-0.03em] whitespace-nowrap" :to="{ name: 'home' }">
         Brian Bakaj
       </RouterLink>
 
@@ -16,7 +16,7 @@
           <RouterLink
             :to="{ name: 'contact' }"
             class="ml-1 inline-flex min-h-10 items-center rounded-pill bg-body px-4 text-sm font-medium text-background transition-colors duration-[180ms] hover:bg-accent hover:text-accent-contrast sm:ml-2 sm:px-5"
-            active-class="!bg-accent !text-accent-contrast"
+            active-class="!bg-accent-gradient !text-gradient-contrast"
           >
             Contact
           </RouterLink>

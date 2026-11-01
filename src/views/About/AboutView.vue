@@ -2,7 +2,7 @@
   <section class="section pb-0" aria-labelledby="about-title">
     <div class="site-container">
       <p class="eyebrow">About</p>
-      <h1 id="about-title" class="mt-5 font-display text-h1">Meet <em class="text-accent">Brian.</em></h1>
+      <h1 id="about-title" class="mt-5 text-h1">Brian Bakaj</h1>
 
       <div class="about-layout">
         <div class="about-biography">
@@ -26,7 +26,7 @@
 
   <section class="section" aria-labelledby="headshots-title">
     <div class="site-container">
-      <h2 id="headshots-title" class="font-display text-h2">Headshots</h2>
+      <h2 id="headshots-title" class="text-h2">Headshots</h2>
       <div class="headshots-grid">
         <figure v-for="shot in shots" :key="shot.src" class="headshot">
           <img :src="shot.src" :alt="shot.alt" loading="lazy" width="640" height="800" />
@@ -80,9 +80,10 @@
   }
 
   .about-biography__lead {
-    font-family: var(--font-display);
-    font-size: clamp(1.75rem, 3vw, 2.375rem);
-    line-height: 1.15;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.4;
     color: rgb(var(--color-body));
   }
 
@@ -127,11 +128,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 600ms var(--ease);
-  }
-
-  .headshot:hover img {
-    transform: scale(1.03);
   }
 
   @media (max-width: 820px) {

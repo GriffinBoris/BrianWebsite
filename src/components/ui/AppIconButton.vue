@@ -59,7 +59,7 @@
 
   const toneClass = computed(() => {
     if (props.tone === "accent") {
-      return "border-0 bg-accent text-accent-contrast hover:bg-accent-strong hover:text-accent-contrast hover:border-0";
+      return "border-0 bg-accent-gradient text-gradient-contrast hover:bg-accent-gradient-hover hover:text-gradient-contrast hover:border-0";
     }
     if (props.tone === "ghost") {
       return "border-0 bg-transparent text-secondary hover:bg-body/10 hover:text-body";

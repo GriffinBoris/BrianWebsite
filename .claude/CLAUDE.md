@@ -1250,32 +1250,31 @@ These guidelines are constraints in service of clarity, not bureaucracy. If foll
   TypeScript, `vue-router` (HTML5 history) — that compiles to fully static assets. GitHub Actions runs
   the Vite build and publishes `dist/` to GitHub Pages; there is no backend, database, or API.
 - It was migrated from an earlier hand-authored no-build site. The framework and Vue guidance in
-  `agents/` now applies. The visual design was later replaced by the "On Air" revamp described below.
+  `agents/` now applies. The visual design was later replaced by the agency-focused revamp described below.
 
 ## Design Intent
 
 The design follows the frontend-design principle of **spending boldness in one place** and grounding
 every choice in the subject.
 
-- **"On Air" concept.** Warm paper background, near-black ink, and one signal-red accent that
-  reads as a recording light. The accent marks playback controls, the primary booking action,
-  emphasised words in headings, the eyebrow dot, and focus states. Do not introduce a second
-  accent hue.
-- **The bold place is the demos.** Home has a dark "studio" band (`.theme-studio`) with a
-  numbered tracklist: play button, number or "Now playing" with a small equaliser, serif title,
-  real waveform with times, and an MP3 download link. The band and the floating `AudioBar` stay
-  dark in both themes. The hero has a direct "Play demo" button that plays the first reel, so a
-  visitor hears Brian in one click.
-- **Home outline:** hero (eyebrow, very large serif name with "Bakaj" in red italic, one-sentence
-  lead, Play demo and Book Brian actions, the original outdoor `headshot.jpg` framed by an offset
-  red block), demos band, an "At a glance" facts row linking to About, and a booking card. Do not
-  add a carousel. About keeps its static three-photo gallery. Keep the version-two AI portrait in
-  the repository without active site references.
-- **Type pairing:** **Instrument Serif** (display, regular and italic) for the name, headings,
-  track titles, and large values; **Inter** (one variable file) for body and UI. Both are
-  self-hosted. Use italic plus the accent for a single emphasised word per heading at most.
-- **Dark theme** uses near-black warm charcoal with a lighter coral accent; the studio band goes
-  one step darker so it still separates from the page.
+- **Purpose: sell Brian to agencies, nothing else.** Every block must help a casting agent hear
+  him, check his specs, or book him. No taglines, wordplay headings, decorative flourishes,
+  ornamental animation, or filler copy. Headings are plain: "Demos", "Profile", "Book Brian",
+  "Headshots", "Bookings and auditions".
+- **Colour: Brian's favourites, blue, purple, and black.** Near-white page and near-black ink,
+  a solid indigo-violet accent for links, active states, and focus, and a blue-to-violet gradient
+  reserved for primary actions (play buttons, Play demo, Email Brian, active Contact pill). Dark
+  theme is near-black with a light violet accent.
+- **The bold place is the demos.** Home has a black demo band (`.theme-studio`) with a numbered
+  tracklist: play button, number or "Now playing", title, real waveform with times, and an MP3
+  download. The band and the floating `AudioBar` stay dark in both themes. The hero's "Play demo"
+  button plays the first reel, so an agent hears Brian in one click.
+- **Home outline:** hero (Voice actor eyebrow, large bold name, one factual sentence, Play demo
+  and Book Brian, the original outdoor `headshot.jpg`), Demos, a four-fact Profile row linking to
+  About, and a Book Brian card. No carousel. About keeps its static three-photo gallery. Keep the
+  version-two AI portrait in the repository without active site references.
+- **Type: Inter only** (one self-hosted variable file). Bold, tightly tracked headings; no serif,
+  italic emphasis, or novelty display faces. The owner asked for good, normal fonts.
 - **Usable, not a maze.** No scroll-triggered reveals or content hidden until scrolled into view.
   Everything is visible and reachable; navigation is explicit. Prefer clarity and findability over
   scroll spectacle.
@@ -1307,7 +1306,7 @@ every choice in the subject.
 - `src/views/<Name>/<Name>View.vue` — one folder per route. `HomeView` (hero, demos band, facts, booking card),
   `AboutView` (bio, casting-profile spec card, headshots gallery), `ContactView` (email, what to
   include, profile links). The header shows Demos (a `#demos` anchor on home), About, and a Contact
-  pill; the current page gets a small red dot under its label.
+  pill; the current page gets a small accent dot under its label.
 - `src/components/` — `layout/` (`SiteHeader` with inline navigation, `SiteFooter`),
   `player/` (`DemoRow`,
   `AudioBar`, and the shared `AudioSeek` range), `ui/` (the app-owned PrimeVue wrappers: `AppButton`, `AppIconButton`,
@@ -1322,11 +1321,11 @@ every choice in the subject.
   `src/data/profiles.ts` holds the booking email and external profile links used by the footer,
   home, and Contact.
 - `src/assets/` — `base.css` (Tailwind entry + `@config` + design tokens + resets + shared
-  `.site-container`/`.eyebrow`/`.lead` primitives, and the `.theme-studio` scope), self-hosted Inter
-  variable and Instrument Serif `woff2` files under `fonts/`, `img/` (headshot + looks), and `media/` (the demo mp3s). Fonts/images/media are imported
+  `.site-container`/`.eyebrow`/`.lead` primitives, and the `.theme-studio` scope), the self-hosted Inter
+  variable `woff2` under `fonts/`, `img/` (headshot + looks), and `media/` (the demo mp3s). Fonts/images/media are imported
   so Vite hashes them and rewrites URLs for the Pages base path.
 - `tailwind.config.js` — maps the CSS-variable tokens onto semantic Tailwind names (`bg-surface`,
-  `text-body`, `text-accent`, `rounded-lg`, `shadow-photo`, `font-display`, …). `darkMode` keys off `[data-theme="dark"]`.
+  `text-body`, `text-accent`, `rounded-lg`, `shadow-photo`, `bg-accent-gradient`, …). `darkMode` keys off `[data-theme="dark"]`.
 - `public/` — assets served verbatim at the site root: `favicon.svg`, `og-image.jpg` (social crawlers
   need a static URL), and `resume/` (reserved for a résumé PDF).
 - `vite.config.ts` — Vue + Tailwind plugins, `@` → `src` alias, and `base: '/BrianWebsite/'` in
@@ -1352,7 +1351,7 @@ every choice in the subject.
   utilities (`text-accent`, `bg-surface`, `border-line`, `rounded-lg`, `shadow-photo`) or the CSS
   variables in `base.css`. Add a token before introducing a one-off value. For a dark section,
   add `.theme-studio`; it redefines the base tokens so components inside need no special cases.
-  Scoped `<style>` blocks cannot call `theme()`, so use `var(--font-display)` there.
+  Scoped `<style>` blocks cannot call `theme()`; use the CSS variables there.
 - **Tailwind-first, small components layer.** Style with Tailwind utilities in templates; the only
   shared CSS classes are the cross-cutting primitives in `base.css` (`.site-container`, `.section`,
   `.eyebrow`, `.lead`, `.theme-studio`) and component-scoped `<style>` where a pure-utility

@@ -13,11 +13,7 @@
 
     <div class="demo-row__heading">
       <p class="demo-row__status" aria-hidden="true">
-        <template v-if="playing">
-          <span class="equalizer"><span /><span /><span /></span>
-          Now playing
-        </template>
-        <template v-else>{{ String(number).padStart(2, "0") }}</template>
+{{ playing ? "Now playing" : String(number).padStart(2, "0") }}
       </p>
       <h3 class="demo-row__title">{{ track.title }}</h3>
     </div>
@@ -66,7 +62,7 @@
   .demo-row {
     position: relative;
     display: grid;
-    grid-template-columns: auto minmax(13rem, 17rem) minmax(0, 1fr) auto;
+    grid-template-columns: auto minmax(11rem, 14rem) minmax(0, 1fr) auto;
     grid-template-areas: "play heading progress download";
     align-items: center;
     column-gap: clamp(1rem, 2.5vw, 2rem);
@@ -107,9 +103,6 @@
   }
 
   .demo-row__status {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
     height: 1.25rem;
     font-size: 0.75rem;
     font-weight: 600;
@@ -125,9 +118,10 @@
 
   .demo-row__title {
     margin-top: 0.25rem;
-    font-family: var(--font-display);
-    font-size: clamp(1.75rem, 2.6vw, 2.25rem);
-    line-height: 1;
+    font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
   }
 
   .demo-row__progress {
@@ -150,39 +144,6 @@
   .demo-row__download {
     grid-area: download;
     padding-inline: 0.5rem;
-  }
-
-  .equalizer {
-    display: inline-flex;
-    align-items: flex-end;
-    gap: 2px;
-    height: 0.75rem;
-  }
-
-  .equalizer span {
-    width: 3px;
-    height: 100%;
-    border-radius: 1px;
-    background: currentColor;
-    transform-origin: bottom;
-    animation: equalize 0.9s ease-in-out infinite alternate;
-  }
-
-  .equalizer span:nth-child(2) {
-    animation-delay: -0.45s;
-  }
-
-  .equalizer span:nth-child(3) {
-    animation-delay: -0.2s;
-  }
-
-  @keyframes equalize {
-    from {
-      transform: scaleY(0.25);
-    }
-    to {
-      transform: scaleY(1);
-    }
   }
 
   @media (max-width: 860px) {

@@ -3,7 +3,7 @@
 
 /* Space-separated RGB tokens support opacity: rgb(var(--token) / <alpha>). */
 
-/* Self-hosted latin subsets (OFL): no external requests. Inter is one variable file. */
+/* Self-hosted latin subset of Inter (OFL), one variable file: no external requests. */
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -11,50 +11,39 @@
   font-display: swap;
   src: url("./fonts/inter-variable.woff2") format("woff2");
 }
-@font-face {
-  font-family: "Instrument Serif";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("./fonts/instrument-serif-400-normal.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Instrument Serif";
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("./fonts/instrument-serif-400-italic.woff2") format("woff2");
-}
 
-/* Warm paper, near-black ink, and one signal-red accent (the recording light). */
+/* Black ink with a blue-to-violet accent (Brian's colours: blue, purple, and black). */
 :root {
-  --color-background: 246 243 238;
-  --color-surface: 252 250 246;
-  --color-surface-muted: 238 234 227;
-  --color-body: 23 23 27;
-  --color-secondary: 99 94 88;
-  --color-line: 221 215 206;
-  --color-control-track: 158 151 142;
-  --color-accent: 194 56 34;
-  --color-accent-strong: 160 42 24;
+  --color-background: 250 250 252;
+  --color-surface: 255 255 255;
+  --color-surface-muted: 243 243 248;
+  --color-body: 12 12 18;
+  --color-secondary: 86 88 104;
+  --color-line: 226 227 236;
+  --color-control-track: 160 162 180;
+  --color-accent: 84 64 220;
+  --color-accent-strong: 62 44 186;
   --color-accent-contrast: 255 255 255;
-  --color-accent-soft: 247 226 219;
-  --color-focus-ring: 194 56 34;
+  --color-accent-soft: 237 234 253;
+  --color-focus-ring: 84 64 220;
+  --color-gradient-contrast: 255 255 255;
+  --gradient-accent: linear-gradient(120deg, rgb(37 99 235), rgb(124 58 237));
+  --gradient-accent-hover: linear-gradient(120deg, rgb(29 78 216), rgb(109 40 217));
 
-  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
-  --font-size-display: clamp(3.75rem, 11vw, 9.5rem);
-  --font-size-h1: clamp(3rem, 7vw, 5.5rem);
-  --font-size-h2: clamp(2.25rem, 4.5vw, 3.5rem);
+  --font-size-display: clamp(3.25rem, 8vw, 6.5rem);
+  --font-size-h1: clamp(2.5rem, 5.5vw, 4rem);
+  --font-size-h2: clamp(1.75rem, 3.2vw, 2.5rem);
   --font-size-h3: 1.125rem;
-  --space-section: clamp(4rem, 9vw, 7.5rem);
-  --container-width: 76rem;
+  --space-section: clamp(4rem, 8vw, 6.5rem);
+  --container-width: 74rem;
   --radius-sm: 0.25rem;
   --radius-md: 0.625rem;
-  --radius-lg: 1.25rem;
+  --radius-lg: 1rem;
   --radius-pill: 999px;
-  --shadow-photo: 0 30px 60px -30px rgb(23 23 27 / 0.45);
-  --shadow-float: 0 18px 40px -16px rgb(0 0 0 / 0.45);
-  --header-height: 4.5rem;
+  --shadow-photo: 0 24px 48px -24px rgb(12 12 18 / 0.35);
+  --shadow-accent: 0 8px 20px -8px rgb(84 64 220 / 0.55);
+  --shadow-float: 0 18px 40px -16px rgb(0 0 0 / 0.5);
+  --header-height: 4.25rem;
   --player-height: calc(5.5rem + env(safe-area-inset-bottom, 0px));
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --duration: 180ms;
@@ -62,49 +51,50 @@
 }
 
 html[data-theme="dark"] {
-  --color-background: 18 18 21;
-  --color-surface: 27 27 31;
-  --color-surface-muted: 24 24 28;
-  --color-body: 240 236 230;
-  --color-secondary: 168 163 156;
-  --color-line: 52 52 58;
-  --color-control-track: 98 96 102;
-  --color-accent: 255 112 84;
-  --color-accent-strong: 255 146 124;
-  --color-accent-contrast: 20 20 23;
-  --color-accent-soft: 60 34 30;
-  --color-focus-ring: 255 112 84;
-  --shadow-photo: 0 30px 60px -30px rgb(0 0 0 / 0.8);
+  --color-background: 9 9 13;
+  --color-surface: 20 20 28;
+  --color-surface-muted: 16 16 23;
+  --color-body: 240 240 246;
+  --color-secondary: 160 162 180;
+  --color-line: 38 39 52;
+  --color-control-track: 90 92 112;
+  --color-accent: 164 152 255;
+  --color-accent-strong: 190 181 255;
+  --color-accent-contrast: 9 9 13;
+  --color-accent-soft: 34 30 66;
+  --color-focus-ring: 164 152 255;
+  --shadow-photo: 0 24px 48px -24px rgb(0 0 0 / 0.8);
   color-scheme: dark;
 }
 
 /*
- * The studio scope: the demo band and the persistent player stay dark in both
+ * The studio scope: the demo band and the persistent player stay black in both
  * themes. Redefining the base tokens here lets every component inside keep
  * using the ordinary semantic utilities.
  */
 .theme-studio {
-  --color-background: 20 20 23;
-  --color-surface: 30 30 34;
-  --color-surface-muted: 26 26 30;
-  --color-body: 244 240 234;
-  --color-secondary: 160 156 150;
-  --color-line: 50 50 56;
-  --color-control-track: 92 90 98;
-  --color-accent: 255 104 76;
-  --color-accent-strong: 255 140 116;
-  --color-accent-contrast: 20 20 23;
-  --color-accent-soft: 62 34 30;
-  --color-focus-ring: 255 104 76;
+  --color-background: 9 9 13;
+  --color-surface: 22 22 31;
+  --color-surface-muted: 16 16 23;
+  --color-body: 244 244 250;
+  --color-secondary: 156 158 178;
+  --color-line: 40 41 56;
+  --color-control-track: 84 86 108;
+  --color-accent: 164 152 255;
+  --color-accent-strong: 190 181 255;
+  --color-accent-contrast: 9 9 13;
+  --color-accent-soft: 34 30 66;
+  --color-focus-ring: 164 152 255;
   color-scheme: dark;
   color: rgb(var(--color-body));
   background-color: rgb(var(--color-background));
 }
 
+/* On the dark theme the page is already black, so lift the band slightly to keep it distinct. */
 html[data-theme="dark"] .theme-studio {
-  --color-background: 11 11 13;
-  --color-surface: 22 22 26;
-  --color-line: 40 40 46;
+  --color-background: 17 17 25;
+  --color-surface: 28 28 40;
+  --color-line: 44 45 62;
 }
 
 @media (max-width: 620px) {
@@ -148,8 +138,9 @@ html[data-theme="dark"] .theme-studio {
   h1,
   h2,
   h3 {
-    font-weight: 400;
-    line-height: 1;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
     text-wrap: balance;
   }
 
@@ -230,13 +221,13 @@ html[data-theme="dark"] .theme-studio {
     color: rgb(var(--color-secondary));
   }
 
-  /* The red recording light that marks section labels. */
+  /* A short gradient rule marks section labels. */
   .eyebrow::before {
     content: "";
-    width: 0.5rem;
-    height: 0.5rem;
+    width: 1.25rem;
+    height: 2px;
     border-radius: 999px;
-    background: rgb(var(--color-accent));
+    background: var(--gradient-accent);
   }
 
   .lead {

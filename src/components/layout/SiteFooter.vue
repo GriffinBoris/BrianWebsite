@@ -2,7 +2,7 @@
   <footer class="border-t border-line">
     <div class="site-container flex flex-wrap items-center justify-between gap-x-8 gap-y-4 py-8 text-sm text-secondary">
       <div>
-        <RouterLink class="font-display text-2xl leading-none text-body" :to="{ name: 'home' }">Brian Bakaj</RouterLink>
+        <RouterLink class="text-base font-bold tracking-[-0.03em] text-body" :to="{ name: 'home' }">Brian Bakaj</RouterLink>
         <p class="mt-1">Voice actor based in Austin, Texas.</p>
       </div>
 

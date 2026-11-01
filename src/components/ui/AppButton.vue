@@ -59,7 +59,7 @@
 
   const toneClasses = computed(() => {
     if (props.tone === "accent") {
-      return "rounded-pill bg-accent text-accent-contrast hover:bg-accent-strong motion-safe:active:scale-[0.98]";
+      return "rounded-pill bg-accent-gradient text-gradient-contrast shadow-accent hover:bg-accent-gradient-hover motion-safe:active:scale-[0.98]";
     }
     if (props.tone === "solid") {
       return "rounded-pill bg-body text-background hover:bg-accent hover:text-accent-contrast motion-safe:active:scale-[0.98]";
