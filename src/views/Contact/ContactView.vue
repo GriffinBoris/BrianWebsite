@@ -1,116 +1,121 @@
 <template>
-  <PageHero
-    eyebrow="Contact"
-    title="Bookings and auditions"
-    title-id="contact-title"
-    lead="Email your project details, dates, and a script or brief. Include how the recording will be used."
-  />
-
-  <section class="section contact-page" aria-labelledby="contact-title">
+  <section class="section" aria-labelledby="contact-title">
     <div class="site-container contact-layout">
-      <div class="contact-introduction">
-        <p class="contact-email">
-          <a href="mailto:brianbakaj@icloud.com">brianbakaj@icloud.com</a>
-        </p>
-        <div class="contact-actions">
-          <AppButton tone="accent" href="mailto:brianbakaj@icloud.com">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h1 id="contact-title" class="mt-5 font-display text-h1">Bookings and <em class="text-accent">auditions.</em></h1>
+        <p class="lead mt-6 max-w-[34rem]">Email your project details and I’ll get back to you.</p>
+
+        <a class="contact-email" :href="`mailto:${bookingEmail}`">{{ bookingEmail }}</a>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <AppButton tone="accent" size="lg" :href="`mailto:${bookingEmail}`">
+            <AppIcon icon="mail" class="h-5 w-5" />
             <span>Email Brian</span>
-            <AppIcon icon="arrowRight" class="h-5 w-5" />
           </AppButton>
-          <AppButton tone="ghost" href="https://www.backstage.com/u/brian-bakaj/" target="_blank">
-            <span>Backstage profile</span>
-            <AppIcon icon="externalLink" class="h-4 w-4" />
-            <span class="sr-only"> (opens in a new tab)</span>
+          <AppButton tone="outline" size="lg" :to="{ name: 'home', hash: '#demos' }">
+            <AppIcon icon="play" class="h-5 w-5 fill-current" />
+            <span>Hear the demos</span>
           </AppButton>
         </div>
       </div>
 
-      <aside class="contact-profiles" aria-labelledby="profiles-title">
-        <h2 id="profiles-title" class="text-h2">Profiles</h2>
-        <ul class="profile-links">
-          <li v-for="social in socials" :key="social.label">
-            <a :href="social.href" target="_blank" rel="noopener noreferrer" :aria-label="`${social.label} (opens in a new tab)`">
-              <span>{{ social.label }}</span>
-              <AppIcon icon="externalLink" class="h-4 w-4" />
-            </a>
-          </li>
-        </ul>
+      <aside class="contact-aside">
+        <div>
+          <h2 class="eyebrow">What to include</h2>
+          <ul class="contact-list">
+            <li v-for="item in briefItems" :key="item">{{ item }}</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="eyebrow">Profiles</h2>
+          <ul class="contact-list">
+            <li v-for="profile in profiles" :key="profile.label">
+              <a :href="profile.href" target="_blank" rel="noopener noreferrer" class="profile-link">
+                <span>{{ profile.label }}</span>
+                <AppIcon icon="externalLink" class="h-4 w-4" />
+                <span class="sr-only"> (opens in a new tab)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </aside>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-  import PageHero from "@/components/page/PageHero.vue";
   import AppButton from "@/components/ui/AppButton.vue";
   import AppIcon from "@/components/ui/AppIcon.vue";
+  import { bookingEmail, profiles } from "@/data/profiles";
 
-  const socials = [
-    { label: "Backstage", href: "https://www.backstage.com/u/brian-bakaj/" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/brian-bakaj" },
-    { label: "Facebook", href: "https://www.facebook.com/brian.bakaj/" },
-  ];
+  const briefItems = ["The project and the role", "Your dates and timeline", "A script or brief", "How the recording will be used"];
 </script>
 
 <style scoped>
   .contact-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1.6fr) minmax(15rem, 0.8fr);
+    grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 0.8fr);
     align-items: start;
-    gap: var(--space-12);
+    gap: clamp(3rem, 7vw, 6rem);
   }
 
   .contact-email {
-    font-size: clamp(1.25rem, 3vw, 2rem);
-    font-weight: 500;
-    letter-spacing: -0.035em;
-    overflow-wrap: anywhere;
-  }
-
-  .contact-email a {
+    display: inline-block;
+    margin-top: clamp(2rem, 5vw, 3.5rem);
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.75rem);
+    line-height: 1.1;
     text-decoration: underline;
-    text-decoration-color: rgb(var(--color-line));
-    text-underline-offset: 0.25em;
-  }
-
-  .contact-email a:hover {
+    text-decoration-thickness: 2px;
     text-decoration-color: rgb(var(--color-accent));
-    color: rgb(var(--color-accent));
-  }
-
-  .contact-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-    margin-top: var(--space-6);
-  }
-
-  .profile-links {
-    margin-top: var(--space-6);
-    border-top: 1px solid rgb(var(--color-line));
-  }
-
-  .profile-links a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-4);
-    min-height: 52px;
-    padding-block: var(--space-3);
-    border-bottom: 1px solid rgb(var(--color-line));
-    color: rgb(var(--color-secondary));
+    text-underline-offset: 0.18em;
+    overflow-wrap: anywhere;
     transition: color var(--duration) var(--ease);
   }
 
-  .profile-links a:hover,
-  .profile-links a:focus-visible {
+  .contact-email:hover {
     color: rgb(var(--color-accent));
   }
 
-  @media (max-width: 760px) {
+  .contact-aside {
+    display: grid;
+    gap: 2.5rem;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: var(--radius-lg);
+    background: rgb(var(--color-surface-muted));
+  }
+
+  .contact-list {
+    margin-top: 0.75rem;
+  }
+
+  .contact-list li {
+    border-top: 1px solid rgb(var(--color-line));
+  }
+
+  .contact-list li:not(:has(a)) {
+    padding-block: 0.75rem;
+  }
+
+  .profile-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 3rem;
+    font-weight: 500;
+    transition: color var(--duration) var(--ease);
+  }
+
+  .profile-link:hover {
+    color: rgb(var(--color-accent));
+  }
+
+  @media (max-width: 820px) {
     .contact-layout {
       grid-template-columns: 1fr;
-      gap: var(--space-10);
     }
   }
 </style>

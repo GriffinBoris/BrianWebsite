@@ -3,114 +3,113 @@
 
 /* Space-separated RGB tokens support opacity: rgb(var(--token) / <alpha>). */
 
-/* Self-hosted latin subsets of Inter (Google Fonts, OFL): no external requests. */
+/* Self-hosted latin subsets (OFL): no external requests. Inter is one variable file. */
 @font-face {
   font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("./fonts/inter-variable.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Serif";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("./fonts/inter-400-normal.woff2") format("woff2");
+  src: url("./fonts/instrument-serif-400-normal.woff2") format("woff2");
 }
 @font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
   font-display: swap;
-  src: url("./fonts/inter-500-normal.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("./fonts/inter-600-normal.woff2") format("woff2");
+  src: url("./fonts/instrument-serif-400-italic.woff2") format("woff2");
 }
 
+/* Warm paper, near-black ink, and one signal-red accent (the recording light). */
 :root {
-  --color-background: 250 251 252;
-  --color-surface-muted: 244 247 250;
-  --color-surface: 255 255 255;
-  --color-body: 34 49 65;
-  --color-secondary: 92 107 123;
-  --color-line: 220 228 234;
-  --color-control-track: 123 145 166;
-  --color-accent: 49 88 125;
-  --color-accent-strong: 36 67 98;
+  --color-background: 246 243 238;
+  --color-surface: 252 250 246;
+  --color-surface-muted: 238 234 227;
+  --color-body: 23 23 27;
+  --color-secondary: 99 94 88;
+  --color-line: 221 215 206;
+  --color-control-track: 158 151 142;
+  --color-accent: 194 56 34;
+  --color-accent-strong: 160 42 24;
   --color-accent-contrast: 255 255 255;
-  --color-accent-soft: 237 243 249;
-  --shadow-button: inset 0 1px 0 rgb(255 255 255 / 0.14), 0 2px 4px rgb(49 88 125 / 0.16);
-  --shadow-button-hover: inset 0 1px 0 rgb(255 255 255 / 0.18), 0 4px 8px rgb(49 88 125 / 0.18);
-  --color-primary: 36 48 59;
-  --color-primary-contrast: 255 255 255;
-  --color-focus-ring: 49 88 125;
-  --color-intro: 247 250 252;
-  --color-intro-ink: 34 49 65;
-  --color-intro-muted: 92 107 123;
-  --font-size-eyebrow: 0.75rem;
-  --tracking-eyebrow: 0.06em;
-  --font-size-lead: 1.125rem;
-  --line-height-lead: 1.5;
-  --font-size-display: clamp(2.5rem, 4.6vw, 3.5rem);
-  --font-size-h1: clamp(2rem, 3.4vw, 2.75rem);
-  --font-size-h2: clamp(1.375rem, 2.5vw, 1.75rem);
+  --color-accent-soft: 247 226 219;
+  --color-focus-ring: 194 56 34;
+
+  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-size-display: clamp(3.75rem, 11vw, 9.5rem);
+  --font-size-h1: clamp(3rem, 7vw, 5.5rem);
+  --font-size-h2: clamp(2.25rem, 4.5vw, 3.5rem);
   --font-size-h3: 1.125rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-section: clamp(2rem, 4vw, 3rem);
-  --container-width: 74rem;
-  --container-narrow: 42rem;
-  --color-panel-line: 214 224 233;
-  --radius-panel: 0.75rem;
-  --shadow-panel: 0 4px 18px rgb(36 48 59 / 0.025);
-  --radius-photo: 0.875rem;
-  --shadow-photo: 0 8px 24px rgb(36 48 59 / 0.08);
-  --radius-sm: 0.125rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.375rem;
+  --space-section: clamp(4rem, 9vw, 7.5rem);
+  --container-width: 76rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1.25rem;
   --radius-pill: 999px;
-  --shadow-sm: none;
-  --shadow-md: none;
-  --shadow-lg: none;
-  --player-height: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  --shadow-photo: 0 30px 60px -30px rgb(23 23 27 / 0.45);
+  --shadow-float: 0 18px 40px -16px rgb(0 0 0 / 0.45);
+  --header-height: 4.5rem;
+  --player-height: calc(5.5rem + env(safe-area-inset-bottom, 0px));
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --duration: 160ms;
+  --duration: 180ms;
   color-scheme: light;
 }
 
 html[data-theme="dark"] {
-  --color-background: 31 40 48;
-  --color-surface-muted: 34 44 53;
-  --color-surface: 43 55 66;
-  --color-body: 229 237 243;
-  --color-secondary: 178 195 208;
-  --color-line: 74 94 111;
-  --color-control-track: 143 167 185;
-  --color-accent: 173 205 230;
-  --color-accent-strong: 202 225 242;
-  --color-accent-contrast: 28 44 56;
-  --color-accent-soft: 52 71 88;
-  --shadow-button: inset 0 1px 0 rgb(255 255 255 / 0.18), 0 2px 4px rgb(0 0 0 / 0.12);
-  --shadow-button-hover: inset 0 1px 0 rgb(255 255 255 / 0.22), 0 4px 8px rgb(0 0 0 / 0.14);
-  --color-primary: 229 237 243;
-  --color-primary-contrast: 31 40 48;
-  --color-focus-ring: 173 205 230;
-  --color-intro: 36 47 57;
-  --color-intro-ink: 229 237 243;
-  --color-intro-muted: 178 195 208;
-  --shadow-photo: 0 8px 24px rgb(0 0 0 / 0.12);
-  --color-panel-line: 71 91 108;
-  --shadow-panel: 0 4px 18px rgb(0 0 0 / 0.07);
+  --color-background: 18 18 21;
+  --color-surface: 27 27 31;
+  --color-surface-muted: 24 24 28;
+  --color-body: 240 236 230;
+  --color-secondary: 168 163 156;
+  --color-line: 52 52 58;
+  --color-control-track: 98 96 102;
+  --color-accent: 255 112 84;
+  --color-accent-strong: 255 146 124;
+  --color-accent-contrast: 20 20 23;
+  --color-accent-soft: 60 34 30;
+  --color-focus-ring: 255 112 84;
+  --shadow-photo: 0 30px 60px -30px rgb(0 0 0 / 0.8);
   color-scheme: dark;
+}
+
+/*
+ * The studio scope: the demo band and the persistent player stay dark in both
+ * themes. Redefining the base tokens here lets every component inside keep
+ * using the ordinary semantic utilities.
+ */
+.theme-studio {
+  --color-background: 20 20 23;
+  --color-surface: 30 30 34;
+  --color-surface-muted: 26 26 30;
+  --color-body: 244 240 234;
+  --color-secondary: 160 156 150;
+  --color-line: 50 50 56;
+  --color-control-track: 92 90 98;
+  --color-accent: 255 104 76;
+  --color-accent-strong: 255 140 116;
+  --color-accent-contrast: 20 20 23;
+  --color-accent-soft: 62 34 30;
+  --color-focus-ring: 255 104 76;
+  color-scheme: dark;
+  color: rgb(var(--color-body));
+  background-color: rgb(var(--color-background));
+}
+
+html[data-theme="dark"] .theme-studio {
+  --color-background: 11 11 13;
+  --color-surface: 22 22 26;
+  --color-line: 40 40 46;
 }
 
 @media (max-width: 620px) {
   :root {
-    --player-height: calc(7.5rem + env(safe-area-inset-bottom, 0px));
+    --player-height: calc(8rem + env(safe-area-inset-bottom, 0px));
   }
 }
 
@@ -128,7 +127,7 @@ html[data-theme="dark"] {
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
-    scroll-padding-top: 1rem;
+    scroll-padding-top: calc(var(--header-height) + 1rem);
     background-color: rgb(var(--color-background));
   }
 
@@ -149,9 +148,8 @@ html[data-theme="dark"] {
   h1,
   h2,
   h3 {
-    font-weight: 500;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    line-height: 1;
     text-wrap: balance;
   }
 
@@ -162,6 +160,11 @@ html[data-theme="dark"] {
   a {
     color: inherit;
     text-decoration: none;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
   }
 
   img,
@@ -185,7 +188,8 @@ html[data-theme="dark"] {
   }
 
   ::selection {
-    background: rgb(var(--color-accent) / 0.28);
+    color: rgb(var(--color-accent-contrast));
+    background: rgb(var(--color-accent));
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -202,48 +206,42 @@ html[data-theme="dark"] {
   }
 }
 
-/*
- * Cross-cutting primitives reused on every page. These stay semantic so the
- * views read like page outlines; one-off layout still uses Tailwind utilities.
- */
+/* Cross-cutting primitives reused on every page; one-off layout uses utilities. */
 @layer components {
   .site-container {
     width: 100%;
     max-width: var(--container-width);
     margin-inline: auto;
-    padding-inline: var(--space-6);
-  }
-
-  .site-container--narrow {
-    max-width: var(--container-narrow);
+    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
   }
 
   .section {
     padding-block: var(--space-section);
   }
 
-  .section--muted {
-    background-color: rgb(var(--color-surface-muted));
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgb(var(--color-secondary));
   }
 
-  .eyebrow {
-    display: inline-block;
-    font-size: var(--font-size-eyebrow);
-    font-weight: 600;
-    letter-spacing: var(--tracking-eyebrow);
-    color: rgb(var(--color-secondary));
-    text-transform: uppercase;
+  /* The red recording light that marks section labels. */
+  .eyebrow::before {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: rgb(var(--color-accent));
   }
 
   .lead {
-    font-size: var(--font-size-lead);
-    line-height: var(--line-height-lead);
+    font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+    line-height: 1.55;
     color: rgb(var(--color-secondary));
-  }
-}
-
-@media (max-width: 600px) {
-  .site-container {
-    padding-inline: 20px;
   }
 }

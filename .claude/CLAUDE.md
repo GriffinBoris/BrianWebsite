@@ -1250,36 +1250,32 @@ These guidelines are constraints in service of clarity, not bureaucracy. If foll
   TypeScript, `vue-router` (HTML5 history) — that compiles to fully static assets. GitHub Actions runs
   the Vite build and publishes `dist/` to GitHub Pages; there is no backend, database, or API.
 - It was migrated from an earlier hand-authored no-build site. The framework and Vue guidance in
-  `agents/` now applies; the design system (tokens, muted slate-blue accent, Inter type,
-  voice-focused positioning) carried over intact.
+  `agents/` now applies. The visual design was later replaced by the "On Air" revamp described below.
 
 ## Design Intent
 
 The design follows the frontend-design principle of **spending boldness in one place** and grounding
 every choice in the subject.
 
-- **Focused demo presentation:** the “Voice Over Demos” section contains its heading and demo cards.
-  Timelines show real recording-derived waveforms; do not add a separate decorative audio
-  visualizer or supporting paragraph beneath the heading.
-  The homepage has no “Listen to demos” button; the demo section itself provides playback and downloads.
-  Home uses a single static original portrait (`headshot.jpg`), with no carousel. About keeps its
-  static three-photo gallery. Keep the version-two AI portrait in the repository without active site references.
-- **Softer, focused presentation:** the owner wants the name and introduction at the top left,
-  the original portrait at the top right, and a separate row below that draws attention to the
-  demos. Use soft whites with a muted slate-blue accent, chosen by the owner. Reserve the accent
-  for playback controls, links, booking actions, and focus states; keep the demo panel white in light mode. The demo row uses a defined white panel on a soft
-  gray surround, with a stronger heading, bold track titles, prominent play controls, and fine
-  separators. Center the panel vertically within its surround using equal padding above and below.
-  Keep that slate background very subtle and the panel border/shadow quiet so it feels integrated
-  with the page. Emphasis comes from the heading and slightly bluer controls, not a heavy frame.
-  It should read as a primary task area, not recede into the background. Do not use
-  a black band to create emphasis. The original outdoor headshot is larger, with a subtle
-  rounded edge and shadow. Retain natural image detail and use the original asset.
-  Optional dark mode uses softened slate surfaces and softer foregrounds rather than near-black
-  and bright-white contrast. Avoid another broad redesign unless the owner asks.
-- **Type is one clean sans:** **Inter** across the whole site, self-hosted. Keep headings modest,
-  retain the shared spacing scale, and use familiar controls. The original photograph provides
-  personality; avoid slants, decorative type, giant hero bands, or invented copy.
+- **"On Air" concept.** Warm paper background, near-black ink, and one signal-red accent that
+  reads as a recording light. The accent marks playback controls, the primary booking action,
+  emphasised words in headings, the eyebrow dot, and focus states. Do not introduce a second
+  accent hue.
+- **The bold place is the demos.** Home has a dark "studio" band (`.theme-studio`) with a
+  numbered tracklist: play button, number or "Now playing" with a small equaliser, serif title,
+  real waveform with times, and an MP3 download link. The band and the floating `AudioBar` stay
+  dark in both themes. The hero has a direct "Play demo" button that plays the first reel, so a
+  visitor hears Brian in one click.
+- **Home outline:** hero (eyebrow, very large serif name with "Bakaj" in red italic, one-sentence
+  lead, Play demo and Book Brian actions, the original outdoor `headshot.jpg` framed by an offset
+  red block), demos band, an "At a glance" facts row linking to About, and a booking card. Do not
+  add a carousel. About keeps its static three-photo gallery. Keep the version-two AI portrait in
+  the repository without active site references.
+- **Type pairing:** **Instrument Serif** (display, regular and italic) for the name, headings,
+  track titles, and large values; **Inter** (one variable file) for body and UI. Both are
+  self-hosted. Use italic plus the accent for a single emphasised word per heading at most.
+- **Dark theme** uses near-black warm charcoal with a lighter coral accent; the studio band goes
+  one step darker so it still separates from the page.
 - **Usable, not a maze.** No scroll-triggered reveals or content hidden until scrolled into view.
   Everything is visible and reachable; navigation is explicit. Prefer clarity and findability over
   scroll spectacle.
@@ -1308,26 +1304,29 @@ every choice in the subject.
   `public/404.html` and the restoration script in `index.html`; old hash links remain supported.
   Routes: `home` (`/`), `about`, `contact`. Route metadata updates client-side; social previews
   read the shared metadata in `index.html`.
-- `src/views/<Name>/<Name>View.vue` — one folder per route. `HomeView` (hero, reels, booking CTA),
-  `AboutView` (bio, casting-profile spec card, headshots gallery), `ContactView` (booking CTA plus
-  external profile links). The current route drives the nav highlight (underline); `RouterLink` sets `aria-current` automatically.
+- `src/views/<Name>/<Name>View.vue` — one folder per route. `HomeView` (hero, demos band, facts, booking card),
+  `AboutView` (bio, casting-profile spec card, headshots gallery), `ContactView` (email, what to
+  include, profile links). The header shows Demos (a `#demos` anchor on home), About, and a Contact
+  pill; the current page gets a small red dot under its label.
 - `src/components/` — `layout/` (`SiteHeader` with inline navigation, `SiteFooter`),
-  `page/` (`PageHero` intro band), `player/` (`DemoCard`,
-  `AudioBar`, and the shared `AudioSeek` range), `ui/` (the app-owned PrimeVue wrappers: `AppButton`, `AppIconButton`, `AppSurface`,
+  `player/` (`DemoRow`,
+  `AudioBar`, and the shared `AudioSeek` range), `ui/` (the app-owned PrimeVue wrappers: `AppButton`, `AppIconButton`,
   `AppIcon`, `ThemeToggle`, plus `appIcons.ts` and `AppTooltip.ts`).
 - `src/utils/className.ts` — `cn()` (clsx + tailwind-merge), the class combiner used by the wrappers.
 - `src/composables/` — `useTheme.ts` (light/dark singleton driving `html[data-theme]`) and
-  `usePlayer.ts` (the audio engine: one `Audio` element drives demo cards and the
+  `usePlayer.ts` (the audio engine: one `Audio` element drives demo rows, the hero button, and the
   persistent bar; it stamps each demo's real length and
   keeps every control for the current track in sync; playback failures show a retry message).
 - `src/data/demos.ts` — the demo-track list (id, title, imported `src`, download filename,
   fallback duration): the single source for reels, ordered video games, commercial, narration.
+  `src/data/profiles.ts` holds the booking email and external profile links used by the footer,
+  home, and Contact.
 - `src/assets/` — `base.css` (Tailwind entry + `@config` + design tokens + resets + shared
-  `.site-container`/`.eyebrow`/`.lead` primitives), self-hosted Inter `woff2` subsets under
-  `fonts/`, `img/` (headshot + looks), and `media/` (the demo mp3s). Fonts/images/media are imported
+  `.site-container`/`.eyebrow`/`.lead` primitives, and the `.theme-studio` scope), self-hosted Inter
+  variable and Instrument Serif `woff2` files under `fonts/`, `img/` (headshot + looks), and `media/` (the demo mp3s). Fonts/images/media are imported
   so Vite hashes them and rewrites URLs for the Pages base path.
 - `tailwind.config.js` — maps the CSS-variable tokens onto semantic Tailwind names (`bg-surface`,
-  `text-body`, `text-accent`, `rounded-lg`, `shadow-md`, …). `darkMode` keys off `[data-theme="dark"]`.
+  `text-body`, `text-accent`, `rounded-lg`, `shadow-photo`, `font-display`, …). `darkMode` keys off `[data-theme="dark"]`.
 - `public/` — assets served verbatim at the site root: `favicon.svg`, `og-image.jpg` (social crawlers
   need a static URL), and `resume/` (reserved for a résumé PDF).
 - `vite.config.ts` — Vue + Tailwind plugins, `@` → `src` alias, and `base: '/BrianWebsite/'` in
@@ -1342,20 +1341,22 @@ every choice in the subject.
   site, so keep dependencies minimal (YAGNI) and reach for a composable before a store.
 - **App-owned wrappers around PrimeVue.** Route views and route-local components never import
   `primevue/*` directly. They use the app-owned wrappers under `src/components/ui/` — `AppButton`,
-  `AppIconButton`, `AppSurface`, `AppIcon`, `ThemeToggle` — which own the `unstyled` `pt` maps, tones,
+  `AppIconButton`, `AppIcon`, `ThemeToggle` — which own the `unstyled` `pt` maps, tones,
   sizes, focus rings, and icons (per `agents/.../vue-app-owned-wrapper-component.md`). Callers pass
   semantic props (`tone`, `size`, `icon`, `label`, `to`/`href`). `cn()` (`src/utils/className.ts`)
   merges classes; icons come from Lucide via `src/components/ui/appIcons.ts` + `AppIcon`, not inline
-  SVG. Shared buttons use softened corners, token-based shadows and hover/focus states; play
-  icons are filled and press motion respects reduced-motion preferences. The bespoke audio UI
+  SVG. Buttons are pills with tones `accent`, `solid`, `outline`, and `link`; play
+  and pause icons are filled and press motion respects reduced-motion preferences. The bespoke audio UI
   and the responsive nav shell stay custom by design.
 - **Design tokens first.** Never hard-code a raw color, radius, or shadow. Use the semantic Tailwind
-  utilities (`text-accent`, `bg-surface`, `border-line`, `rounded-lg`, `shadow-md`) or the CSS
-  variables in `base.css`. Add a token before introducing a one-off value.
+  utilities (`text-accent`, `bg-surface`, `border-line`, `rounded-lg`, `shadow-photo`) or the CSS
+  variables in `base.css`. Add a token before introducing a one-off value. For a dark section,
+  add `.theme-studio`; it redefines the base tokens so components inside need no special cases.
+  Scoped `<style>` blocks cannot call `theme()`, so use `var(--font-display)` there.
 - **Tailwind-first, small components layer.** Style with Tailwind utilities in templates; the only
-  shared CSS classes are the cross-cutting primitives in `base.css` (`.site-container`, `.eyebrow`,
-  `.lead`, `.btn`) and component-scoped `<style>` where a pure-utility expression would be unreadable
-  (the nav dropdown and the scrub range).
+  shared CSS classes are the cross-cutting primitives in `base.css` (`.site-container`, `.section`,
+  `.eyebrow`, `.lead`, `.theme-studio`) and component-scoped `<style>` where a pure-utility
+  expression would be unreadable (grid layouts, the nav dot, the tracklist, and the scrub range).
 - **One audio engine.** All playback goes through `usePlayer`. Any new play control calls
   `toggleTrack(track)`; any new demo lives in `src/data/demos.ts`. Only one demo plays at a time and
   every control for the current track stays in sync through the shared reactive state. Do not add a
@@ -1375,7 +1376,7 @@ every choice in the subject.
   must be confirmed by Brian before publication.
 - **Public wording.** Use plain, specific copy and natural sentences. Do not use decorative dot
   separators between words, including in the header, footer, casting profile, or page titles.
-  Use words such as "and" or separate lines. Keep the header to Brian’s name and navigation. Demo reels show titles, playback controls, progress, and explicit MP3 download links, with no category labels or descriptions.
+  Use words such as "and" or separate lines. Keep the header to Brian’s name and navigation. Demo reels show a number, title, playback control, progress, and an explicit MP3 download link, with no category labels or per-reel descriptions.
 - **Performance.** Optimized images, `loading="lazy"` below the fold, self-hosted fonts, route-level
   code splitting via lazy `import()` in the router.
 
@@ -1406,7 +1407,7 @@ every choice in the subject.
 - `npm run build` must pass (it runs `vue-tsc` type-check, then the Vite production build).
 - No test suite. Before committing, run `npm run dev` (or `npm run preview` for the production base
   path) and confirm in a browser: both themes render, fonts load locally with no external/network
-  errors, all three routes resolve, inline navigation and its active-page highlight work, the
-  About headshots and the static original homepage portrait render correctly, no carousel appears, pressing a demo plays
-  audio and drives the persistent bar, only one demo plays at a time, the mobile seek
+  errors, all three routes resolve, navigation, the Demos anchor, and the active-page dot work, the
+  About headshots and the homepage portrait render correctly, the hero Play demo button and each
+  demo row play audio and drive the floating player, only one demo plays at a time, the mobile seek
   control works, and the layout is responsive with no console errors. There is no configured linter.

@@ -12,7 +12,10 @@ if (window.location.hash.startsWith("#/")) {
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  scrollBehavior() {
+  scrollBehavior(to) {
+    if (to.hash) {
+      return { el: to.hash, top: 88, behavior: "smooth" };
+    }
     return { top: 0 };
   },
   routes: [
