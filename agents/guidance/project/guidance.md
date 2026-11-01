@@ -44,11 +44,12 @@ every choice in the subject.
   business rather than a design showcase. No taglines, wordplay headings, gradients, glows,
   ornamental animation, or filler copy. Headings are plain ("Demos", "About", "Casting profile",
   "Headshots", "Bookings and auditions").
-- **Home is a talent one-sheet.** Left column: headshot, name, and "Voice actor in English and
-  Albanian". Right column: the Demos list (stacked, labelled players with waveform, times, and MP3
-  download), then the casting profile (languages, location, playing age, union status, studio). On
-  phones: compact photo and name row, a "Request an audition" button (shown only where the header
-  hides its copy), then demos immediately.
+- **Home is a talent one-sheet (comp-card style).** Left column: headshot, name, "Voice actor in
+  English and Albanian", and the casting profile (languages, location, playing age, union status,
+  studio). Right column: the Demos list (stacked, labelled players with waveform, times, and MP3
+  download), then a short "Bookings and auditions" prompt with the Request an audition button, so
+  booking is the next step after listening and neither column is left bare. On phones: compact
+  photo and name row, demos immediately, the booking prompt, then the casting profile.
 - **Each fact appears once.** The casting profile lives only on Home; About is a short bio plus
   headshots; the footer is just name, email, and profiles. Omit details that do not matter for
   voice work (on-camera items such as movement or travel documents) and personal social accounts
