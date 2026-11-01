@@ -116,7 +116,7 @@ every choice in the subject.
   persistent bar; it stamps each demo's real length and
   keeps every control for the current track in sync; playback failures show a retry message).
 - `src/data/demos.ts` — the demo-track list (id, title, imported `src`, download filename,
-  fallback duration): the single source for reels, ordered video game and animation, commercial, narration. The first reel is labelled "Video game and animation demo": it is game-heavy but about a third of its reads are in an animated register, and peers with one character reel commonly use a combined label.
+  fallback duration): the single source for reels, ordered video game and animation, commercial, narration. Demo titles use title case ("Commercial Demo"). The first reel is labelled "Video Game and Animation Demo": it is game-heavy but about a third of its reads are in an animated register, and peers with one character reel commonly use a combined label.
   `src/data/profiles.ts` holds the booking email and external profile links used by the footer,
   home, and Contact.
 - `src/assets/` — `base.css` (Tailwind entry + `@config` + design tokens + resets + shared
