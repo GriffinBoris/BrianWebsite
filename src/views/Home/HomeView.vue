@@ -6,32 +6,36 @@
         <h1 id="hero-title" class="text-h1">Brian Bakaj</h1>
         <p class="mt-1 text-secondary">Voice actor in English and Albanian</p>
       </div>
-      <!-- The header carries this button on wider screens. -->
-      <AppButton tone="accent" size="lg" :href="auditionRequestHref" root-class="intro__action">Request an audition</AppButton>
     </section>
 
-    <div class="main">
-      <section id="demos" aria-labelledby="demos-title">
-        <h2 id="demos-title" class="text-h2">Demos</h2>
-        <div class="demos__list">
-          <DemoRow v-for="track in demoTracks" :key="track.id" :track="track" />
-        </div>
-      </section>
+    <section id="demos" class="demos" aria-labelledby="demos-title">
+      <h2 id="demos-title" class="text-h2">Demos</h2>
+      <div class="demos__list">
+        <DemoRow v-for="track in demoTracks" :key="track.id" :track="track" />
+      </div>
 
-      <section class="facts" aria-labelledby="facts-title">
-        <h2 id="facts-title" class="text-h2">Casting profile</h2>
-        <dl>
-          <div v-for="fact in facts" :key="fact.label" class="facts__row">
-            <dt>{{ fact.label }}</dt>
-            <dd>{{ fact.value }}</dd>
-          </div>
-        </dl>
-        <AppButton tone="link" :to="{ name: 'about' }" root-class="mt-2">
-          <span>Bio and headshots</span>
-          <AppIcon icon="arrowRight" class="h-4 w-4" />
-        </AppButton>
-      </section>
-    </div>
+      <div class="booking">
+        <div>
+          <h2 class="text-h3">Bookings and auditions</h2>
+          <p class="mt-1 text-sm text-secondary">Send the project, the role, your dates, and a script or brief.</p>
+        </div>
+        <AppButton tone="accent" :href="auditionRequestHref">Request an audition</AppButton>
+      </div>
+    </section>
+
+    <section class="facts" aria-labelledby="facts-title">
+      <h2 id="facts-title" class="text-h3">Casting profile</h2>
+      <dl>
+        <div v-for="fact in facts" :key="fact.label" class="facts__row">
+          <dt>{{ fact.label }}</dt>
+          <dd>{{ fact.value }}</dd>
+        </div>
+      </dl>
+      <AppButton tone="link" :to="{ name: 'about' }" root-class="mt-2">
+        <span>Bio and headshots</span>
+        <AppIcon icon="arrowRight" class="h-4 w-4" />
+      </AppButton>
+    </section>
   </div>
 </template>
 
@@ -58,11 +62,12 @@
 </script>
 
 <style scoped>
-  /* A talent one-sheet: profile on the left, demos on the right, both above the fold. */
+  /* A talent one-sheet (comp-card style): photo and specs on the left, demos on the right. */
   .one-sheet {
     display: grid;
     grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr);
-    grid-template-areas: "intro main";
+    grid-template-areas: "intro demos" "facts demos";
+    grid-template-rows: auto 1fr;
     align-items: start;
     gap: 2rem clamp(2rem, 5vw, 4rem);
     padding-block: clamp(2rem, 5vw, 3.5rem) var(--space-section);
@@ -81,19 +86,8 @@
     margin-top: 1.25rem;
   }
 
-  .intro :deep(.intro__action) {
-    width: 100%;
-    margin-top: 1.25rem;
-  }
-
-  @media (min-width: 721px) {
-    .intro :deep(.intro__action) {
-      display: none;
-    }
-  }
-
-  .main {
-    grid-area: main;
+  .demos {
+    grid-area: demos;
     min-width: 0;
   }
 
@@ -106,12 +100,24 @@
     background: rgb(var(--color-surface));
   }
 
+  .booking {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    background: rgb(var(--color-surface-muted));
+  }
+
   .facts {
-    margin-top: 3rem;
+    grid-area: facts;
   }
 
   .facts dl {
-    margin-top: 1rem;
+    margin-top: 0.75rem;
   }
 
   .facts__row {
@@ -139,13 +145,14 @@
   @media (max-width: 860px) {
     .one-sheet {
       grid-template-columns: minmax(0, 1fr);
-      grid-template-areas: "intro" "main";
+      grid-template-areas: "intro" "demos" "facts";
+      grid-template-rows: auto;
     }
 
     .intro {
       display: grid;
       grid-template-columns: 5.5rem minmax(0, 1fr);
-      grid-template-areas: "photo text" "action action";
+      grid-template-areas: "photo text";
       align-items: center;
       column-gap: 1rem;
     }
@@ -161,8 +168,5 @@
       margin-top: 0;
     }
 
-    .intro :deep(.intro__action) {
-      grid-area: action;
-    }
   }
 </style>
