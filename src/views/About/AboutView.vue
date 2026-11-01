@@ -2,78 +2,26 @@
   <div class="site-container section">
     <h1 class="text-h1">About Brian</h1>
 
-    <div class="about-layout">
-      <div class="about-biography">
-        <p>I’m Brian, a voice actor based in Austin, Texas. I work in English and Albanian.</p>
-        <p>For voice projects, I record from a dedicated home studio with a Shure SM7B.</p>
-      </div>
-
-      <section aria-labelledby="profile-title">
-        <h2 id="profile-title" class="text-h3">Casting profile</h2>
-        <dl class="mt-3">
-          <div v-for="fact in facts" :key="fact.label" class="profile-row">
-            <dt>{{ fact.label }}</dt>
-            <dd>{{ fact.value }}</dd>
-          </div>
-        </dl>
-      </section>
+    <div class="about-biography">
+      <p>
+        I'm an actor who's been living it up in Austin, TX as of recently. I kind of had the traditional upbringing typical of an immigrant family and was raised to be a doctor before I could say a word. Naturally, that all crashed and burned by the time I got to college, and I had literally zero clue what to do with myself. The only thing that I knew at that moment was a passion for telling stories. Cracking jokes, connecting with people and never taking myself seriously; it all kind of slowly added up that I just wanted to perform all this time, and I'm not talking about surgeries. That's what all this is here for on this website. To let you know that I'm here to help you tell your stories, with a bit of my twist and flair.
+      </p>
+      <p>
+        <strong>Technical Specifications:</strong> Neumann TLM 103 and a sound treated space.
+      </p>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-  const facts = [
-    { label: "Languages", value: "English and Albanian" },
-    { label: "Based in", value: "Austin, Texas" },
-    { label: "Playing age", value: "18–27" },
-    { label: "Union status", value: "Nonunion" },
-    { label: "Studio", value: "Home studio, Shure SM7B" },
-  ];
-</script>
-
 <style scoped>
-  .about-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-    align-items: start;
-    gap: clamp(2rem, 5vw, 4rem);
-    margin-top: 1.5rem;
-  }
-
   .about-biography {
     max-width: 38rem;
+    margin-top: 1.5rem;
     font-size: 1.0625rem;
     line-height: 1.7;
   }
 
-  .profile-row {
-    display: grid;
-    grid-template-columns: 7rem minmax(0, 1fr);
-    gap: 1rem;
-    padding-block: 0.625rem;
-    border-top: 1px solid rgb(var(--color-line));
-    font-size: 0.875rem;
-  }
-
-  .profile-row:last-child {
-    border-bottom: 1px solid rgb(var(--color-line));
-  }
-
-  .profile-row dt {
-    color: rgb(var(--color-secondary));
-  }
-
-  .profile-row dd {
-    font-weight: 500;
-  }
-
   .about-biography p + p {
     margin-top: 1rem;
-  }
-
-  @media (max-width: 820px) {
-    .about-layout {
-      grid-template-columns: 1fr;
-    }
   }
 </style>
