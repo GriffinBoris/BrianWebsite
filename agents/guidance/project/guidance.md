@@ -98,8 +98,9 @@ every choice in the subject.
   Routes: `home` (`/`), `about`, `contact`. Route metadata updates client-side; social previews
   read the shared metadata in `index.html`.
 - `src/views/<Name>/<Name>View.vue` — one folder per route. `HomeView` (one-sheet: identity column and demos),
-  `AboutView` (short bio, casting profile, headshots gallery), `ContactView` (email, what to
-  include, profile links). The header shows Demos (a `#demos` anchor on home), About, Contact, and a
+  `AboutView` (short bio, casting profile, headshots gallery), `ContactView` (one centred block:
+  heading, one line, the email large, Request an audition, and profile links; no checklist or
+  secondary buttons). The header shows Demos (a `#demos` anchor on home), About, Contact, and a
   "Request an audition" button; the current page gets an accent underline.
 - `src/components/` — `layout/` (`SiteHeader` with inline navigation, `SiteFooter`),
   `player/` (`DemoRow`,

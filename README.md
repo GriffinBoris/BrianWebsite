@@ -24,8 +24,8 @@ npm run preview   # production preview at /BrianWebsite/
   download) on the right. The bottom
   audio bar keeps playing across pages.
 - **About** (`/about`): short bio, casting profile, and headshots.
-- **Contact** (`/contact`): booking email (`brianbakaj@icloud.com`), what to
-  include in an inquiry, and external profiles.
+- **Contact** (`/contact`): a single centred block with the booking email
+  (`brianbakaj@icloud.com`), a Request an audition button, and LinkedIn.
 
 The design is deliberately plain: white page, near-black text, one solid indigo
 accent, and Inter only. Light and dark themes are supported.

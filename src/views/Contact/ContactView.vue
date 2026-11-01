@@ -1,113 +1,78 @@
 <template>
-  <div class="site-container section contact-layout">
-    <section aria-labelledby="contact-title">
-      <h1 id="contact-title" class="text-h1">Bookings and auditions</h1>
-      <p class="lead mt-4 max-w-[34rem]">Email your project details and I’ll get back to you.</p>
+  <section class="site-container contact" aria-labelledby="contact-title">
+    <h1 id="contact-title" class="text-h1">Bookings and auditions</h1>
+    <p class="lead mt-4">Email your project details and I’ll get back to you.</p>
 
-      <dl class="mt-8">
-        <dt class="text-sm text-secondary">Email</dt>
-        <dd class="mt-1">
-          <a class="contact-email" :href="`mailto:${bookingEmail}`">{{ bookingEmail }}</a>
-        </dd>
-      </dl>
+    <a class="contact__email" :href="`mailto:${bookingEmail}`">{{ bookingEmail }}</a>
 
-      <div class="mt-8 flex flex-wrap gap-3">
-        <AppButton tone="accent" size="lg" :href="auditionRequestHref">Request an audition</AppButton>
-        <AppButton tone="outline" size="lg" :to="{ name: 'home', hash: '#demos' }">Listen to demos</AppButton>
-      </div>
-    </section>
+    <AppButton tone="accent" size="lg" :href="auditionRequestHref" root-class="mt-8">Request an audition</AppButton>
 
-    <aside class="contact-aside">
-      <section aria-labelledby="brief-title">
-        <h2 id="brief-title" class="text-h3">What to include</h2>
-        <ul class="contact-list">
-          <li v-for="item in briefItems" :key="item">{{ item }}</li>
-        </ul>
-      </section>
-
-      <section aria-labelledby="profiles-title">
-        <h2 id="profiles-title" class="text-h3">Profiles</h2>
-        <ul class="contact-list">
-          <li v-for="profile in profiles" :key="profile.label">
-            <a :href="profile.href" target="_blank" rel="noopener noreferrer" class="profile-link">
-              <span>{{ profile.label }}</span>
-              <AppIcon icon="externalLink" class="h-4 w-4" />
-              <span class="sr-only"> (opens in a new tab)</span>
-            </a>
-          </li>
-        </ul>
-      </section>
-    </aside>
-  </div>
+    <ul class="contact__profiles">
+      <li v-for="profile in profiles" :key="profile.label">
+        <a :href="profile.href" target="_blank" rel="noopener noreferrer" class="contact__profile">
+          <span>{{ profile.label }}</span>
+          <AppIcon icon="externalLink" class="h-4 w-4" />
+          <span class="sr-only"> (opens in a new tab)</span>
+        </a>
+      </li>
+    </ul>
+  </section>
 </template>
 
 <script setup lang="ts">
   import AppButton from "@/components/ui/AppButton.vue";
   import AppIcon from "@/components/ui/AppIcon.vue";
   import { auditionRequestHref, bookingEmail, profiles } from "@/data/profiles";
-
-  const briefItems = ["The project and the role", "Your dates and timeline", "A script or brief", "How the recording will be used"];
 </script>
 
 <style scoped>
-  .contact-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(16rem, 0.8fr);
-    align-items: start;
-    gap: clamp(2.5rem, 6vw, 5rem);
+  /* One centred block: the page exists to get an email sent. */
+  .contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 40rem;
+    padding-block: clamp(4rem, 12vh, 8rem);
+    text-align: center;
   }
 
-  .contact-email {
-    font-size: clamp(1.25rem, 2.5vw, 1.625rem);
-    font-weight: 600;
-    letter-spacing: -0.02em;
+  .contact__email {
+    margin-top: 2.5rem;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 650;
+    letter-spacing: -0.03em;
     color: rgb(var(--color-accent));
     text-decoration: underline;
+    text-decoration-thickness: 2px;
     text-underline-offset: 0.2em;
     overflow-wrap: anywhere;
   }
 
-  .contact-email:hover {
+  .contact__email:hover {
     color: rgb(var(--color-accent-strong));
   }
 
-  .contact-aside {
-    display: grid;
-    gap: 2rem;
-    padding: 1.5rem;
-    border: 1px solid rgb(var(--color-line));
-    border-radius: var(--radius-lg);
-  }
-
-  .contact-list {
-    margin-top: 0.5rem;
-    font-size: 0.9375rem;
-  }
-
-  .contact-list li {
+  .contact__profiles {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    min-width: 16rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
     border-top: 1px solid rgb(var(--color-line));
   }
 
-  .contact-list li:not(:has(a)) {
-    padding-block: 0.625rem;
-  }
-
-  .profile-link {
-    display: flex;
+  .contact__profile {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+    gap: 0.375rem;
     min-height: 2.75rem;
+    font-size: 0.9375rem;
     font-weight: 500;
+    color: rgb(var(--color-secondary));
   }
 
-  .profile-link:hover {
-    color: rgb(var(--color-accent));
-  }
-
-  @media (max-width: 820px) {
-    .contact-layout {
-      grid-template-columns: 1fr;
-    }
+  .contact__profile:hover {
+    color: rgb(var(--color-body));
   }
 </style>
