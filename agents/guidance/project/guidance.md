@@ -44,14 +44,13 @@ every choice in the subject.
   business rather than a design showcase. No taglines, wordplay headings, gradients, glows,
   ornamental animation, or filler copy. Headings are plain ("Demos", "About", "Casting profile",
   "Headshots", "Bookings and auditions").
-- **Home is a talent one-sheet (comp-card style).** Left column: headshot, name, "Voice actor in
-  English and Albanian", and the casting profile (languages, location, playing age, union status,
-  studio). Right column: the Demos list (stacked, labelled players with waveform, times, and MP3
-  download), then a short "Bookings and auditions" prompt with the Request an audition button, so
-  booking is the next step after listening and neither column is left bare. On phones: compact
-  photo and name row, demos immediately, the booking prompt, then the casting profile.
-- **Each fact appears once.** The casting profile lives only on Home; About is a short bio plus
-  headshots; the footer is just name, email, and profiles. Omit details that do not matter for
+- **Home is a talent one-sheet.** Left column: headshot, name, "Voice actor in English and
+  Albanian", and a link to the casting profile and headshots on About. Right column: the Demos list
+  (stacked, labelled players with waveform, times, and MP3 download), then a short "Bookings and
+  auditions" prompt with the Request an audition button, so booking is the next step after
+  listening. On phones: compact photo and name row, demos immediately, then the booking prompt.
+- **Each fact appears once.** The casting profile (languages, location, playing age, union
+  status, studio) lives only on About, beside the short bio and above the headshots; the footer is just name, email, and profiles. Omit details that do not matter for
   voice work (on-camera items such as movement or travel documents) and personal social accounts
   such as Facebook.
 - **Contact everywhere.** The header carries "Request an audition" (a mailto with an "Audition
@@ -98,8 +97,8 @@ every choice in the subject.
   `public/404.html` and the restoration script in `index.html`; old hash links remain supported.
   Routes: `home` (`/`), `about`, `contact`. Route metadata updates client-side; social previews
   read the shared metadata in `index.html`.
-- `src/views/<Name>/<Name>View.vue` — one folder per route. `HomeView` (one-sheet: identity column, demos, casting profile),
-  `AboutView` (short bio and headshots gallery), `ContactView` (email, what to
+- `src/views/<Name>/<Name>View.vue` — one folder per route. `HomeView` (one-sheet: identity column, demos, booking prompt),
+  `AboutView` (short bio, casting profile, headshots gallery), `ContactView` (email, what to
   include, profile links). The header shows Demos (a `#demos` anchor on home), About, Contact, and a
   "Request an audition" button; the current page gets an accent underline.
 - `src/components/` — `layout/` (`SiteHeader` with inline navigation, `SiteFooter`),
@@ -180,8 +179,8 @@ every choice in the subject.
 
 - Voice actor. Austin, TX. Playing age 18–27. Nonunion. English and
   **Albanian**. Records on a **Shure SM7B** in a dedicated home studio. Movement: dance. Holds a
-  driver's license and passport (travel-ready). The voice-relevant ones appear in the Home casting
-  profile and the About bio; dance and travel documents are on-camera details left off the site.
+  driver's license and passport (travel-ready). The voice-relevant ones appear in the About bio and
+  casting profile; dance and travel documents are on-camera details left off the site.
   Keep them accurate, and do not invent credits he can't back up.
 
 ## Content The Owner Supplies Or Confirms Later

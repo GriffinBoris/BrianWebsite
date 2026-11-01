@@ -5,6 +5,10 @@
       <div class="intro__text">
         <h1 id="hero-title" class="text-h1">Brian Bakaj</h1>
         <p class="mt-1 text-secondary">Voice actor in English and Albanian</p>
+        <AppButton tone="link" :to="{ name: 'about' }" root-class="mt-2">
+          <span>Casting profile and headshots</span>
+          <AppIcon icon="arrowRight" class="h-4 w-4" />
+        </AppButton>
       </div>
     </section>
 
@@ -22,20 +26,6 @@
         <AppButton tone="accent" :href="auditionRequestHref">Request an audition</AppButton>
       </div>
     </section>
-
-    <section class="facts" aria-labelledby="facts-title">
-      <h2 id="facts-title" class="text-h3">Casting profile</h2>
-      <dl>
-        <div v-for="fact in facts" :key="fact.label" class="facts__row">
-          <dt>{{ fact.label }}</dt>
-          <dd>{{ fact.value }}</dd>
-        </div>
-      </dl>
-      <AppButton tone="link" :to="{ name: 'about' }" root-class="mt-2">
-        <span>Bio and headshots</span>
-        <AppIcon icon="arrowRight" class="h-4 w-4" />
-      </AppButton>
-    </section>
   </div>
 </template>
 
@@ -51,23 +41,14 @@
 
   const { loadDurations } = usePlayer();
   onMounted(() => loadDurations(demoTracks));
-
-  const facts = [
-    { label: "Languages", value: "English and Albanian" },
-    { label: "Based in", value: "Austin, Texas" },
-    { label: "Playing age", value: "18–27" },
-    { label: "Union status", value: "Nonunion" },
-    { label: "Studio", value: "Home studio, Shure SM7B" },
-  ];
 </script>
 
 <style scoped>
-  /* A talent one-sheet (comp-card style): photo and specs on the left, demos on the right. */
+  /* A talent one-sheet: photo and name on the left, demos and booking on the right. */
   .one-sheet {
     display: grid;
     grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr);
-    grid-template-areas: "intro demos" "facts demos";
-    grid-template-rows: auto 1fr;
+    grid-template-areas: "intro demos";
     align-items: start;
     gap: 2rem clamp(2rem, 5vw, 4rem);
     padding-block: clamp(2rem, 5vw, 3.5rem) var(--space-section);
@@ -112,41 +93,11 @@
     background: rgb(var(--color-surface-muted));
   }
 
-  .facts {
-    grid-area: facts;
-  }
-
-  .facts dl {
-    margin-top: 0.75rem;
-  }
-
-  .facts__row {
-    display: grid;
-    grid-template-columns: 7rem minmax(0, 1fr);
-    gap: 1rem;
-    padding-block: 0.625rem;
-    border-top: 1px solid rgb(var(--color-line));
-    font-size: 0.875rem;
-  }
-
-  .facts__row:last-child {
-    border-bottom: 1px solid rgb(var(--color-line));
-  }
-
-  .facts dt {
-    color: rgb(var(--color-secondary));
-  }
-
-  .facts dd {
-    font-weight: 500;
-  }
-
-  /* On narrow screens: compact identity row, then demos straight away, then the profile. */
+  /* On narrow screens: compact identity row, then demos straight away. */
   @media (max-width: 860px) {
     .one-sheet {
       grid-template-columns: minmax(0, 1fr);
-      grid-template-areas: "intro" "demos" "facts";
-      grid-template-rows: auto;
+      grid-template-areas: "intro" "demos";
     }
 
     .intro {
