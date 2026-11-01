@@ -23,7 +23,7 @@ npm run preview   # production preview at /BrianWebsite/
   (video game and animation, commercial, narration, each with playback, seeking, and MP3
   download) on the right. The bottom
   audio bar keeps playing across pages.
-- **About** (`/about`): short bio and casting profile.
+- **About** (`/about`): bio and recording specifications.
 - **Contact** (`/contact`): a contact card with the booking email
   (`brianbakaj@icloud.com`, with a copy button), location and time zone, and a Request an audition button.
 
@@ -51,7 +51,7 @@ public/               favicon, social image, sitemap, robots.txt, Pages fallback
 - Add or reorder reels in `src/data/demos.ts`. Import audio from
   `src/assets/media/` so Vite generates the production URL.
 - The booking email and profile links live in `src/data/profiles.ts`.
-- The bio and casting profile are in `src/views/About/AboutView.vue`.
+- The bio and recording specifications are in `src/views/About/AboutView.vue`.
 - Keep credits, representation, and client claims limited to confirmed facts.
 
 ## GitHub Pages
