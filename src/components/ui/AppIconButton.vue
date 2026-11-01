@@ -59,15 +59,15 @@
 
   const toneClass = computed(() => {
     if (props.tone === "accent") {
-      return "border-0 bg-accent-gradient text-gradient-contrast hover:bg-accent-gradient-hover hover:text-gradient-contrast hover:border-0";
+      return "border-0 bg-accent text-accent-contrast hover:bg-accent-strong";
     }
     if (props.tone === "ghost") {
-      return "border-0 bg-transparent text-secondary hover:bg-body/10 hover:text-body";
+      return "border-0 bg-transparent text-secondary hover:bg-surface-muted hover:text-body";
     }
-    return "";
+    return "border-body/25 hover:border-accent hover:text-accent";
   });
 
-  const iconButtonClass = computed(() => cn("min-h-0 shrink-0 p-0", sizeClass.value, toneClass.value, props.rootClass));
+  const iconButtonClass = computed(() => cn("min-h-0 shrink-0 rounded-pill p-0", sizeClass.value, toneClass.value, props.rootClass));
 
   const tooltipBinding = computed(() => buildAppTooltipBinding({ disabled: !props.showTooltip, text: props.label }));
 </script>

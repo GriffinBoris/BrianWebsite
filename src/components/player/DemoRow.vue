@@ -1,7 +1,7 @@
 <template>
   <article class="demo-row" :class="{ 'is-active': active }">
     <AppIconButton
-      size="xl"
+      size="lg"
       :tone="active ? 'accent' : 'outline'"
       :icon="playing ? 'pause' : 'play'"
       :label="`${playing ? 'Pause' : 'Play'} ${track.title.toLowerCase()}`"
@@ -11,12 +11,7 @@
       @click="toggleTrack(track)"
     />
 
-    <div class="demo-row__heading">
-      <p class="demo-row__status" aria-hidden="true">
-{{ playing ? "Now playing" : String(number).padStart(2, "0") }}
-      </p>
-      <h3 class="demo-row__title">{{ track.title }}</h3>
-    </div>
+    <h3 class="demo-row__title">{{ track.title }}</h3>
 
     <div class="demo-row__progress">
       <span>{{ currentLabel }}</span>
@@ -51,7 +46,7 @@
   import type { DemoTrack } from "@/data/demos";
   import { computed } from "vue";
 
-  const props = defineProps<{ track: DemoTrack; number: number }>();
+  const props = defineProps<{ track: DemoTrack }>();
   const { isPlaying, progress, currentTime, duration, toggleTrack, seekToPercent, isCurrent, durationLabel, formatTime } = usePlayer();
   const active = computed(() => isCurrent(props.track));
   const playing = computed(() => active.value && isPlaying.value);
@@ -59,69 +54,40 @@
 </script>
 
 <style scoped>
+  /* Sized by its list container, so the same row works in the one-sheet column and on phones. */
   .demo-row {
-    position: relative;
     display: grid;
-    grid-template-columns: auto minmax(11rem, 14rem) minmax(0, 1fr) auto;
-    grid-template-areas: "play heading progress download";
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "play title download" "play progress progress";
     align-items: center;
-    column-gap: clamp(1rem, 2.5vw, 2rem);
-    padding: 1.5rem clamp(0.75rem, 2vw, 1.5rem);
-    border-radius: var(--radius-lg);
+    column-gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-top: 1px solid rgb(var(--color-line));
     transition: background-color var(--duration) var(--ease);
   }
 
-  /* A hairline between rows; hidden where it would touch a highlighted row. */
-  .demo-row + .demo-row::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    inset-inline: clamp(0.75rem, 2vw, 1.5rem);
-    height: 1px;
-    background: rgb(var(--color-line));
+  .demo-row:first-child {
+    border-top: 0;
   }
 
-  .demo-row:hover,
   .demo-row.is-active {
-    background: rgb(var(--color-surface));
-  }
-
-  .demo-row:hover::before,
-  .demo-row.is-active::before,
-  .demo-row:hover + .demo-row::before,
-  .demo-row.is-active + .demo-row::before {
-    opacity: 0;
+    background: rgb(var(--color-accent-soft));
   }
 
   .demo-row__play {
     grid-area: play;
   }
 
-  .demo-row__heading {
-    grid-area: heading;
-    min-width: 0;
-  }
-
-  .demo-row__status {
-    height: 1.25rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    font-variant-numeric: tabular-nums;
-    color: rgb(var(--color-secondary));
-  }
-
-  .demo-row.is-active .demo-row__status {
-    color: rgb(var(--color-accent));
-  }
-
   .demo-row__title {
-    margin-top: 0.25rem;
-    font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+    grid-area: title;
+    font-size: 1rem;
     font-weight: 600;
-    letter-spacing: -0.025em;
-    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .demo-row__download {
+    grid-area: download;
+    min-height: 2rem;
   }
 
   .demo-row__progress {
@@ -129,39 +95,23 @@
     display: flex;
     min-width: 0;
     align-items: center;
-    gap: 0.875rem;
+    gap: 0.625rem;
     color: rgb(var(--color-secondary));
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     font-variant-numeric: tabular-nums;
   }
 
   .demo-row__progress > span {
     flex: none;
-    min-width: 2.25rem;
+    min-width: 2rem;
     text-align: center;
   }
 
-  .demo-row__download {
-    grid-area: download;
-    padding-inline: 0.5rem;
-  }
-
-  @media (max-width: 860px) {
+  @container (max-width: 26rem) {
     .demo-row {
-      grid-template-columns: auto minmax(0, 1fr) auto;
-      grid-template-areas: "play heading download" "progress progress progress";
-      row-gap: 0.75rem;
-      padding-block: 1.25rem;
-    }
-  }
-
-  @media (max-width: 420px) {
-    .demo-row__progress {
-      gap: 0.375rem;
-      font-size: 0.75rem;
-    }
-    .demo-row__progress > span {
-      min-width: 2rem;
+      grid-template-areas: "play title download" "progress progress progress";
+      row-gap: 0.25rem;
+      padding-inline: 1rem;
     }
   }
 </style>

@@ -1,38 +1,37 @@
 <template>
-  <header class="sticky top-0 z-50 border-b border-line/70 bg-background/85 backdrop-blur-md">
+  <header class="sticky top-0 z-50 border-b border-line bg-background/95 backdrop-blur">
     <nav class="site-container flex h-[var(--header-height)] items-center justify-between gap-4" aria-label="Primary">
-      <RouterLink class="text-lg font-bold tracking-[-0.03em] whitespace-nowrap" :to="{ name: 'home' }">
-        Brian Bakaj
+      <RouterLink class="flex items-baseline gap-2 whitespace-nowrap" :to="{ name: 'home' }">
+        <span class="text-[1.0625rem] font-bold tracking-[-0.02em]">Brian Bakaj</span>
+        <span class="text-sm text-secondary max-[480px]:hidden">Voice actor</span>
       </RouterLink>
 
-      <ul class="flex items-center gap-1 sm:gap-2">
-        <li>
-          <RouterLink :to="{ name: 'home', hash: '#demos' }" class="nav-link" exact-active-class="">Demos</RouterLink>
-        </li>
-        <li>
-          <RouterLink :to="{ name: 'about' }" class="nav-link">About</RouterLink>
-        </li>
-        <li>
-          <RouterLink
-            :to="{ name: 'contact' }"
-            class="ml-1 inline-flex min-h-10 items-center rounded-pill bg-body px-4 text-sm font-medium text-background transition-colors duration-[180ms] hover:bg-accent hover:text-accent-contrast sm:ml-2 sm:px-5"
-            active-class="!bg-accent-gradient !text-gradient-contrast"
-          >
-            Contact
-          </RouterLink>
-        </li>
-      </ul>
+      <div class="flex items-center gap-1 sm:gap-3">
+        <ul class="flex items-center">
+          <li v-for="item in items" :key="item.label">
+            <RouterLink :to="item.to" class="nav-link" :exact-active-class="item.to.hash ? '' : undefined">{{ item.label }}</RouterLink>
+          </li>
+        </ul>
+        <AppButton tone="accent" :href="auditionRequestHref" root-class="max-[720px]:hidden">Request an audition</AppButton>
+      </div>
     </nav>
   </header>
 </template>
 
 <script setup lang="ts">
+  import AppButton from "@/components/ui/AppButton.vue";
+  import { auditionRequestHref } from "@/data/profiles";
   import { RouterLink } from "vue-router";
+
+  const items = [
+    { label: "Demos", to: { name: "home", hash: "#demos" } },
+    { label: "About", to: { name: "about" } },
+    { label: "Contact", to: { name: "contact" } },
+  ];
 </script>
 
 <style scoped>
   .nav-link {
-    position: relative;
     display: inline-flex;
     align-items: center;
     min-height: 44px;
@@ -43,21 +42,15 @@
     transition: color var(--duration) var(--ease);
   }
 
-  .nav-link:hover,
-  .nav-link.router-link-exact-active {
+  .nav-link:hover {
     color: rgb(var(--color-body));
   }
 
-  /* The current page gets the red recording light under its label. */
-  .nav-link.router-link-exact-active::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 4px;
-    width: 5px;
-    height: 5px;
-    border-radius: 999px;
-    background: rgb(var(--color-accent));
-    transform: translateX(-50%);
+  .nav-link.router-link-exact-active {
+    color: rgb(var(--color-body));
+    text-decoration: underline;
+    text-decoration-color: rgb(var(--color-accent));
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.5rem;
   }
 </style>

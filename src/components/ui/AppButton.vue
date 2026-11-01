@@ -16,7 +16,7 @@
   import { computed } from "vue";
   import { RouterLink, type RouteLocationRaw } from "vue-router";
 
-  type AppButtonTone = "accent" | "solid" | "outline" | "link";
+  type AppButtonTone = "accent" | "outline" | "link";
   type AppButtonSize = "md" | "lg";
 
   interface Props {
@@ -49,30 +49,27 @@
 
   const sizeClasses = computed(() => {
     if (props.tone === "link") {
-      return "gap-2 min-h-11 text-sm";
+      return "gap-1.5 min-h-11 text-sm";
     }
     if (props.size === "lg") {
-      return "gap-3 min-h-14 px-7 text-base";
+      return "gap-2.5 min-h-12 px-5 text-[0.9375rem]";
     }
-    return "gap-2 min-h-11 px-5 text-sm";
+    return "gap-2 min-h-10 px-4 text-sm";
   });
 
   const toneClasses = computed(() => {
     if (props.tone === "accent") {
-      return "rounded-pill bg-accent-gradient text-gradient-contrast shadow-accent hover:bg-accent-gradient-hover motion-safe:active:scale-[0.98]";
-    }
-    if (props.tone === "solid") {
-      return "rounded-pill bg-body text-background hover:bg-accent hover:text-accent-contrast motion-safe:active:scale-[0.98]";
+      return "rounded-md bg-accent text-accent-contrast hover:bg-accent-strong";
     }
     if (props.tone === "link") {
-      return "rounded-sm text-secondary hover:text-accent";
+      return "rounded-sm text-accent hover:text-accent-strong hover:underline underline-offset-4";
     }
-    return "rounded-pill border border-body/25 text-body hover:border-body hover:bg-body hover:text-background";
+    return "rounded-md border border-line bg-surface text-body hover:border-body/40";
   });
 
   const rootClasses = computed(() =>
     cn(
-      "inline-flex items-center justify-center font-medium transition-[background-color,color,border-color,transform] duration-[180ms] ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+      "inline-flex items-center justify-center font-medium transition-[background-color,color,border-color] duration-[150ms] ease-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
       sizeClasses.value,
       toneClasses.value,
       props.rootClass,

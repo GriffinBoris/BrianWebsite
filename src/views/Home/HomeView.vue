@@ -1,70 +1,48 @@
 <template>
-  <section aria-labelledby="hero-title">
-    <div class="site-container hero">
-      <div>
-        <p class="eyebrow">Voice actor</p>
-        <h1 id="hero-title" class="mt-5 text-display font-extrabold">Brian Bakaj</h1>
-        <p class="lead mt-6 max-w-[34rem]">
-          English and Albanian voiceover for video games, commercials, and narration. Based in Austin, Texas, recording from a dedicated home studio.
-        </p>
-        <div class="mt-9 flex flex-wrap gap-3">
-          <AppButton tone="accent" size="lg" :aria-pressed="featuredPlaying" @click="toggleTrack(featuredTrack)">
-            <AppIcon :icon="featuredPlaying ? 'pause' : 'play'" class="h-5 w-5 fill-current" />
-            <span>{{ featuredPlaying ? "Pause demo" : "Play demo" }}</span>
-          </AppButton>
-          <AppButton tone="outline" size="lg" :to="{ name: 'contact' }">
-            <span>Book Brian</span>
-            <AppIcon icon="arrowRight" class="h-5 w-5" />
-          </AppButton>
+  <div class="site-container one-sheet">
+    <section class="intro" aria-labelledby="hero-title">
+      <img class="intro__photo" :src="headshot" alt="Brian Bakaj, outdoor headshot" width="565" height="476" fetchpriority="high" />
+      <div class="intro__text">
+        <h1 id="hero-title" class="text-h1">Brian Bakaj</h1>
+        <p class="mt-1 text-secondary">Voice actor in English and Albanian</p>
+      </div>
+      <div class="intro__actions">
+        <AppButton tone="accent" size="lg" :href="auditionRequestHref" root-class="w-full">Request an audition</AppButton>
+        <a class="intro__email" :href="`mailto:${bookingEmail}`">{{ bookingEmail }}</a>
+      </div>
+    </section>
+
+    <div class="main">
+      <section id="demos" aria-labelledby="demos-title">
+        <h2 id="demos-title" class="text-h2">Demos</h2>
+        <div class="demos__list">
+          <DemoRow v-for="track in demoTracks" :key="track.id" :track="track" />
         </div>
-      </div>
+      </section>
 
-      <img class="hero__portrait" :src="headshot" alt="Brian Bakaj, outdoor headshot" width="565" height="476" fetchpriority="high" />
+      <section class="bio" aria-labelledby="bio-title">
+        <h2 id="bio-title" class="text-h2">About</h2>
+        <p class="mt-3">
+          I’m Brian, a voice actor based in Austin, Texas, working in English and Albanian. I record from a dedicated home studio with a
+          Shure SM7B, and I hold a passport and driver’s license for projects that involve travel.
+        </p>
+      </section>
     </div>
-  </section>
 
-  <section id="demos" class="theme-studio section" aria-labelledby="demos-title">
-    <div class="site-container">
-      <h2 id="demos-title" class="mb-8 text-h2">Demos</h2>
-      <DemoRow v-for="(track, index) in demoTracks" :key="track.id" :track="track" :number="index + 1" />
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="profile-title">
-    <div class="site-container">
-      <div class="flex flex-wrap items-center justify-between gap-4">
-        <h2 id="profile-title" class="text-h2">Profile</h2>
-        <AppButton tone="link" :to="{ name: 'about' }">
-          <span>Full profile</span>
-          <AppIcon icon="arrowRight" class="h-4 w-4" />
-        </AppButton>
-      </div>
-      <dl class="facts">
-        <div v-for="fact in facts" :key="fact.label" class="facts__item">
+    <section class="facts" aria-labelledby="facts-title">
+      <h2 id="facts-title" class="sr-only">Casting profile</h2>
+      <dl>
+        <div v-for="fact in facts" :key="fact.label" class="facts__row">
           <dt>{{ fact.label }}</dt>
           <dd>{{ fact.value }}</dd>
         </div>
       </dl>
-    </div>
-  </section>
-
-  <section class="pb-[var(--space-section)]" aria-labelledby="book-title">
-    <div class="site-container">
-      <div class="booking">
-        <div>
-          <h2 id="book-title" class="text-h2">Book Brian</h2>
-          <p class="mt-3 text-secondary">Send the project, the role, and your timeline.</p>
-        </div>
-        <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
-          <a class="booking__email" :href="`mailto:${bookingEmail}`">{{ bookingEmail }}</a>
-          <AppButton tone="accent" size="lg" :href="`mailto:${bookingEmail}`">
-            <AppIcon icon="mail" class="h-5 w-5" />
-            <span>Email Brian</span>
-          </AppButton>
-        </div>
-      </div>
-    </div>
-  </section>
+      <AppButton tone="link" :to="{ name: 'about' }" root-class="mt-2">
+        <span>Full profile and headshots</span>
+        <AppIcon icon="arrowRight" class="h-4 w-4" />
+      </AppButton>
+    </section>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -74,107 +52,137 @@
   import AppIcon from "@/components/ui/AppIcon.vue";
   import { usePlayer } from "@/composables/usePlayer";
   import { demoTracks } from "@/data/demos";
-  import { bookingEmail } from "@/data/profiles";
-  import { computed, onMounted } from "vue";
+  import { auditionRequestHref, bookingEmail } from "@/data/profiles";
+  import { onMounted } from "vue";
 
-  const { isPlaying, isCurrent, toggleTrack, loadDurations } = usePlayer();
+  const { loadDurations } = usePlayer();
   onMounted(() => loadDurations(demoTracks));
-
-  // The hero button plays the first reel in the list.
-  const featuredTrack = demoTracks[0];
-  const featuredPlaying = computed(() => isCurrent(featuredTrack) && isPlaying.value);
 
   const facts = [
     { label: "Languages", value: "English and Albanian" },
-    { label: "Playing age", value: "18–27" },
     { label: "Based in", value: "Austin, Texas" },
-    { label: "Studio", value: "Shure SM7B home studio" },
+    { label: "Playing age", value: "18–27" },
+    { label: "Union status", value: "Nonunion" },
+    { label: "Studio", value: "Home studio, Shure SM7B" },
   ];
 </script>
 
 <style scoped>
-  .hero {
+  /* A talent one-sheet: profile on the left, demos on the right, both above the fold. */
+  .one-sheet {
     display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.8fr);
-    align-items: center;
-    gap: clamp(2.5rem, 6vw, 5rem);
-    padding-block: clamp(3rem, 8vw, 6rem);
+    grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr);
+    grid-template-areas: "intro main" "facts main";
+    grid-template-rows: auto 1fr;
+    gap: 2rem clamp(2rem, 5vw, 4rem);
+    padding-block: clamp(2rem, 5vw, 3.5rem) var(--space-section);
   }
 
-  .hero__portrait {
+  .intro {
+    grid-area: intro;
+  }
+
+  .intro__photo {
     width: 100%;
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-photo);
   }
 
-  .facts {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
-    margin-top: 2rem;
+  .intro__text {
+    margin-top: 1.25rem;
   }
 
-  .facts__item {
-    padding: 1.25rem;
+  .intro__actions {
+    margin-top: 1.25rem;
+  }
+
+  .intro__email {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    font-size: 0.875rem;
+    color: rgb(var(--color-secondary));
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .intro__email:hover {
+    color: rgb(var(--color-body));
+  }
+
+  .main {
+    grid-area: main;
+    min-width: 0;
+  }
+
+  .demos__list {
+    container-type: inline-size;
+    margin-top: 1rem;
+    overflow: hidden;
     border: 1px solid rgb(var(--color-line));
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     background: rgb(var(--color-surface));
   }
 
+  .bio {
+    max-width: 40rem;
+    margin-top: 3rem;
+    line-height: 1.7;
+  }
+
+  .facts {
+    grid-area: facts;
+  }
+
+  .facts__row {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: 1rem;
+    padding-block: 0.625rem;
+    border-top: 1px solid rgb(var(--color-line));
+    font-size: 0.875rem;
+  }
+
+  .facts__row:last-child {
+    border-bottom: 1px solid rgb(var(--color-line));
+  }
+
   .facts dt {
-    font-size: 0.8125rem;
     color: rgb(var(--color-secondary));
   }
 
   .facts dd {
-    margin-top: 0.375rem;
-    font-size: 1.0625rem;
-    font-weight: 600;
-    letter-spacing: -0.015em;
-  }
-
-  .booking {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem 3rem;
-    padding: clamp(1.75rem, 5vw, 3rem);
-    border-radius: var(--radius-lg);
-    background: rgb(var(--color-surface-muted));
-  }
-
-  .booking__email {
     font-weight: 500;
-    text-decoration: underline;
-    text-decoration-color: rgb(var(--color-body) / 0.3);
-    text-underline-offset: 0.3em;
-    overflow-wrap: anywhere;
-    transition:
-      color var(--duration) var(--ease),
-      text-decoration-color var(--duration) var(--ease);
   }
 
-  .booking__email:hover {
-    color: rgb(var(--color-accent));
-    text-decoration-color: currentColor;
-  }
+  /* On narrow screens: compact identity row, then demos straight away, then the profile. */
+  @media (max-width: 860px) {
+    .one-sheet {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: "intro" "main" "facts";
+      grid-template-rows: auto;
+    }
 
-  @media (max-width: 900px) {
-    .hero {
-      grid-template-columns: 1fr;
+    .intro {
+      display: grid;
+      grid-template-columns: 5.5rem minmax(0, 1fr);
+      grid-template-areas: "photo text" "actions actions";
+      align-items: center;
+      column-gap: 1rem;
     }
-    .hero__portrait {
-      max-width: 30rem;
-    }
-    .facts {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
 
-  @media (max-width: 480px) {
-    .facts {
-      grid-template-columns: 1fr;
+    .intro__photo {
+      grid-area: photo;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .intro__text {
+      grid-area: text;
+      margin-top: 0;
+    }
+
+    .intro__actions {
+      grid-area: actions;
     }
   }
 </style>

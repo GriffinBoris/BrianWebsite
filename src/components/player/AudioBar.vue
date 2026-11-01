@@ -2,13 +2,12 @@
   <Transition name="player">
     <div
       v-if="currentTrack"
-      class="theme-studio fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom,0px))] z-[60] mx-auto max-w-[60rem] rounded-lg border border-line shadow-float"
+      class="fixed inset-x-0 bottom-0 z-[60] border-t border-line bg-surface pb-[env(safe-area-inset-bottom)]"
       role="region"
       aria-label="Audio player"
     >
-      <div class="flex min-h-[calc(var(--player-height)-env(safe-area-inset-bottom,0px)-0.75rem)] items-center gap-x-4 px-3 py-2 sm:px-4 max-[620px]:flex-wrap">
+      <div class="site-container flex h-[calc(var(--player-height)-env(safe-area-inset-bottom,0px))] items-center gap-x-4 max-[620px]:flex-wrap max-[620px]:content-center max-[620px]:gap-y-1">
         <AppIconButton
-          size="lg"
           tone="accent"
           :icon="isPlaying ? 'pause' : 'play'"
           :label="`${isPlaying ? 'Pause' : 'Play'} ${currentTrack.title.toLowerCase()}`"
@@ -17,13 +16,10 @@
           @click="togglePlayback"
         />
 
-        <div class="w-[clamp(8rem,20vw,12rem)] min-w-0 flex-none max-[620px]:w-auto max-[620px]:flex-1">
-          <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-accent">{{ isPlaying ? "Now playing" : "Paused" }}</p>
-          <p class="truncate font-semibold leading-tight">{{ currentTrack.title }}</p>
-        </div>
+        <p class="w-[clamp(8rem,18vw,11rem)] min-w-0 flex-none truncate text-sm font-semibold max-[620px]:w-auto max-[620px]:flex-1">{{ currentTrack.title }}</p>
 
         <div class="flex min-w-0 flex-1 items-center gap-3 max-[620px]:order-last max-[620px]:basis-full">
-          <span class="min-w-[2.6rem] text-center text-[0.8rem] tabular-nums text-secondary">{{ formatTime(currentTime) }}</span>
+          <span class="min-w-[2.4rem] text-center text-xs tabular-nums text-secondary">{{ formatTime(currentTime) }}</span>
           <AudioSeek
             :waveform="currentTrack.waveform"
             :value="progress"
@@ -32,13 +28,13 @@
             :value-text="`${formatTime(currentTime)} of ${formatTime(duration)}`"
             @seek="seekToPercent"
           />
-          <span class="min-w-[2.6rem] text-center text-[0.8rem] tabular-nums text-secondary">{{ formatTime(duration) }}</span>
+          <span class="min-w-[2.4rem] text-center text-xs tabular-nums text-secondary">{{ formatTime(duration) }}</span>
         </div>
 
         <AppIconButton tone="ghost" icon="close" label="Close player" @click="close" />
       </div>
 
-      <div v-if="playbackError" class="absolute inset-x-0 bottom-full mb-2 rounded-md border border-line bg-surface px-4 py-3 text-center text-sm" role="alert">
+      <div v-if="playbackError" class="absolute inset-x-0 bottom-full border-y border-line bg-surface px-4 py-3 text-center text-sm" role="alert">
         {{ playbackError }}
       </div>
     </div>
@@ -56,14 +52,11 @@
 <style scoped>
   .player-enter-active,
   .player-leave-active {
-    transition:
-      transform 280ms var(--ease),
-      opacity 280ms var(--ease);
+    transition: transform 200ms var(--ease);
   }
 
   .player-enter-from,
   .player-leave-to {
-    transform: translateY(calc(100% + 1rem));
-    opacity: 0;
+    transform: translateY(100%);
   }
 </style>
