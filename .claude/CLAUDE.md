@@ -1262,14 +1262,14 @@ every choice in the subject.
   instantly above the fold, contact is reachable from every page, and the site reads as a real
   business rather than a design showcase. No taglines, wordplay headings, gradients, glows,
   ornamental animation, or filler copy. Headings are plain ("Demos", "About", "Casting profile",
-  "Headshots", "Bookings and auditions").
+  "Bookings and auditions").
 - **Home is a talent one-sheet.** Left column: headshot, name, "Voice actor in English and
-  Albanian", and a link to the casting profile and headshots on About. Right column: the Demos list
+  Albanian", and a link to the casting profile on About. Right column: the Demos list
   (stacked, labelled players with waveform, times, and MP3 download). No separate booking box on
   Home: it repeated the header button and the Contact page. On phones: compact photo and name row,
   then demos immediately.
 - **Each fact appears once.** The casting profile (languages, location, playing age, union
-  status, studio) lives only on About, beside the short bio and above the headshots; the footer is just name, email, profiles, and the theme toggle (one row on wide screens; two full-width rows on phones). Omit details that do not matter for
+  status, studio) lives only on About, beside the short bio; the footer is just name, email, profiles, and the theme toggle (one row on wide screens; two full-width rows on phones). Omit details that do not matter for
   voice work (on-camera items such as movement or travel documents) and personal social accounts
   such as Facebook.
 - **Contact everywhere.** The header has Demos, About, and one accent **Contact** button (all
@@ -1289,9 +1289,10 @@ every choice in the subject.
 - **Do not invent credibility.** Industry sites often show client logos, testimonials, agent
   representation, and remote-session tools (Source-Connect, ipDTL). Add these only when Brian
   supplies real ones.
-- No carousel. About keeps its static three-photo gallery. The version-two AI portrait is kept at
-  `src/assets/img/headshot-v2.png` with no references; files there ship only when imported, so it
-  is not deployed. Do not put unused files in `public/`, which is published verbatim.
+- No carousel and no headshot gallery (removed at the owner's request; the only photo on the site
+  is the home portrait). The two look photos (`brian-look-01.jpg`, `brian-look-02.jpg`) and the
+  version-two AI portrait (`headshot-v2.png`) stay in `src/assets/img/` with no references; files
+  there ship only when imported, so they are not deployed. Do not put unused files in `public/`, which is published verbatim.
 - **Usable, not a maze.** No scroll-triggered reveals or content hidden until scrolled into view.
   Everything is visible and reachable; navigation is explicit. Prefer clarity and findability over
   scroll spectacle.
@@ -1321,7 +1322,7 @@ every choice in the subject.
   Routes: `home` (`/`), `about`, `contact`. Route metadata updates client-side; social previews
   read the shared metadata in `index.html`.
 - `src/views/<Name>/<Name>View.vue` — one folder per route. `HomeView` (one-sheet: identity column and demos),
-  `AboutView` (short bio, casting profile, headshots gallery), `ContactView` (heading plus a
+  `AboutView` (short bio and casting profile), `ContactView` (heading plus a
   contact card). The header shows Demos (a `#demos` anchor on home), About, and a Contact
   button; the current nav link gets an accent underline.
 - `src/components/` — `layout/` (`SiteHeader` with inline navigation, `SiteFooter`),
@@ -1339,7 +1340,7 @@ every choice in the subject.
   home, and Contact.
 - `src/assets/` — `base.css` (Tailwind entry + `@config` + design tokens + resets + shared
   `.site-container`/`.section`/`.lead` primitives), the self-hosted Inter
-  variable `woff2` under `fonts/`, `img/` (headshot + looks), and `media/` (the demo mp3s). Fonts/images/media are imported
+  variable `woff2` under `fonts/`, `img/` (the home portrait plus unreferenced looks), and `media/` (the demo mp3s). Fonts/images/media are imported
   so Vite hashes them and rewrites URLs for the Pages base path.
 - `tailwind.config.js` — maps the CSS-variable tokens onto semantic Tailwind names (`bg-surface`,
   `text-body`, `text-accent`, `rounded-lg`, …). `darkMode` keys off `[data-theme="dark"]`.
@@ -1427,6 +1428,6 @@ every choice in the subject.
 - No test suite. Before committing, run `npm run dev` (or `npm run preview` for the production base
   path) and confirm in a browser: both themes render, fonts load locally with no external/network
   errors, all three routes resolve, navigation, the Demos anchor, and the active-page dot work, the
-  About headshots and the homepage portrait render correctly, each demo row plays audio and
+  the homepage portrait renders correctly, each demo row plays audio and
   drives the bottom player, only one demo plays at a time, the mobile seek
   control works, and the layout is responsive with no console errors. There is no configured linter.
